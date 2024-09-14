@@ -1,0 +1,58 @@
+
+\DeclareLanguageMapping{russian}{archive-russian}
+
+%
+% New field formats
+%    
+
+\DeclareFieldFormat[archive]{title}{#1}
+
+\DeclareFieldFormat{collectionnumber}{#1.}
+\DeclareFieldFormat{inventorynumber}{#1.}
+\DeclareFieldFormat{filenumber}{#1.}
+ 
+%  
+% New macros
+%
+
+\newbibmacro*{archivetitle}{%
+  \printfield{title}}
+
+\newbibmacro*{archivename}{%
+  \printfield{archivename}}
+
+\newbibmacro*{archivecollectionnumber}{%
+  \bibstring{collection}%
+  \setunit{\addspace}%
+  \printfield{collectionnumber}%
+  \setunit{\addspace}%
+}
+
+\newbibmacro*{archiveinventorynumber}{%
+  \bibstring{inventory}%
+  \setunit{\addspace}%
+  \printfield{inventorynumber}%
+  \setunit{\addspace}%
+}
+
+\newbibmacro*{archivefilenumber}{%
+  \bibstring{file}%
+  \setunit{\addspace}%
+  \printfield{filenumber}%
+  \setunit{\addspace}%
+}
+
+\DeclareBibliographyDriver{archive}{%
+  \usebibmacro{bibindex}%
+  \usebibmacro{begentry}%
+  \usebibmacro{archivetitle}%
+  \newunit\newblock
+  \usebibmacro{archivename}%
+  \newunit\newblock
+  \usebibmacro{archivecollectionnumber}%
+  \newunit\newblock
+  \usebibmacro{archiveinventorynumber}%
+  \newunit\newblock
+  \usebibmacro{archivefilenumber}%
+  \newunit\newblock
+  \usebibmacro{finentry}}

@@ -1,0 +1,18 @@
+\DeclareDatamodelEntrytypes{archive}
+\DeclareDatamodelFields[type=field,datatype=literal]{
+  archivename,
+}
+
+\DeclareDatamodelFields[type=field, datatype=verbatim]{
+  collectionnumber,
+  filenumber,
+  inventorynumber,
+}
+
+\DeclareDatamodelEntryfields[archive]{
+  archivename,
+  collectionnumber,
+  inventorynumber,
+  filenumber,
+  title,
+}

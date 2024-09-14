@@ -1,0 +1,1163 @@
+\documentclass{article}
+\usepackage[a4paper,margin=1.5cm,landscape]{geometry}
+%\usepackage{lua-visual-debug}
+\usepackage[hidelinks]{hyperref}
+
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{fontspec}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{tipa}
+
+%\usepackage[datamodel=archive,backend=biber,style=gost-numeric]{biblatex}
+\usepackage[datamodel=archive,backend=biber]{biblatex}
+
+\setmainfont{CMU Serif}
+
+\newcounter{glyph}
+\setcounter{glyph}{1}
+
+\newcommand{\tenevilglyph}[1]{%
+\theglyph\hfill\raisebox{-0.6cm}{\includegraphics[width=1cm]{glyphs/#1.pdf}}%
+\stepcounter{glyph}%
+}
+
+\addbibresource{tenevil.bib}
+
+\input bibliography-macros.tex
+
+\begin{document}
+\begin{longtable}{p{1.7cm}>{\raggedright}p{9cm}p{3cm}>{\raggedright}p{3cm}>{\raggedright}p{3cm}p{2cm}}
+\toprule
+ & СПбФ АРАН \cite{spbfaran79} & Богораз \cite{bogoraz1934} & Миндалевич \cite{mindalevich1934} & Лавров \cite{lavrov1969} &  Тыневиль \\ \midrule
+ \tenevilglyph{i_2cU_2cD}
+	&	qlaul [= мужчина] \cite[л. 64 об.]{spbfaran79}
+	& 
+	& 
+	& 	мужчина 
+	&   \\ \midrule
+\tenevilglyph{i_2cU_2cD_'}
+	&	отец \cite[л. 40, 55]{spbfaran79}\linebreak
+		әtlьgьn [= отец] \cite[л. 52]{spbfaran79}\linebreak
+		әtlьgә \cite[л. 52]{spbfaran79}\linebreak
+		etlьgьn [әtlьgьn] \cite[л. 52 об.]{spbfaran79}\linebreak
+		ьnpenacgen [= старик] \cite[л. 64]{spbfaran79}
+	& 	отец
+	& 
+	& 
+	&  + \\ \midrule
+\tenevilglyph{i_2cU_j_2cD}
+	&	uwaqug [uwæquc = муж] \cite[л. 65 об.]{spbfaran79}
+	& 
+	&
+	& 
+	&  + \\ \midrule
+\tenevilglyph{i_2cU_2C}
+	&	ŋәucqan [ŋausqan = женщина] \cite[л. 65 об.]{spbfaran79}
+	& 
+	&	a woman
+	& 
+	&  + \\ \midrule
+\tenevilglyph{i_2cU_j_2C}
+	&	жена \cite[л. 65 об.]{spbfaran79}
+	& 
+	&	
+	& 
+	&  + \\ \midrule
+\tenevilglyph{i_2cU_l_2C}
+	&	мать \cite[л. 64]{spbfaran79}\linebreak
+		әtla [= мать] \cite[л. 52]{spbfaran79}\linebreak
+		etla [әtla] \cite[л. 52 об., 56]{spbfaran79}
+	& 
+	&	
+	& 
+	&  + \\ \midrule
+\tenevilglyph{i_2cU_t_2C}
+	&	родившая мать \cite[л. 64]{spbfaran79}
+	& 
+	&	a woman awaiting the birth of her child
+	& 
+	&  \\ \midrule
+\tenevilglyph{i_2CF}
+	&	сын \cite[л. 52]{spbfaran79}\linebreak
+		сыновья \cite[л. 52]{spbfaran79} \linebreak
+		әkkot [ækkæt = сыновья] \cite[л. 39]{spbfaran79} \linebreak
+		син [сын] \cite[л. 67]{spbfaran79} \linebreak
+	& 	
+	&	
+	& 	сын
+	&	+ \\ \midrule
+\tenevilglyph{i_2cU_CF}
+	&	доса [дочь] \cite[л. 67]{spbfaran79} \linebreak
+	&	
+	&	
+	& 
+	&  \\ \midrule
+%\tenevilglyph{i_2cU_2CF} % Неправильный знак
+%	&	
+%	& 
+%	&	
+%	& 
+%	&  \\ \midrule
+\tenevilglyph{i_2cU_3CF}
+	&	ситра [сестра] \cite[л. 67]{spbfaran79} 
+	& 
+	&	
+	& 
+	&  \\ \midrule
+\tenevilglyph{i_2CF_v_q_'}
+	&	прат [брат] \cite[л. 67]{spbfaran79}
+	& 	
+	&	
+	& 
+	&  \\ \midrule
+\tenevilglyph{i_2CF_j}
+	&	qlaul nenene [qlaul nænænæ = мужчина младенец] \cite[л. 65 об]{spbfaran79}
+	& 
+	&	
+	& 
+	& 	+ \\ \midrule
+\tenevilglyph{i_2cU_CF_h}
+	&	ŋәusqan neneneŋ [ŋausqan nænænæŋ = женщина мланедец] \cite[л. 65 об]{spbfaran79}
+	& 
+	&	
+	& 
+	&  \\ \midrule
+\tenevilglyph{o-_p_j}
+	&	он \cite[л. 40]{spbfaran79} \linebreak
+		әtlon [= он] \cite[л. 39 об, 52, 65 об]{spbfaran79}
+	& 	он
+	&	
+	& 
+	&  	+ \\ \midrule
+\tenevilglyph{o_2j}
+	&	наш \cite[л. 40]{spbfaran79} \linebreak
+		murgin [= наш] \cite[л. 52]{spbfaran79} \linebreak
+		muri [= мы] \cite[л. 39 об, 65 об]{spbfaran79} \linebreak
+		мы \cite[л. 68]{spbfaran79} \linebreak
+		наса [наша] \cite[л. 68]{spbfaran79} \linebreak
+	& 	наш
+	&	we
+	& 
+	&  	+ \\ \midrule
+\tenevilglyph{o_j}
+	&	мой \cite[л. 40, 55]{spbfaran79} \linebreak
+		gьmnin [= мой] \cite[л. 56]{spbfaran79} \linebreak
+		gumnin [gьmnin] \cite[л. 52 об, 65]{spbfaran79}
+	& 	мой
+	&	
+	& 
+	&  \\ \midrule
+\tenevilglyph{o}
+	&	я \cite[л. 40, 53, 65 об]{spbfaran79} \linebreak
+		gьm [= я]\cite[л. 52,56]{spbfaran79} \linebreak
+		gum [gьm] \cite[л. 52 об, 65 об]{spbfaran79}
+	& 	я
+	&	
+	& 
+	& 	+ \\ \midrule
+\tenevilglyph{o_j_q}
+	&	мне  \cite[л. 66]{spbfaran79} \linebreak
+		в \textit{«мне»}, \textit{«я} восму» \cite[л. 66]{spbfaran79} \linebreak
+		в \textit{«я} ниснаю», \textit{«я} упрала» \cite[л. 79]{spbfaran79}
+	& 	
+	&	
+	& 
+	& 	+ \\ \midrule
+\tenevilglyph{R_2bN}
+	&	сеть \cite[л. 40]{spbfaran79} \linebreak
+		giŋingi [giŋingь = сеть] \cite[л. 39]{spbfaran79} \linebreak
+		сетка \cite[л. 68]{spbfaran79}
+	& 	сеть
+	&	a net
+	& 
+	& 	+ \\ \midrule
+\tenevilglyph{sME_2b}
+	&	Teŋiwil — автор записей \cite[л. 40, 52, 54]{spbfaran79} \linebreak
+	& 	
+	&	
+	& 
+	& 	+ \\ \midrule
+\tenevilglyph{i_c_C_i_j}
+	&	мать \cite[л. 40]{spbfaran79} \linebreak
+		Upenkew — враг автора \cite[л. 40]{spbfaran79}
+	& 	мать
+	&	
+	& 	мать
+	& 	\\ \midrule
+\tenevilglyph{i_c_C}
+	&	Utenkew \cite[л. 52 об]{spbfaran79} \linebreak
+		Utenkew[?] \cite[л. 56]{spbfaran79}
+	& 	
+	&	
+	& 	
+	& 	\\ \midrule
+\tenevilglyph{iY_j}
+	&	сам \cite[л. 40, 53]{spbfaran79} \linebreak
+		cinit [cinit = сам] \cite[л. 52]{spbfaran79} \linebreak
+		\textbarc init [cinit] \cite[л. 52 об]{spbfaran79}
+	& 	сам
+	&	
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{iY}
+	&	тот \cite[л. 40]{spbfaran79} \linebreak
+		әnqon [әnqan = тот] \cite[л. 52, 54]{spbfaran79}
+	& 	тот
+	&	
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{d_C}
+	&	нет \cite[л. 40]{spbfaran79} \linebreak
+		ujŋә [= нет чего-нибудь] \cite[л. 39]{spbfaran79} \linebreak
+		нету \cite[л. 66 об]{spbfaran79} \linebreak
+		в \textit{«не}било» \cite[л. 66]{spbfaran79}
+	& 	нет
+	&	no
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{G}
+	&	теперь \cite[л. 40]{spbfaran79} \linebreak
+		igьt [= сегодня, теперь] \cite[л. 39, 52 об]{spbfaran79} \linebreak
+		чиперче [теперь] \cite[л. 67 об]{spbfaran79} \linebreak
+		\ [?]вонтенеи  \cite[л. 67 об]{spbfaran79} 
+	& 	теперь
+	&	
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{i_o_'}
+	&	с тех пор \cite[л. 40]{spbfaran79} \linebreak
+		әnkәtegnek \cite[л. 39]{spbfaran79} \linebreak
+		әnketegnek \cite[л. 39 об]{spbfaran79} \linebreak
+		әnkәtegnьik \cite[л. 54]{spbfaran79} 
+	& 	с тех пор
+	&	
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{2i_P}
+	&	на реке \cite[л. 41]{spbfaran79} \linebreak
+		veemьk [vææmьk = на реке] \cite[л. 39]{spbfaran79} 
+	& 	на реке
+	&	
+	& 	
+	& 	+ \\ \midrule
+
+\tenevilglyph{2i_2q}
+	&	vaamete [vææmьte = к реке] \cite[л. 56]{spbfaran79} \linebreak
+		около рещки [около речки] \cite[л. 68 об]{spbfaran79}
+	& 	
+	&	
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{i_g_b_jX}
+	&	хариус \cite[л. 41, 54 об]{spbfaran79} \linebreak
+		qe\textbarc aw [kьcaw = хариус] \cite[л. 39]{spbfaran79} 
+	& 	хариус
+	&	
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{i_g_b}
+	&	кета \cite[л. 44, 45, 54 об]{spbfaran79} \linebreak
+		рипа [рыба] \cite[л. 68 об]{spbfaran79}
+	& 	кета
+	&	
+	& 	рыба кета
+	& 	+ \\ \midrule
+\tenevilglyph{i_g_2b}
+	&	налим \cite[л. 45, 54 об]{spbfaran79} 
+	& 	налим
+	&	
+	& 	налим
+	& 	\\ \midrule
+\tenevilglyph{i_g_b_z}
+	&	сиг \cite[л. 45]{spbfaran79} 
+	& 	
+	&	
+	& 	
+	& 	\\ \midrule
+\tenevilglyph{i_g_b_h}
+	&	щука* \cite[л. 45]{spbfaran79} 
+	& 	щука
+	&	
+	& 	щука
+	& 	+ \\ \midrule
+\tenevilglyph{i_g_2b_q_k}
+	&	бычок \cite[л. 45]{spbfaran79} 
+	& 	
+	&	
+	& 	
+	& 	\\ \midrule
+\tenevilglyph{i_g_b_2cD}
+	&	 [без перевода] \cite[л. 54 об]{spbfaran79} 
+	& 	
+	&	
+	& 	нярка
+	& 	+ \\ \midrule
+\tenevilglyph{u_j_jX_j}
+	&	еда, есть \cite[л. 41]{spbfaran79} \linebreak
+		roьlqal [roolqәl = пища, продукты] \cite[л. 39]{spbfaran79}
+	& 	еда, есть
+	&	food
+	& 	
+	& 	+ \\ \midrule
+\bottomrule
+\tenevilglyph{o_q_jF}
+	&	сделал \cite[л. 41]{spbfaran79} \linebreak
+		елат [делать] \cite[л. 68]{spbfaran79}
+	& 	сделал
+	&	made
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{o_q_jF_b}
+	&	
+	& 	
+	&	
+	& 	делать, работать
+	& 	+ \\ \midrule
+\tenevilglyph{U_v}
+	&	сказал \cite[л. 41]{spbfaran79} \linebreak
+		giulin \cite[л. 52]{spbfaran79}
+	& 	сказал
+	&	
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{c_CE}
+	&	пребывать, быть \cite[л. 41]{spbfaran79} \linebreak
+		в \textit{«било} он», «не\textit{било»}, «какои» \cite[л. 66]{spbfaran79}
+	& 	пребывать, быть
+	&	
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{UD_2B}
+	&	жить \cite[л. 41]{spbfaran79} \linebreak
+		nyegtel \cite[л. 39]{spbfaran79} \linebreak
+		nьegtel \cite[л. 39 об]{spbfaran79} \linebreak
+		сивоы [живой] \cite[л. 68]{spbfaran79}
+	& 	жить
+	&	lived
+	& 	жить
+	& 	+ \\ \midrule
+\tenevilglyph{UE}
+	&	становиться \cite[л. 41]{spbfaran79} \linebreak
+		mьnneel \cite[л. 39]{spbfaran79} \linebreak
+		mьtьnnel \cite[л. 39 об]{spbfaran79} \linebreak
+		mьn-neel \cite[л. 52]{spbfaran79} \linebreak
+	& 	становиться
+	&	
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{2OX_j}
+	&	расти и большой \cite[л. 41]{spbfaran79} \linebreak
+		nьmejŋqin* [nьmæjьŋqin = большой] \cite[л. 54]{spbfaran79} \linebreak
+		mejn* \cite[л. 39 об]{spbfaran79} \linebreak
+	& 	расти, большой
+	&	
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{o_4i}
+	&	nenanmuqen \cite[л. 54]{spbfaran79} \linebreak
+		убил \cite[л. 68 об]{spbfaran79} 
+	& 	
+	&	
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{o_4i_k}
+	&	умереть \cite[л. 41]{spbfaran79} \linebreak
+		умирают \cite[л. 52]{spbfaran79} \linebreak
+		wu \cite[л. 52]{spbfaran79} \linebreak
+		vu \cite[л. 52]{spbfaran79} 
+	& 	
+	&	
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{b_2q_L}
+	&	покинул \cite[л. 41]{spbfaran79} \linebreak
+		pela [pela = покидает, оставляет] \cite[л. 52]{spbfaran79} 
+	& 	
+	&	
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{4L}
+	&	плакать \cite[л. 41]{spbfaran79} \linebreak
+		nьtergьtьm \cite[л. 52]{spbfaran79} 
+	& 	
+	&	
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{a}
+	&	стадо, олень \cite[л. 42]{spbfaran79} \linebreak
+		ŋәlvil [ŋælvьl = стадо (преимущественно оленей)] \cite[л. 56]{spbfaran79} 
+	& 	стадо, олень
+	&	reindeer
+	& 	олень
+	& 	+ \\ \midrule
+\tenevilglyph{a_k}
+	&	силонок [теленок] \cite[л. 68 об]{spbfaran79} 
+	& 	
+	&	
+	& 	теленок*
+	& 	+ \\ \midrule
+\tenevilglyph{a_q}
+	&	васонка [важенка] \cite[л. 68 об]{spbfaran79} 
+	& 	
+	&	
+	& 	важенка
+	& 	\\ \midrule
+\tenevilglyph{a_t}
+	&	силилас [телилась] \cite[л. 68 об]{spbfaran79} 
+	& 	
+	&	
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{aB}
+	&	в «стойбище, олени (богатый оленевод)» \cite[л. 47]{spbfaran79} \linebreak
+		табун \cite[л. 55]{spbfaran79} 
+	& 	
+	&	reindeer herd
+	& 	стадо оленей
+	& 	+ \\ \midrule
+\tenevilglyph{s_b}
+	&	много \cite[л. 42]{spbfaran79} \linebreak
+		много \cite[л. 37]{spbfaran79} \linebreak
+		numkәqin [nьmkәqin = многочисленный]  \cite[л. 54]{spbfaran79} \linebreak
+		nьemkәqin [nьmkәqin]  \cite[л. 54]{spbfaran79} \linebreak
+		nьmkәqin \cite[л. 52 об]{spbfaran79} \linebreak
+		мноко [много] \cite[л. 66 об, 67]{spbfaran79}
+	& 	
+	&	
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{f}
+	&	человек, народ \cite[л. 42]{spbfaran79} \linebreak
+		человек \cite[л. 53]{spbfaran79} \linebreak
+		соловк [человек] \cite[л. 68 об]{spbfaran79} 
+	& 	человек
+	&	
+	& 	человек
+	& 	+ \\ \midrule
+\tenevilglyph{i_l}
+	&	другой \cite[л. 42]{spbfaran79} \linebreak
+		другой \cite[л. 53]{spbfaran79} 
+	& 	другой
+	&	
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{v_l}
+	&	раньше, \textbarc it [cit = раньше, прежде] \cite[л. 42]{spbfaran79} \linebreak
+		\textbarc it [cit] \cite[л. 52 об, 56]{spbfaran79} 
+	& 	
+	&	
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{i_LX}
+	&	действительно, qәjve [= право, и действительно] \cite[л. 42]{spbfaran79} \linebreak
+		qojve [qәjve]  \cite[л. 56]{spbfaran79} \linebreak
+		qoive [qәjve]  \cite[л. 54, 52 об]{spbfaran79}
+	& 	действительно
+	&	
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{w}
+	&	еще не, jep [= еще; пока еще; еще в то время, как] \cite[л. 42]{spbfaran79} \linebreak
+		jep \cite[л. 52, 52 об, 56]{spbfaran79}
+	& 	еще не
+	&	
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{2c}
+	&	кое как, насилу \cite[л. 42]{spbfaran79} \linebreak
+		metkiit [mætkiit  = насилу, еле-еле] \cite[л. 39, 52]{spbfaran79}
+	& 	
+	&	somehow
+	& 	
+	& 	\\ \midrule
+\tenevilglyph{I_2l}
+	&	совсем, qonpь [= совсем, совершенно] \cite[л. 42]{spbfaran79} \linebreak
+		qonpь* \cite[л. 39]{spbfaran79} \linebreak
+		совсем \cite[л. 67]{spbfaran79}
+	& 	совсем
+	&	
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{wD2E}
+	&	притом, qәnver [qanver = также]  \cite[л. 42]{spbfaran79} \linebreak
+		qanver \cite[л. 39, 56]{spbfaran79} \linebreak
+		qәnver \cite[л. 52, 56]{spbfaran79} 		
+	& 	притом
+	&	
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{2o_2iY}
+	&	давно \cite[л. 42]{spbfaran79} \linebreak	
+		telenjep [tælænjæp = давно] \cite[л. 39 об, 52, 56]{spbfaran79} \linebreak
+		давно \cite[л. 66 об]{spbfaran79}
+	& 	
+	&	
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{b_q}
+	&	также, \textbarc ama [cama = тоже] \cite[л. 42]{spbfaran79} \linebreak	
+		тоже \cite[л. 37]{spbfaran79} \linebreak
+		\textbarc ama [cama] \cite[л. 39 об, 54]{spbfaran79}
+	& 	так же, тоже
+	&	
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{2i_2cD_2l}
+	&	все \cite[л. 42]{spbfaran79} \linebreak	
+		ьmьlo [= весь] \cite[л. 52 об]{spbfaran79}
+	& 	все
+	&	all
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{U_q}
+	&	но \cite[л. 42]{spbfaran79} \linebreak	
+		naqam [= но, однако] \cite[л. 39, 52 об, 54, 56]{spbfaran79}
+	& 	
+	&	
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{o_2CY}
+	&	хорошо \cite[л. 43]{spbfaran79} \linebreak	
+		me\textbarc әnkь [mæсәnkь = хорошо] \cite[л. 39, 52]{spbfaran79} \linebreak
+		латно [ладно] \cite[л. 67]{spbfaran79}
+	& 	
+	&	well
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{U2E_JX}
+	&	лето наступило \cite[л. 43]{spbfaran79} \linebreak	
+		elerurkьn = лето начинается [ælærurkьn = лето начинается] \cite[л. 52 об]{spbfaran79} \linebreak
+		лет [лето] \cite[л. 66]{spbfaran79}
+	& 	
+	&	
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{2O}
+	&	пусть, чтобы, opopo [= пусть] \cite[л. 43]{spbfaran79} \linebreak	
+		пусть \cite[л. 53]{spbfaran79} \linebreak
+		opopo \cite[л. 52 об]{spbfaran79} 
+	& 	
+	&	
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{o_3iS}
+	&	пускай, ma\textbarc ьnan [macьnan = пусть] \cite[л. 43]{spbfaran79} \linebreak	
+		ma\textbarc ьnan [macьnan] \cite[л. 52 об, 56]{spbfaran79} \linebreak
+		мачнан [macьnan] \cite[л. 68]{spbfaran79} 
+	& 	
+	&	
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{u_o_b}
+	&	как же, miŋkri-li \cite[л. 43]{spbfaran79} \linebreak
+		miŋkri-lu \cite[л. 56]{spbfaran79} \linebreak
+		кута [куда] \cite[л. 66]{spbfaran79} \linebreak
+		как \cite[л. 66 об]{spbfaran79} \linebreak
+		в «какои» \cite[л. 66]{spbfaran79} 
+	& 	
+	&	
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{i_2kU_2kD}
+	&	шкура \cite[л. 44]{spbfaran79} \linebreak
+		nelgen [nælgьn = шкура]* \cite[л. 49 об]{spbfaran79} \linebreak
+		писик [пыжик] \cite[л. 68]{spbfaran79}
+	& 	
+	&	
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{i_2kU_kD_2Q}
+	&	неторос [недоросль] \cite[л. 68]{spbfaran79} 
+	& 	
+	&	
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{2k}
+	&	мука \cite[л. 44]{spbfaran79} \linebreak
+		мука \cite[л. 66 об]{spbfaran79}
+	& 	мука
+	&	
+	& 	
+	& 	\\ \midrule
+\tenevilglyph{vY_z}
+	&	русский \cite[л. 44]{spbfaran79} 
+	& 	
+	&	Russian holding fire-arms
+	& 	русский
+	& 	+ \\ \midrule
+\tenevilglyph{c_2cD_q}
+	&	волк \cite[л. 45, 53]{spbfaran79} \linebreak
+		волк \cite[л. 68 об]{spbfaran79} \linebreak
+		в «убил \textit{волка»} \cite[л. 68 об]{spbfaran79}
+	& 	
+	&	
+	& 	волк
+	& 	+ \\ \midrule
+\tenevilglyph{v-_jF}
+	&	кострула [кастрюля] \cite[л. 68]{spbfaran79}
+	& 	
+	&	
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{i_c_c_2j}
+	&	
+	& 	свечка
+	&	
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{c_2b}
+	&	белый \cite[л. 46]{spbfaran79} \linebreak
+		пелои [белый] \cite[л. 68]{spbfaran79} \linebreak
+	& 	белый
+	&	
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{o-o_J}
+	&	маленький \cite[л. 46]{spbfaran79} \linebreak
+		nьpluqin [= маленький] \cite[л. 46]{spbfaran79} 
+	& 	маленький
+	&	
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{O_bN}
+	&	
+	& 	крадет
+	&	
+	& 	
+	& 	+* \\ \midrule
+\tenevilglyph{U_bN}
+	&	вороватый \cite[л. 47]{spbfaran79} 
+	& 	вороватый
+	&	
+	& 	
+	& 	+* \\ \midrule
+\tenevilglyph{i_G}
+	&	хороший \cite[л. 47]{spbfaran79} \linebreak
+		хоросой [хороший]* \cite[л. 66, 68 об]{spbfaran79} 
+	& 	хороший
+	&	
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{i_o_G}
+	&	
+	& 	мастероватый
+	&	
+	& 	
+	& 	+* \\ \midrule
+\tenevilglyph{BD}
+	&	худой \cite[л. 47]{spbfaran79} \linebreak
+		хутои [худой] \cite[л. 68 об]{spbfaran79} 
+	& 	худой
+	&	
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{O_jN}
+	&	ночью \cite[л. 47]{spbfaran79} 
+	& 	
+	&	
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{2o_2j}
+	&	в «стойбище, олени (богатый оленевод)» \cite[л. 47]{spbfaran79} \linebreak
+		в «на стойбище» \cite[л. 53]{spbfaran79} \linebreak
+		отлакир [?] \cite[л. 68]{spbfaran79} \linebreak
+	& 	
+	&	
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{u_p}
+	&	чайник \cite[л. 47]{spbfaran79} \linebreak
+		саиник [чайник] \cite[л. 53]{spbfaran79}
+	& 	чайник
+	&	
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{u_p_b}
+	&	белый чайник \cite[л. 47]{spbfaran79} 
+	& 	белый чайник
+	&	
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{u_pD_bD}
+	&	медный чайник \cite[л. 47]{spbfaran79} 
+	& 	медный чайник
+	&	
+	& 	
+	& 	\\ \midrule
+\tenevilglyph{u_p_2b}
+	&	широкий чайник \cite[л. 47]{spbfaran79} 
+	& 	
+	&	
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{cF_CF}
+	&	так \cite[л. 50]{spbfaran79} \linebreak
+		әnmen [= также, итак] \cite[л. 39 об]{spbfaran79} \linebreak
+		дак [так] \cite[л. 66 об]{spbfaran79}
+	& 	
+	&	
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{o_q}
+	&	там \cite[л. 50]{spbfaran79} \linebreak
+		әnkь [= там] \cite[л. 39 об]{spbfaran79} \linebreak
+		тут \cite[л. 66]{spbfaran79} \linebreak
+		дут [тут] \cite[л. 68]{spbfaran79}
+	& 	там
+	&	
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{i_2l_iSY}
+	&	несмотря на то, что \cite[л. 50]{spbfaran79} 
+	& 	
+	&	
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{B_2BD}
+	&	быть \cite[л. 50]{spbfaran79} 
+	& 	
+	&	
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{o_l}
+	&	мало \cite[л. 50]{spbfaran79} \linebreak
+		kitkit [= мало, немного] \cite[л. 39 об]{spbfaran79}
+	& 	
+	&	
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{oI_vD}
+	&	вероятно \cite[л. 50]{spbfaran79} \linebreak
+		наверно \cite[л. 67]{spbfaran79}
+	& 	
+	&	
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{bD_b}
+	&	только \cite[л. 50]{spbfaran79} \linebreak
+		lien [liæn = как только] \cite[л. 52 об, 56]{spbfaran79}
+	& 	только
+	&	
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{cU_2q_cD_2q}
+	&	словно, как бы \cite[л. 50]{spbfaran79} \linebreak
+		qajaagьtkь \cite[л. 52 об]{spbfaran79}
+	& 	
+	&	
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{i_oB}
+	&	тайно \cite[л. 50]{spbfaran79} \linebreak
+		wьnvь [vinvә = тайно, крадучись] \cite[л. 56]{spbfaran79}
+	& 	тайный
+	&	
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{c_J}
+	&	в поле \cite[л. 50]{spbfaran79} \linebreak
+		nutek \cite[л. 56]{spbfaran79}
+	& 	в поле
+	&	
+	& 	земля
+	& 	+ \\ \midrule
+\tenevilglyph{c_J_2j}
+	&	nutesqan [nutæsqәn = земля, почва] \cite[л. 39]{spbfaran79}
+	& 	
+	&	
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{o_m_j}
+	&	мама \cite[л. 51, 37]{spbfaran79} \linebreak
+		мама \cite[л. 67]{spbfaran79} \linebreak
+	& 	
+	&	
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{i_2iY}
+	&	вверх \cite[л. 51]{spbfaran79} 
+	& 	вверх
+	&	
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{u_v_cD}
+	&	вполне \cite[л. 51]{spbfaran79} \linebreak
+		arala [= совсем, вовсе] \cite[л. 52]{spbfaran79} 
+	& 	вверх
+	&	
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{cF-cF}
+	&	тоже, опять \cite[л. 51]{spbfaran79} \linebreak
+		опять \cite[л. 53]{spbfaran79} 
+	& 	тоже, опять
+	&	
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{oF_2l_lG}
+	&	близко \cite[л. 51, 53]{spbfaran79} \linebreak
+		\textbarc ьm\textbarc ә [cьmcь = близко] \cite[л. 54]{spbfaran79} \linebreak
+		плиско [близко] \cite[л. 68 об]{spbfaran79} \linebreak
+	& 	
+	&	
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{cU_2cD}
+	&	после того, әŋqorә \cite[л. 51, 53]{spbfaran79} \linebreak
+		 әnqre \cite[л. 39]{spbfaran79}
+	& 	после того
+	&	
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{o_2CE}
+	&	milgьrә [milgьr = ружье] \cite[л. 54]{spbfaran79} \linebreak
+		русёь [ружье] \cite[л. 68 об]{spbfaran79}
+	& 	
+	&	
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{o_2q}
+	&	1 \cite[л. 64]{spbfaran79} \linebreak
+		amunen [әnnæn? = один] \cite[л. 39 об]{spbfaran79}
+	& 	
+	&	
+	& 	1
+	& 	+, 1 \\ \midrule
+\tenevilglyph{o_2q_j}
+	&	20 \cite[л. 64]{spbfaran79} 
+	& 	
+	&	
+	& 	20
+	& 	+, 20 \\ \midrule
+\tenevilglyph{B-}
+	&	2 \cite[л. 64]{spbfaran79} \linebreak
+		двоих \cite[л. 68]{spbfaran79}
+	& 	
+	&	
+	& 	2
+	& 	+, 2 \\ \midrule
+\tenevilglyph{B-_j}
+	&	
+	& 	
+	&	
+	& 	40
+	& 	+, 40 \\ \midrule
+\tenevilglyph{o_2q_q_l}
+	&	три \cite[л. 41]{spbfaran79} \linebreak
+		ŋьroq [= три] \cite[л. 39]{spbfaran79} \linebreak
+		3 \cite[л. 64]{spbfaran79}
+	& 	
+	&	
+	& 	3
+	& 	+, 3 \\ \midrule
+\tenevilglyph{o_2q_q_l_j}
+	&	
+	& 	
+	&	
+	& 	60
+	& 	+, 60 \\ \midrule
+\tenevilglyph{o_q_c_T}
+	&	4 \cite[л. 64]{spbfaran79}
+	& 	
+	&	
+	& 	4
+	& 	+, 4 \\ \midrule
+\tenevilglyph{o_q_c_T_j}
+	&	
+	& 	
+	&	
+	& 	80
+	& 	 \\ \midrule
+\tenevilglyph{oI_2j}
+	&	5 \cite[л. 64]{spbfaran79}
+	& 	
+	&	
+	& 	5
+	& 	+, 5 \\ \midrule
+\tenevilglyph{oI_3j}
+	&	
+	& 	
+	&	
+	& 	100
+	& 	+ \\ \midrule
+\tenevilglyph{o-_q_jF_o}
+	&	6 \cite[л. 64]{spbfaran79}
+	& 	
+	&	
+	& 	6
+	& 	+, 6 \\ \midrule
+\tenevilglyph{o_j_2q}
+	&	7 \cite[л. 64]{spbfaran79}
+	& 	
+	&	
+	& 	7
+	& 	+, 7 \\ \midrule
+\tenevilglyph{o-_2q_j}
+	&	8 \cite[л. 64]{spbfaran79}
+	& 	
+	&	
+	& 	8
+	& 	+, 8 \\ \midrule
+\tenevilglyph{o_2q_jN_jF_o}
+	&	9 \cite[л. 64]{spbfaran79}
+	& 	
+	&	
+	& 	9
+	& 	+, 9 \\ \midrule
+\tenevilglyph{2oI_2jF}
+	&	10 \cite[л. 64]{spbfaran79}
+	& 	
+	&	
+	& 	10
+	& 	+, 10 \\ \midrule
+\tenevilglyph{o_T_2q_2o_l}
+	&	
+	& 	
+	&	
+	& 	
+	& 	+, 15 \\ \midrule
+\tenevilglyph{CD_CDY}
+	&	тем не менее, wenlьgь [vænligi = тем не менее] \cite[л. 42]{spbfaran79} \linebreak
+		wenlьgь [vænligi] \cite[л. 52 об]{spbfaran79} \linebreak
+		силно [сильно?] \cite[л. 66 об]{spbfaran79} 
+	& 	
+	&	
+	& 	
+	& 	\\ \midrule
+\tenevilglyph{UD_2c}
+	&	мэсяч [месяц] \cite[л. 66]{spbfaran79} 
+	& 	
+	&	
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{o_7q_Q}
+	&	сонсо [солнце] \cite[л. 66]{spbfaran79} 
+	& 	
+	&	the sun*
+	& 	солнце
+	& 	+ \\ \midrule
+\tenevilglyph{rI_l_b}
+	&	топор \cite[л. 68 об]{spbfaran79} 
+	& 	
+	&	
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{c_c_2k}
+	&	лодка \cite[л. 68 об]{spbfaran79} 
+	& 	
+	&	
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{i_2l}
+	&	долстои [толстый] \cite[л. 69 об]{spbfaran79} 
+	& 	
+	&	
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{i_2j_l}
+	&	донкои [тонкий] \cite[л. 69 об]{spbfaran79} 
+	& 	
+	&	
+	& 	
+	& 	\\ \midrule
+\tenevilglyph{i_2c}
+	&	курба [?] \cite[л. 68 об]{spbfaran79} 
+	& 	
+	&	
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{u_2l}
+	&	ŋagcьnьn \cite[л. 64 об]{spbfaran79} \linebreak
+		в собки [в сопки] \cite[л. 68 об]{spbfaran79}
+	& 	
+	&	
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{i_jX_z}
+	&	ime renut [imь-rәnut = что угодно] \cite[л. 51]{spbfaran79} 
+	& 	
+	&	
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{U_qD}
+	&	камусы \cite[л. 37]{spbfaran79} 
+	& 	
+	&	
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{U_qD_b}
+	&	рукавицы \cite[л. 37]{spbfaran79} 
+	& 	
+	&	
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{sE}
+	&	юукула [юкола]* \cite[л. 68 об]{spbfaran79} 
+	& 	
+	&	
+	& 	юкола сушеная рыба
+	& 	+ \\ \midrule
+\tenevilglyph{sE_jFE}
+	&	всала [взяла] \cite[л. 68 об]{spbfaran79} \linebreak
+		в «я \textit{возьму»} \cite[л. 66]{spbfaran79}
+	& 	
+	&	
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{w_j}
+	&	оцин [очень] \cite[л. 66]{spbfaran79} \linebreak
+		в «я \textit{оцин} боюс», «я \textit{оцин} писпокоюс» \cite[л.66]{spbfaran79}
+	& 	
+	&	
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{BR}
+	&	вместе \cite[л. 55]{spbfaran79} 
+	& 	
+	&	
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{SFE_jF}
+	&	нарта \cite[л. 68]{spbfaran79} 
+	& 	
+	&	
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{O_L_qE}
+	&	доз [дождь] \cite[л. 68]{spbfaran79} 
+	& 	
+	&	
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{i_SX}
+	&	alьmь [= положим, что] \cite[л. 52 об]{spbfaran79} 
+	& 	
+	&	
+	& 	
+	& 	+ \\ \midrule
+\tenevilglyph{i_I_2qY}
+	&	бояться \cite[л. 41]{spbfaran79} \linebreak
+		в «мы \textit{боимся»} \cite[л. 52]{spbfaran79} \linebreak
+		в «я оцин \textit{боюс»} [«я очень боюсь»] \cite[л. 67 об]{spbfaran79} \linebreak
+	& 	бояться
+	&	
+	& 	
+	& 	\\ \midrule
+\tenevilglyph{O_jXX}
+	&	тюленья шкура \cite[л. 48]{spbfaran79} \linebreak
+		нерпа \cite[л. 66 об]{spbfaran79}
+	& 	тюленья шкура
+	&	
+	& 	
+	& 	\\ \midrule
+\tenevilglyph{O_2b}
+	&	шкура лахтака \cite[л. 48]{spbfaran79} \linebreak
+		лахтак \cite[л. 66 об]{spbfaran79}
+	& 	
+	&	
+	& 	
+	& 	\\ \midrule
+\tenevilglyph{O_2b_c_zR}
+	&	морча [морж] \cite[л. 66 об]{spbfaran79}
+	& 	
+	&	
+	& 	
+	& 	\\ \midrule
+\tenevilglyph{R_o-o}
+	&	молоко \cite[л. 49]{spbfaran79} 
+	& 	молоко
+	&	
+	& 	
+	& 	\\ \midrule
+\tenevilglyph{R_o-o_2j}
+	&	молоко \cite[л. 49]{spbfaran79} 
+	& 	молоко
+	&	
+	& 	
+	& 	\\ \midrule
+\tenevilglyph{R_o-o_2b}
+	&	банка с керосином \cite[л. 46]{spbfaran79} 
+	& 	банка с керосином
+	&	
+	& 	
+	& 	\\ \midrule
+\tenevilglyph{R_o-o_c_zR}
+	&	банка с салом (с маслом) \cite[л. 46]{spbfaran79} 
+	& 	банка с салом
+	&	
+	& 	
+	& 	\\ \midrule
+\tenevilglyph{C_c_zR} 
+	&	в «олений \textit{жир} это» \cite[л. 46]{spbfaran79} \linebreak
+	& 	
+	&	
+	& 	
+	& 	\\ \midrule
+\tenevilglyph{I_q} % «Папироска» и «трубка с мундштуком» с того же листа требуют проверки
+	&	трубка \cite[л. 49]{spbfaran79} 
+	& 	трубка
+	&	a pipe
+	& 	
+	& 	\\ \midrule
+\tenevilglyph{2CY}  % С лисами сплошная путаница
+	&	reqokalgьn [= лисица, песец] \cite[л. 54]{spbfaran79} 
+	& 	
+	&	
+	& 	песец
+	& 	\\ \midrule
+\tenevilglyph{2CY_c} 
+	&	голубой песец \cite[л. 46]{spbfaran79} 
+	& 	голубой песец
+	&	
+	& 	
+	& 	\\ \midrule
+\tenevilglyph{2CY_2c} 
+	&	песец \cite[л. 46]{spbfaran79} \linebreak
+		сорнпур [чернобурая] \cite[л. 69 об]{spbfaran79} 
+	& 	
+	&	
+	& 	
+	& 	\\ \midrule
+\tenevilglyph{2CY_o_I_3q} 
+	&	огневка \cite[л. 46]{spbfaran79} \linebreak
+		песеч [песец] \cite[л. 69 об]{spbfaran79}
+	& 	
+	&	
+	& 	
+	& 	\\ \midrule
+\tenevilglyph{2CY_o_I_3q_c} 
+	&	чернобурая \cite[л. 46]{spbfaran79} \linebreak
+		кулубои [голубой] \cite[л. 69 об]{spbfaran79}
+	& 	
+	&	
+	& 	
+	& 	\\ \midrule
+\tenevilglyph{2C_2c} 
+	&	
+	& 	
+	&	
+	& 	вода
+	& 	\\ \midrule
+\tenevilglyph{2kU_2QY} 
+	&	
+	& 	
+	&	
+	& 	снег
+	& 	\\ \midrule
+\tenevilglyph{i_vd_q_i} 
+	&	
+	& 	
+	&	
+	& 	друг
+	& 	\\ \midrule
+
+\bottomrule
+\end{longtable}
+
+\printbibliography
+
+\end{document}
