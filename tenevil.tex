@@ -1,7 +1,8 @@
 \documentclass{article}
-\usepackage[a4paper,margin=1.5cm,landscape]{geometry}
+\usepackage[a4paper,margin=1.5cm]{geometry}
 %\usepackage{lua-visual-debug}
 \usepackage[hidelinks]{hyperref}
+\usepackage{pdflscape}
 
 \usepackage{longtable}
 \usepackage{booktabs}
@@ -31,6 +32,7 @@
 \input bibliography-macros.tex
 
 \begin{document}
+\begin{landscape}
 \begin{longtable}{p{1.7cm}>{\raggedright}p{9cm}p{3cm}>{\raggedright}p{3cm}>{\raggedright}p{3cm}p{2cm}}
 \toprule
  & СПбФ АРАН \cite{spbfaran79} & Богораз \cite{bogoraz1934} & Миндалевич \cite{mindalevich1934} & Лавров \cite{lavrov1969} &  Теневиль \\ \midrule
@@ -1523,6 +1525,31 @@
 	& 	+ \\ \midrule
 \bottomrule
 \end{longtable}
+\end{landscape}
+
+\section{Описания источников} 
+
+\subsection{СПбФ АРАН. Ф. 250. Оп. 1. Д. 79} % Надо дописать про остальные листы
+
+\subsubsection{Листы 40–51}
+
+Сводная таблица с символами и переводами на русский и иногда чукотский (латиницей).
+
+\subsubsection{Листы 66–69 с оборотами}
+
+Листы из тетради с символами и переводами на русский и, местами, чукотский (кириллицей). Почерк неуверенный, плохая орфография.
+
+\subsection{Статья В. Г. Богораз-Тана «Луораветланский (чукотский) язык»}
+
+Таблица с переводом ряда символов на русский. Изображение (перерисовка) одной из табличек Теневиля с переводом одной из трех строк на ней на русский язык.
+
+\subsection{Статья А. М. Миндалевича Hieroglyphic Characters of the Chuckchees}
+
+Переводы на английский ряда отдельных символов. Перевод на английский двух фрагментов записей Теневиля.
+
+\subsection{Статья И. П. Лаврова  «Чукотский феномен»}
+
+Три таблицы с переводами ряда символов на русский. Фотографии «лунного календаря» и «родового дерева» , нарисованных Теневилем.
 
 \printbibliography
 
