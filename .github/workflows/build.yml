@@ -21,11 +21,18 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      # Runs a single command using the runners shell
+      - name: Install fontforge
+        run: sudo apt-get install -y fontforge
+
+      - name: Build the font
+        run: fontforge -lang=ff -c 'Open("tenevil-font.svg"); Generate("tenevil-font.otf")'
+
       - name: Build the pdf
         run: lualatex -interaction=nonstopmode tenevil.tex && biber tenevil && lualatex -interaction=nonstopmode tenevil.tex
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
-          name: pdf
-          path: tenevil.pdf
+          name: table-and-font
+          path: |
+              tenevil.pdf
+              tenevil-font.otf
