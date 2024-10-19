@@ -19,7 +19,7 @@ jobs:
         run: |
           su
           apt-get update
-          apt-get install fontforge
+          apt-get install -y fontforge
           exit
       - name: Build the font
         run: fontforge -lang=ff -c 'Open("tenevil-font.svg"); Generate("tenevil-font.otf")'
