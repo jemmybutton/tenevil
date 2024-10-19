@@ -1,6 +1,7 @@
 \documentclass{article}
 \usepackage[a4paper,margin=1.5cm]{geometry}
 %\usepackage{lua-visual-debug}
+\usepackage{luaotfload,luacode}
 \usepackage[hidelinks]{hyperref}
 \usepackage{pdflscape}
 
@@ -19,11 +20,32 @@
 
 \setmainfont{Noto Serif}
 
+\newfontfamily\tenevilfont[Renderer = HarfBuzz]{tenevil-font.otf}
+
+\begin{luacode}
+  documentdata       = documentdata or { }
+
+  local stringformat = string.format
+  local texsprint    = tex.sprint
+  local slot_of_name = luaotfload.aux.slot_of_name
+
+  documentdata.fontchar = function (chr)
+    local chr = slot_of_name(font.current(), chr, false)
+    if chr and type(chr) == "number" then
+      texsprint
+        (stringformat ([[\char"%X]], chr))
+    end
+  end
+\end{luacode}
+
+\def\fontchar#1{\directlua{documentdata.fontchar "#1"}}
+
 \newcounter{glyph}
 \setcounter{glyph}{1}
 
 \newcommand{\tenevilglyph}[1]{%
 \theglyph\hfill\raisebox{-0.6cm}{\includegraphics[width=1cm]{glyphs/#1.pdf}}%
+%{\tenevilfont\fontsize{40pt}{40pt}\selectfont\fontchar{#1}}%
 \stepcounter{glyph}%
 }
 
