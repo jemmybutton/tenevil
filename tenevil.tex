@@ -44,8 +44,7 @@
 \setcounter{glyph}{1}
 
 \newcommand{\tenevilglyph}[1]{%
-\theglyph\hfill\raisebox{-0.6cm}{\includegraphics[width=1cm]{glyphs/#1.pdf}}%
-%{\tenevilfont\fontsize{40pt}{40pt}\selectfont\fontchar{#1}}%
+\theglyph~{\tenevilfont\fontsize{40pt}{40pt}\selectfont\fontchar{#1}}%
 \stepcounter{glyph}%
 }
 
