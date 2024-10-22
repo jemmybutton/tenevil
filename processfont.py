@@ -1,0 +1,10 @@
+import fontforge, psMat
+font = fontforge.open("tenevil-font.svg")
+glyphs = font.selection.all()
+glyphmove = psMat.translate(0,-300)
+font.transform(glyphmove) 
+font.autoWidth(150)
+font.addLookup('gen_kern', 'gpos_pair', (), [['liga', [['latn', ['dflt']]]]])
+font.addLookupSubtable('gen_kern','gen_kern_subt')
+font.autoKern('gen_kern_subt',150,touch=1)
+font.generate("tenevil-font.otf")
