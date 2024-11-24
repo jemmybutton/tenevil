@@ -43,10 +43,36 @@
 \newcounter{glyph}
 \setcounter{glyph}{1}
 
-\DeclareDocumentCommand{\tenevilglyph}{o m}{%
-\theglyph~{\IfNoValueTF{#1}{}{\color{gray}}\tenevilfont\fontsize{40pt}{40pt}\selectfont\fontchar{#2}}%
+\DeclareDocumentCommand{\tenevilglyph}{o o m}{%
+\def\tmpyes{yes}
+\def\tmpone{#1}
+\theglyph~{\IfNoValueTF{#2}{}{(#2)}}\hfill~\linebreak{%
+	\IfNoValueTF{#1}{}{%
+		\ifx\tmpone\tmpyes%
+			%
+		\else%
+			\color{gray}%
+		\fi%
+		}
+		\tenevilfont\fontsize{40pt}{40pt}\selectfont\fontchar{#3}
+		}%
 \stepcounter{glyph}%
 }
+
+%
+%	первый опциональный аргумент — найден ли этот знак, написанный рукой Теневиля, yes/no
+%
+%	второй — уверенность в интерпретации:
+%		0:	нет вообще ничего
+%		1: 	есть только фонетическая какая-то наводка, значение которой неясно
+%		2:	есть интерпретация, но сомнительная, либо есть противоречия между интерпретациями
+%		3:	есть однозначная интерпретация, но источник всего один (или источники зависимые) и это не Теневиль,
+%			либо интерпретация написанного Теневилем вызывает сомнения
+%		4:	есть однозначная интерпретация, совпадающая или близкая в нескольких источниках, 
+%			либо есть однозначный перевод приведенный Теневилем, а противоречия, если есть, объясняются ошибкой
+%		5:	полная уверенность, много независимых источников сходятся на одном значении, работает в контексте,
+%			не вызывает сомнений
+%
 
 \addbibresource{tenevil.bib}
 
@@ -54,17 +80,17 @@
 
 \begin{document}
 \begin{landscape}
-\begin{longtable}{p{1.5cm}>{\raggedright}p{9.5cm}p{3cm}>{\raggedright}p{3cm}>{\raggedright}p{3cm}>{\raggedright}p{4.5cm}}
+\begin{longtable}{p{1.25cm}>{\raggedright}p{9.5cm}p{3cm}>{\raggedright}p{3cm}>{\raggedright}p{3cm}>{\raggedright}p{4.75cm}}
 \toprule
  & СПбФ АРАН \cite{spbfaran79} & Богораз \cite{bogoraz1934} & Миндалевич \cite{mindalevich1934} & Лавров \cite{lavrov1969} & Теневиль \cite{davydova2015a,lavrov1969,bogoraz1934} \tabularnewline \midrule
-\tenevilglyph{i_2cU_2cD}
+\tenevilglyph[yes][3]{i_2cU_2cD}
 	&	qlaul [ӄԓявыԓ = мужчина] \cite[л. 64 об.]{spbfaran79} % ӄԓявыԓ
 	& 
 	& 
 	& 	мужчина 
 	&	[38.1]
 		\tabularnewline \midrule
-\tenevilglyph{i_2cU_2cD_'}
+\tenevilglyph[yes][2]{i_2cU_2cD_'}
 	&	отец \cite[л. 40, 55]{spbfaran79}\linebreak
 		әtlьgьn [ытԓыгын = отец] \cite[л. 52]{spbfaran79}\linebreak % ытԓыгын
 		әtlьgә \cite[л. 52]{spbfaran79}\linebreak
@@ -76,13 +102,13 @@
 	&	\cite[360, 364]{davydova2015a} \linebreak
 		старек [старик] [34.12об]
 		\tabularnewline \midrule
-\tenevilglyph{i_2cU_j_2cD}
+\tenevilglyph[yes][3]{i_2cU_j_2cD}
 	&	uwaqug [uwæquc, ы'вэӄуч = муж] \cite[л. 65 об.]{spbfaran79} % ы'вэӄуч
 	& 
 	&
 	& 
 	&	\cite[364]{davydova2015a} \tabularnewline \midrule
-\tenevilglyph{i_2cU_2C}
+\tenevilglyph[yes][4]{i_2cU_2C}
 	&	ŋәucqan [ŋausqan, ӈэвысӄэт = женщина] \cite[л. 65 об.]{spbfaran79} % ӈэвысӄэт
 	& 
 	&	a woman
@@ -90,14 +116,14 @@
 	&	\cite[364]{davydova2015a} \linebreak
 		женжны [женщины] [34.16]
 		\tabularnewline \midrule
-\tenevilglyph{i_2cU_j_2C}
+\tenevilglyph[yes][3]{i_2cU_j_2C}
 	&	жена \cite[л. 65 об.]{spbfaran79}
 	& 
 	&	
 	& 
 	&	\cite[364]{davydova2015a}
 		\tabularnewline \midrule
-\tenevilglyph{i_2cU_l_2C}
+\tenevilglyph[yes][3]{i_2cU_l_2C}
 	&	мать \cite[л. 64]{spbfaran79}\linebreak
 		әtla [ытԓя = мать] \cite[л. 52]{spbfaran79}\linebreak % ытԓя
 		etla [әtla] \cite[л. 52 об., 56]{spbfaran79}
@@ -106,20 +132,20 @@
 	& 
 	&	\cite[360, 364]{davydova2015a}
 		\tabularnewline \midrule
-\tenevilglyph[no]{i_2cU_t_2C}
+\tenevilglyph[no][3]{i_2cU_t_2C}
 	&	родившая мать \cite[л. 64]{spbfaran79}
 	& 
 	&	a woman awaiting the birth of her child
 	& 
 	&	\tabularnewline \midrule
-\tenevilglyph{i_2cU_2C_h}
+\tenevilglyph[yes][3]{i_2cU_2C_h}
 	&	ьnpьŋәu [ьnpь-ŋæw, ынпыӈэв = старуха] \cite[л. 65 об]{spbfaran79} % ынпыӈэв
 	& 
 	&	
 	& 
 	 &	[25.6]
 	 	\tabularnewline \midrule
-\tenevilglyph{i_2CF}
+\tenevilglyph[yes][4]{i_2CF}
 	&	сын \cite[л. 52]{spbfaran79}\linebreak
 		сыновья \cite[л. 52]{spbfaran79} \linebreak
 		әkkot [ækkæt, эккэт = сыновья] \cite[л. 39]{spbfaran79} \linebreak % экык, эккэт
@@ -130,26 +156,26 @@
 	&	\cite[364]{davydova2015a} \linebreak
 		\cite{bogoraz1934}
 		\tabularnewline \midrule
-\tenevilglyph{i_2cU_CF}
+\tenevilglyph[yes][3]{i_2cU_CF}
 	&	доса [дочь] \cite[л. 67]{spbfaran79}
 	&	
 	&	
 	& 
 	 &	[25.8об]
 	 	\tabularnewline \midrule
-\tenevilglyph[no]{i_2cU_3CF}
+\tenevilglyph[no][3]{i_2cU_3CF}
 	&	ситра [сестра] \cite[л. 67]{spbfaran79} 
 	& 
 	&	
 	& 
 	& 	\tabularnewline \midrule
-\tenevilglyph[no]{i_2CF_v_q_'}
+\tenevilglyph[no][3]{i_2CF_v_q_'}
 	&	прат [брат] \cite[л. 67]{spbfaran79}
 	& 	
 	&	
 	& 
 	& 	\tabularnewline \midrule
-\tenevilglyph{i_vd_q_i} 
+\tenevilglyph[yes][4]{i_vd_q_i} 
 	&	
 	& 	
 	&	
@@ -157,21 +183,21 @@
 	& 	\cite[364]{davydova2015a} \linebreak
 		таварес [товарищ] [34.8об]
 		\tabularnewline \midrule
-\tenevilglyph{i_2CF_j}
+\tenevilglyph[yes][3]{i_2CF_j}
 	&	qlaul nenene [qlaul nænænæ, ӄԓявыԓ нэнэны = мужчина младенец] \cite[л. 65 об]{spbfaran79} % ӄԓявыԓ нэнэны
 	& 
 	&	
 	& 
 	& 	\cite[364]{davydova2015a} 
 		\tabularnewline \midrule
-\tenevilglyph{i_2cU_CF_h}
+\tenevilglyph[yes][3]{i_2cU_CF_h}
 	&	ŋәusqan neneneŋ [ŋausqan nænænæŋ, ӈэвысӄэт нэнэны = женщина мланедец] \cite[л. 65 об]{spbfaran79} % ӈэвысӄэт нэнэны
 	& 
 	&	
 	& 
 	& 	[34.9]
 		\tabularnewline \midrule
-\tenevilglyph{o-_p_j}
+\tenevilglyph[yes][4]{o-_p_j}
 	&	он \cite[л. 40]{spbfaran79} \linebreak 
 		әtlon [ытԓён = он] \cite[л. 39 об, 52, 65 об]{spbfaran79} % ытԓён
 	& 	он
@@ -180,7 +206,7 @@
 	& 	\cite[360]{davydova2015a} \linebreak
 		ылтон [ытԓён] [32.16об]
 		\tabularnewline \midrule
-\tenevilglyph{o_2j}
+\tenevilglyph[yes][4]{o_2j}
 	&	наш \cite[л. 40]{spbfaran79} \linebreak
 		murgin [мургин = наш] \cite[л. 52]{spbfaran79} \linebreak % мургин
 		muri [мури = мы] \cite[л. 39 об, 65 об]{spbfaran79} \linebreak % мури
@@ -192,7 +218,7 @@
 	& 	\cite[364]{davydova2015a} \linebreak
 		\cite[28]{lavrov1969} 
 		\tabularnewline \midrule
-\tenevilglyph{o_j}
+\tenevilglyph[yes][4]{o_j}
 	&	мой \cite[л. 40, 55]{spbfaran79} \linebreak
 		gьmnin [гымнин = мой] \cite[л. 56]{spbfaran79} \linebreak % гымнин
 		gumnin [gьmnin] \cite[л. 52 об, 65]{spbfaran79}
@@ -202,7 +228,7 @@
 	&	[2.1?] 
 		мена [меня] [37.2]
 		\tabularnewline \midrule
-\tenevilglyph{o}
+\tenevilglyph[yes][4]{o}
 	&	я \cite[л. 40, 53, 65 об]{spbfaran79} \linebreak
 		gьm [гым = я]\cite[л. 52,56]{spbfaran79} \linebreak % гым
 		gum [gьm] \cite[л. 52 об, 65 об]{spbfaran79}
@@ -213,7 +239,7 @@
 		хым [гым] [34.8] \linebreak
 		я [34.11]
 		\tabularnewline \midrule
-\tenevilglyph{o_j_q}
+\tenevilglyph[yes][4]{o_j_q}
 	&	мне \cite[л. 66]{spbfaran79} \linebreak
 		в \textit{«мне»}, \textit{«я} восму» \cite[л. 66]{spbfaran79} \linebreak
 		в \textit{«я} ниснаю», \textit{«я} упрала» \cite[л. 79]{spbfaran79}
@@ -222,19 +248,19 @@
 	& 
 	& 	\cite{bogoraz1934}
 		\tabularnewline \midrule
-\tenevilglyph[no]{o-_s}
+\tenevilglyph[no][3]{o-_s}
 	&	gьt [гыт = ты] \cite[л. 65 об]{spbfaran79} % гыт
 	& 	
 	&	
 	& 
 	& 	\tabularnewline \midrule
-\tenevilglyph[no]{o-_jY}
+\tenevilglyph[no][3]{o-_jY}
 	&	turi [тури = вы] \cite[л. 65 об]{spbfaran79} % тури
 	& 	
 	&	
 	& 
 	& 	\tabularnewline \midrule
-\tenevilglyph{o_j_j}
+\tenevilglyph[yes][1]{o_j_j}
 	&	или такои [?] \cite[л. 67]{spbfaran79} \linebreak
 		эвлм [?] \cite[л. 68]{spbfaran79}
 	& 	
@@ -242,7 +268,7 @@
 	& 
 	& 	[38.1]
 		\tabularnewline \midrule
-\tenevilglyph{R_2bN}
+\tenevilglyph[yes][4]{R_2bN}
 	&	сеть \cite[л. 40]{spbfaran79} \linebreak
 		giŋingi [giŋingь, гиӈынгиӈ = сеть] \cite[л. 39]{spbfaran79} \linebreak % гиӈынгиӈ
 		сетка \cite[л. 68]{spbfaran79}
@@ -252,7 +278,7 @@
 	& 	\cite[361]{davydova2015a} \linebreak
 		\cite{bogoraz1934} 
 		\tabularnewline \midrule
-\tenevilglyph{sME_2b}
+\tenevilglyph[yes][2]{sME_2b}
 	&	Teŋiwil — автор записей \cite[л. 40, 52, 54]{spbfaran79}
 	& 	
 	&	
@@ -261,7 +287,7 @@
 		атехае [?] [33.5об] \linebreak
 		Тынеувел [Теневиль] [35.3]
 		\tabularnewline \midrule
-\tenevilglyph{sME}
+\tenevilglyph[yes][4]{sME}
 	&
 	& 	
 	&	
@@ -270,7 +296,7 @@
 		\cite[28]{lavrov1969} \linebreak
 		Тынеувел [Теневиль] [33.5об]
 		\tabularnewline \midrule
-\tenevilglyph{i_2lY}
+\tenevilglyph[yes][3]{i_2lY}
 	&
 	& 	
 	&	
@@ -278,7 +304,7 @@
 	& 	\cite[364]{davydova2015a} \linebreak
 		\cite[28]{lavrov1969} 
 		\tabularnewline \midrule
-\tenevilglyph{i_2cY}
+\tenevilglyph[yes][3]{i_2cY}
 	&
 	& 	
 	&	
@@ -286,7 +312,7 @@
 	& 	\cite[361, 363]{davydova2015a} \linebreak
 		\cite[28]{lavrov1969}
 		\tabularnewline \midrule
-\tenevilglyph{i_c_C_i_j}
+\tenevilglyph[yes][2]{i_c_C_i_j}
 	&	мать \cite[л. 40]{spbfaran79} \linebreak
 		Upenkew — враг автора \cite[л. 40]{spbfaran79} % Ближайшее по звучанию — шаман Упетеу \cite{mindalevich1934a}
 	& 	мать
@@ -294,14 +320,14 @@
 	& 	мать
 	& 	[1.1] 
 		\tabularnewline \midrule
-\tenevilglyph[no]{i_c_C}
+\tenevilglyph[no][1]{i_c_C}
 	&	Utenkew \cite[л. 52 об]{spbfaran79} \linebreak
 		Utenkew (?) \cite[л. 56]{spbfaran79}
 	& 	
 	&	
 	& 	
 	& 	\tabularnewline \midrule
-\tenevilglyph{iY_j}
+\tenevilglyph[yes][4]{iY_j}
 	&	сам \cite[л. 40, 53]{spbfaran79} \linebreak
 		cinit [cinit, чинит = сам] \cite[л. 52]{spbfaran79} \linebreak % чинит
 		ꞓinit [cinit] \cite[л. 52 об]{spbfaran79}
@@ -309,19 +335,22 @@
 	&	
 	& 	
 	& 	\cite[364]{davydova2015a} \linebreak
-		\cite{bogoraz1934}
+		\cite{bogoraz1934} \linebreak
+		чам [сам] [32.6об] \linebreak
+		сам [34.8об]
 		\tabularnewline \midrule
-\tenevilglyph{iY}
+\tenevilglyph[yes][4]{iY}
 	&	тот \cite[л. 40]{spbfaran79} \linebreak
-		әnqon [әnqan, ынӄэн = тот] \cite[л. 52, 54]{spbfaran79} % ынӄэн
+		әnqon [әnqan, ынӄэн = тот, этот] \cite[л. 52, 54]{spbfaran79} % ынӄэн
 	& 	тот
 	&	
 	& 	
 	& 	\cite[360, 361, 364]{davydova2015a} \linebreak
 		\cite[28]{lavrov1969} \linebreak
-		nqen [әnqan] [4.10об]
+		nqen [әnqan] [4.10об] \linebreak
+		ето [это] [32.16]
 		\tabularnewline \midrule
-\tenevilglyph{d_C}
+\tenevilglyph[yes][4]{d_C}
 	&	нет \cite[л. 40]{spbfaran79} \linebreak
 		ujŋә [уйӈэ = нет чего-нибудь] \cite[л. 39]{spbfaran79} \linebreak % уйӈэ
 		нету \cite[л. 66 об]{spbfaran79} \linebreak
@@ -333,7 +362,7 @@
 		\cite[28]{lavrov1969} \linebreak
 		нету [32.18]
 		\tabularnewline \midrule
-\tenevilglyph{G}
+\tenevilglyph[yes][4]{G}
 	&	теперь \cite[л. 40]{spbfaran79} \linebreak
 		igьt [игыр = сегодня, теперь] \cite[л. 39, 52 об]{spbfaran79} \linebreak % игыр
 		чиперче [теперь] \cite[л. 67 об]{spbfaran79} \linebreak
@@ -346,7 +375,7 @@
 		сесеяс [сейчас] [37.2] \linebreak
 		севотни [сегодня] [37.2] \linebreak
 		\tabularnewline \midrule
-\tenevilglyph{o_q}
+\tenevilglyph[yes][4]{o_q}
 	&	там \cite[л. 50]{spbfaran79} \linebreak
 		әnkь [ынкы = там] \cite[л. 39 об]{spbfaran79} \linebreak % ынкы
 		тут \cite[л. 66]{spbfaran79} \linebreak
@@ -361,7 +390,7 @@
 		тут [32.15об] \linebreak
 		ынкы [= там] [32.16об]
 		\tabularnewline \midrule
-\tenevilglyph{o_q_'}
+\tenevilglyph[yes][3]{o_q_'}
 	&	с тех пор \cite[л. 40]{spbfaran79} \linebreak
 		әnkәtegnek \cite[л. 39]{spbfaran79} \linebreak % НУЖЕН ПЕРЕВОД ынкатагнэпы ? ынкатагнык ?
 		әnketegnek \cite[л. 39 об]{spbfaran79} \linebreak
@@ -371,21 +400,21 @@
 	& 	
 	& 	\cite[360, 364]{davydova2015a} 
 		\tabularnewline \midrule
-\tenevilglyph{l-l}
+\tenevilglyph[yes][4]{l-l}
 	&	
 	& 	
 	&	
 	& 	
 	& 	нутку [ӈутку? = здесь, тут] [34.8]
 		\tabularnewline \midrule
-\tenevilglyph[no]{l-l_i}
+\tenevilglyph[no][3]{l-l_i}
 	&	с этих пор \cite[л. 40]{spbfaran79} \linebreak
 		wutkelegnek (?) \cite[л. 54]{spbfaran79} % НУЖЕН ПЕРЕВОД выткутэгнык ?
 	& 	с этих пор
 	&	
 	& 	
 	& 	\tabularnewline \midrule
-\tenevilglyph{2i_P}
+\tenevilglyph[yes][3]{2i_P}
 	&	на реке \cite[л. 41]{spbfaran79} \linebreak
 		veemьk [vææmьk, вээмык = на реке] \cite[л. 39]{spbfaran79} % вээмык
 	& 	на реке
@@ -393,7 +422,7 @@
 	& 	
 	& 	\cite[361]{davydova2015a} \linebreak
 		\tabularnewline \midrule
-\tenevilglyph{2i_2q}
+\tenevilglyph[yes][4]{2i_2q}
 	&	vaamete [vææmьte, вээмэты = к реке] \cite[л. 56]{spbfaran79} \linebreak % вээмэты
 		около рещки [около речки] \cite[л. 68 об]{spbfaran79}
 	& 	
@@ -402,7 +431,7 @@
 	& 	\cite[361]{davydova2015a} \linebreak
 		\cite[28]{lavrov1969} 
 		\tabularnewline \midrule
-\tenevilglyph{i_g_b_jX}
+\tenevilglyph[yes][4]{i_g_b_jX}
 	&	хариус \cite[л. 41, 54 об]{spbfaran79} \linebreak
 		qeꞓaw [kьcaw, кычав = хариус] \cite[л. 39]{spbfaran79} % кычав
 	& 	хариус
@@ -411,7 +440,7 @@
 	& 	\cite[361]{davydova2015a} \linebreak
 		хартон [?] [33.4]
 		\tabularnewline \midrule
-\tenevilglyph{i_g_b}
+\tenevilglyph[yes][4]{i_g_b}
 	&	кета \cite[л. 44, 45, 54 об]{spbfaran79} \linebreak
 		рипа [рыба] \cite[л. 68 об]{spbfaran79}
 	& 	кета
@@ -422,40 +451,40 @@
 		кетат [ӄэтаӄэт, кета] [33.4] \linebreak
 		эрепо [рыба?] [33.4]
 		\tabularnewline \midrule
-\tenevilglyph[no]{i_g_2b}
+\tenevilglyph[no][3]{i_g_2b}
 	&	налим \cite[л. 45, 54 об]{spbfaran79} 
 	& 	налим
 	&	
 	& 	налим
 	& 	\tabularnewline \midrule
-\tenevilglyph{i_g_b_z}
+\tenevilglyph[yes][3]{i_g_b_z}
 	&	сиг \cite[л. 45]{spbfaran79} 
 	& 	
 	&	
 	& 	
 	& 	[2.101]* 
 		\tabularnewline \midrule
-\tenevilglyph{i_g_b_hL}
+\tenevilglyph[yes][4]{i_g_b_hL}
 	&	щука \cite[л. 45]{spbfaran79} 
 	& 	щука
 	&	
 	& 	щука
 	& 	[2.101] 
 		\tabularnewline \midrule %
-\tenevilglyph[no]{i_g_2b_q_k}
+\tenevilglyph[no][3]{i_g_2b_q_k}
 	&	бычок \cite[л. 45]{spbfaran79} 
 	& 	
 	&	
 	& 	
 	& 	\tabularnewline \midrule
-\tenevilglyph{i_g_b_2cD}
+\tenevilglyph[yes][3]{i_g_b_2cD}
 	&	 [без перевода] \cite[л. 54 об]{spbfaran79} 
 	& 	
 	&	
 	& 	нярка
 	& 	\cite[361]{davydova2015a} 
 		\tabularnewline \midrule
-\tenevilglyph{u_j_jX_j}
+\tenevilglyph[yes][3]{u_j_jX_j}
 	&	еда, есть \cite[л. 41]{spbfaran79} \linebreak
 		roьlqal [roolqәl, рооԓӄыԓ = пища, продукты] \cite[л. 39]{spbfaran79} % рооԓӄыԓ
 	& 	еда, есть
@@ -463,14 +492,14 @@
 	& 	
 	& 	\cite[364]{davydova2015a} 
 		\tabularnewline \midrule
-\tenevilglyph{u_j_jX} 
+\tenevilglyph[yes][2]{u_j_jX} 
 	&	
 	& 	
 	&	
 	& 	
 	& 	в «чаеопат» [чай \textit{пить}] [32.16об]
 		\tabularnewline \midrule
-\tenevilglyph{i_I_2qY}
+\tenevilglyph[yes][4]{i_I_2qY}
 	&	бояться \cite[л. 41]{spbfaran79} \linebreak
 		в «мы \textit{боимся»} \cite[л. 52]{spbfaran79} \linebreak
 		в «я оцин \textit{боюс»} [«я очень боюсь»] \cite[л. 67 об]{spbfaran79}
@@ -479,7 +508,7 @@
 	& 	
 	& 	поеысея [боялся] [37.2] 
 		\tabularnewline \midrule
-\tenevilglyph{o_q_jF}
+\tenevilglyph[yes][4]{o_q_jF}
 	&	сделал \cite[л. 41]{spbfaran79} \linebreak
 		елат [делать] \cite[л. 68]{spbfaran79}
 	& 	сделал
@@ -487,7 +516,7 @@
 	& 	
 	& 	\cite[361, 364]{davydova2015a} 
 		\tabularnewline \midrule
-\tenevilglyph{o_q_jF_b}
+\tenevilglyph[yes][4]{o_q_jF_b}
 	&	
 	& 	
 	&	
@@ -495,7 +524,7 @@
 	& 	\cite[364]{davydova2015a} \linebreak
 		ырыпотали [работали] [34.8об]
 		\tabularnewline \midrule
-\tenevilglyph{U_v}
+\tenevilglyph[yes][4]{U_v}
 	&	сказал* \cite[л. 41]{spbfaran79} \linebreak % тут везде знак перевернут, похоже
 		giulin* \cite[л. 52]{spbfaran79} % НУЖЕН ПЕРЕВОД гэвъилин ?
 	& 	сказал*
@@ -503,7 +532,7 @@
 	& 	
 	& 	каварйт [говорит] [32.16]
 		\tabularnewline \midrule
-\tenevilglyph{U_b}
+\tenevilglyph[yes][4]{U_b}
 	&	
 	& 	
 	&	
@@ -511,7 +540,7 @@
 	& 	еесик [язык] [32.6об] \linebreak
 		еегиг [язык] [34.16]
 		\tabularnewline \midrule
-\tenevilglyph{c_CE}
+\tenevilglyph[yes][4]{c_CE}
 	&	пребывать, быть \cite[л. 41]{spbfaran79} \linebreak
 		в \textit{«било} он», «не\textit{било»}, «какои» \cite[л. 66]{spbfaran79}
 	& 	пребывать, быть
@@ -522,7 +551,7 @@
 		ееч [есть] [32.16] \linebreak
 		еес [есть] [33.4] \linebreak
 		\tabularnewline \midrule
-\tenevilglyph{UD_2B}
+\tenevilglyph[yes][4]{UD_2B}
 	&	жить \cite[л. 41]{spbfaran79} \linebreak
 		nyegtel \cite[л. 39]{spbfaran79} \linebreak % НУЖЕН ПЕРЕВОД ны-егтэԓ ?
 		nьegtel \cite[л. 39 об]{spbfaran79} \linebreak
@@ -532,7 +561,7 @@
 	& 	жить
 	& 	\cite[360, 364]{davydova2015a} 
 		\tabularnewline \midrule
-\tenevilglyph{UE}
+\tenevilglyph[yes][3]{UE}
 	&	становиться \cite[л. 41]{spbfaran79} \linebreak
 		mьnneel \cite[л. 39]{spbfaran79} \linebreak % НУЖЕН ПЕРЕВОД мыннъэԓ ? мытнъэԓ?
 		mьtьnnel \cite[л. 39 об]{spbfaran79} \linebreak
@@ -542,7 +571,7 @@
 	& 	
 	& 	\cite[360, 364]{davydova2015a} 
 		\tabularnewline \midrule
-\tenevilglyph{2OX_j}
+\tenevilglyph[yes][3]{2OX_j}
 	&	расти и большой \cite[л. 41]{spbfaran79} \linebreak
 		nьmejŋqin* [nьmæjьŋqin, нымэйыӈӄин = большой] \cite[л. 54]{spbfaran79} \linebreak % нымэйыӈӄин
 		mejn* [mæjŋ, мэйыӈ = большой (основа)] \cite[л. 39 об]{spbfaran79} % мэйыӈ
@@ -551,7 +580,7 @@
 	& 	
 	& 	\cite[360, 364]{davydova2015a} 
 		\tabularnewline \midrule
-\tenevilglyph{2OX} 
+\tenevilglyph[yes][2]{2OX} 
 	&	mejŋь [mæjŋ, мэйыӈ = большой (основа)] \cite[л. 64 об]{spbfaran79} \linebreak % мэйыӈ
 		оыё [?] \cite[л. 66]{spbfaran79} \linebreak
 		коломеи [?] \cite[л. 68 об]{spbfaran79} 
@@ -561,7 +590,7 @@
 	& 	\cite[361, 364]{davydova2015a} \linebreak
 		\cite[28]{lavrov1969} 
 		\tabularnewline \midrule
-\tenevilglyph{o_4i}
+\tenevilglyph[yes][3]{o_4i}
 	&	nenanmuqen \cite[л. 54]{spbfaran79} \linebreak % НУЖЕН ПЕРЕВОД
 		в \textit{«убил} волка» \cite[л. 68 об]{spbfaran79} 
 	& 	
@@ -570,7 +599,7 @@
 	& 	\cite[360, 361]{davydova2015a} \linebreak
 		\cite{bogoraz1934} 
 		\tabularnewline \midrule
-\tenevilglyph{o_4i_k}
+\tenevilglyph[yes][4]{o_4i_k}
 	&	умереть \cite[л. 41]{spbfaran79} \linebreak
 		умирают \cite[л. 52]{spbfaran79} \linebreak
 		wu [vi, въи = умереть (основа)] \cite[л. 52]{spbfaran79} \linebreak % въи
@@ -581,7 +610,7 @@
 	& 	\cite[360]{davydova2015a} \linebreak
 		омейр [умер] [32.16]
 		\tabularnewline \midrule
-\tenevilglyph{c_JY}
+\tenevilglyph[yes][4]{c_JY}
 	&	покинул \cite[л. 41]{spbfaran79} \linebreak
 		enapelae [энапэԓя = оставлять (основа)] \cite[л. 52]{spbfaran79} \linebreak % энапэԓя 
 		enapela \cite[л. 56]{spbfaran79} \linebreak
@@ -591,7 +620,7 @@
 	& 	
 	& 	[25.3] 
 		\tabularnewline \midrule
-\tenevilglyph{b_2q_L}
+\tenevilglyph[yes][2]{b_2q_L}
 	&	покинул \cite[л. 41]{spbfaran79} \linebreak
 		pela [пэԓя = покидать, оставлять (основа)] \cite[л. 52]{spbfaran79} % пэԓя
 	& 	
@@ -600,7 +629,7 @@
 	& 	\cite[364]{davydova2015a} \linebreak
 		чкорйе [?] [32.16]
 		\tabularnewline \midrule
-\tenevilglyph{4L}
+\tenevilglyph[yes][3]{4L}
 	&	плакать \cite[л. 41]{spbfaran79} \linebreak
 		nьtergьtьm \cite[л. 52]{spbfaran79} % НУЖЕН ПЕРЕВОД нытэргат-?
 	& 	
@@ -608,7 +637,7 @@
 	& 	
 	& 	\cite[360]{davydova2015a} 
 		\tabularnewline \midrule
-\tenevilglyph{a}
+\tenevilglyph[yes][4]{a}
 	&	стадо, олень \cite[л. 42]{spbfaran79} \linebreak
 		ŋәlvil [ŋælvьl, ӈэԓвыԓ = стадо (преимущественно оленей)] \cite[л. 56]{spbfaran79} % ӈэԓвыԓ
 	& 	стадо, олень
@@ -618,34 +647,34 @@
 		\cite{bogoraz1934} \linebreak
 		олене [олень] [33.4]
 		\tabularnewline \midrule
-\tenevilglyph{a_k}
+\tenevilglyph[yes][3]{a_k}
 	&	силонок [теленок] \cite[л. 68 об]{spbfaran79} 
 	& 	
 	&	
 	& 	
 	& 	\cite[362]{davydova2015a} 
 		\tabularnewline \midrule
-\tenevilglyph[no]{a_k_j}
+\tenevilglyph[no][3]{a_k_j}
 	&
 	& 	
 	&	
 	& 	теленок
 	& 	\tabularnewline \midrule
-\tenevilglyph{a_q}
+\tenevilglyph[yes][4]{a_q}
 	&	васонка [важенка] \cite[л. 68 об]{spbfaran79} 
 	& 	
 	&	
 	& 	важенка
 	& 	[25.6об] 
 		\tabularnewline \midrule
-\tenevilglyph{a_q_l}
+\tenevilglyph[yes][4]{a_q_l}
 	&	 
 	& 	
 	&	
 	& 	
 	& 	ванкаскор [ваӈӄасӄор = важенка в возрасте двух лет, яловая важенка] [25.6об] % ваӈӄасӄор
 		\tabularnewline \midrule
-\tenevilglyph{a_t}
+\tenevilglyph[yes][3]{a_t}
 	&	силилас [телилась] \cite[л. 68 об]{spbfaran79} 
 	& 	
 	&	
@@ -653,7 +682,7 @@
 	& 	\cite[362]{davydova2015a} \linebreak
 		\cite[26]{lavrov1969} 
 		\tabularnewline \midrule
-\tenevilglyph{aB}
+\tenevilglyph[yes][4]{aB}
 	&	в «стойбище, олени (богатый оленевод)» \cite[л. 47]{spbfaran79} \linebreak
 		табун \cite[л. 55]{spbfaran79} 
 	& 	
@@ -663,27 +692,27 @@
 		\cite[26, 28]{lavrov1969} \linebreak
 		тапон [табун] [33.4]
 		\tabularnewline \midrule
-\tenevilglyph{a_o}
+\tenevilglyph[yes][3]{a_o}
 	&	
 	& 	
 	&	
 	& 	дикий олень
 	& 	[18.1об?] 
 		\tabularnewline \midrule
-\tenevilglyph{a_jT}
+\tenevilglyph[yes][3]{a_jT}
 	&	бик [бык] \cite[л. 68 об]{spbfaran79} 
 	& 	
 	&	
 	& 	
 	& 	[1.2] 
 		\tabularnewline \midrule
-\tenevilglyph{a_2jX}
+\tenevilglyph[yes][3]{a_2jX}
 	&	хромой олень \cite[л. 43]{spbfaran79} 
 	& 	
 	&	
 	& 	
 	& 	[25.9] \tabularnewline \midrule
-\tenevilglyph{s_b}
+\tenevilglyph[yes][4]{s_b}
 	&	много \cite[л. 42]{spbfaran79} \linebreak
 		много \cite[л. 37]{spbfaran79} \linebreak
 		numkәqin [nьmkәqin, нымкыӄин = многочисленный] \cite[л. 54]{spbfaran79} \linebreak % нымкыӄин
@@ -698,7 +727,7 @@
 		\cite{bogoraz1934} \linebreak
 		мноко [много] [34.11]
 		\tabularnewline \midrule
-\tenevilglyph{f}
+\tenevilglyph[yes][4]{f}
 	&	человек, народ \cite[л. 42]{spbfaran79} \linebreak
 		человек \cite[л. 53]{spbfaran79} \linebreak
 		соловк [человек] \cite[л. 68 об]{spbfaran79} 
@@ -709,7 +738,7 @@
 		\cite{bogoraz1934} \linebreak
 		соловек [человек] [37.7об]
 		\tabularnewline \midrule
-\tenevilglyph{i_l}
+\tenevilglyph[yes][4]{i_l}
 	&	другой \cite[л. 42]{spbfaran79} \linebreak
 		другой \cite[л. 53]{spbfaran79} 
 	& 	другой
@@ -719,7 +748,7 @@
 		\cite{bogoraz1934} \linebreak
 		трхой [другой] [32.16]
 		\tabularnewline \midrule
-\tenevilglyph{v_l}
+\tenevilglyph[yes][3]{v_l}
 	&	раньше, ꞓit [cit, чит = раньше, прежде] \cite[л. 42]{spbfaran79} \linebreak % чит
 		ꞓit [cit] \cite[л. 52 об, 56]{spbfaran79} 
 	& 	
@@ -728,7 +757,7 @@
 	& 	\cite[364]{davydova2015a} \linebreak
 		\cite[28]{lavrov1969} 
 		\tabularnewline \midrule
-\tenevilglyph{i_LX}
+\tenevilglyph[yes][3]{i_LX}
 	&	действительно, qәjve [ӄэйвэ = право, и действительно] \cite[л. 42]{spbfaran79} \linebreak % ӄэйвэ
 		qojve [qәjve] \cite[л. 56]{spbfaran79} \linebreak
 		qoive [qәjve] \cite[л. 54, 52 об]{spbfaran79}
@@ -737,7 +766,7 @@
 	& 	
 	& 	\cite[360–362, 364]{davydova2015a} 
 		\tabularnewline \midrule
-\tenevilglyph{w}
+\tenevilglyph[yes][3]{w}
 	&	еще не, jep [еп = еще; пока еще; еще в то время, как] \cite[л. 42]{spbfaran79} \linebreak % еп
 		jep \cite[л. 52, 52 об, 56]{spbfaran79}
 	& 	еще не
@@ -745,7 +774,7 @@
 	& 	
 	& 	\cite[360, 364]{davydova2015a} 
 		\tabularnewline \midrule
-\tenevilglyph{2c}
+\tenevilglyph[yes][3]{2c}
 	&	кое как, насилу \cite[л. 42]{spbfaran79} \linebreak
 		metkiit [mætkiit, мэткиит = насилу, еле-еле] \cite[л. 39, 52]{spbfaran79} % мэткиит
 	& 	
@@ -753,7 +782,7 @@
 	& 	
 	& 	 \cite{bogoraz1934} 
 		\tabularnewline \midrule
-\tenevilglyph{I_2l}
+\tenevilglyph[yes][4]{I_2l}
 	&	совсем, qonpь [ӄонпыӈ = совсем, совершенно] \cite[л. 42]{spbfaran79} \linebreak % ӄонпыӈ
 		qonpь* \cite[л. 39]{spbfaran79} \linebreak
 		совсем \cite[л. 67]{spbfaran79}
@@ -763,7 +792,7 @@
 	& 	\cite[360, 361, 364]{davydova2015a} \linebreak
 		\cite[28]{lavrov1969} 
 		\tabularnewline \midrule
-\tenevilglyph{wD2E}
+\tenevilglyph[yes][3]{wD2E}
 	&	притом, qәnver [qanver, ӄоныры = также] \cite[л. 42]{spbfaran79} \linebreak % ӄоныры
 		qanver \cite[л. 39, 56]{spbfaran79} \linebreak
 		qәnver \cite[л. 52, 56]{spbfaran79} 		
@@ -772,7 +801,7 @@
 	& 	
 	& 	\cite[360, 361]{davydova2015a} 
 		\tabularnewline \midrule
-\tenevilglyph{2o_2iY}
+\tenevilglyph[yes][4]{2o_2iY}
 	&	давно \cite[л. 42]{spbfaran79} \linebreak	
 		telenjep [tælænjæp, тэԓенъеп = давно] \cite[л. 39 об, 52, 56]{spbfaran79} \linebreak % тэԓенъеп
 		давно \cite[л. 66 об]{spbfaran79}
@@ -781,7 +810,7 @@
 	& 	
 	& 	\cite[360]{davydova2015a} 
 		\tabularnewline \midrule
-\tenevilglyph{b_q}
+\tenevilglyph[yes][3]{b_q}
 	&	также, ꞓama [cama, чама = тоже] \cite[л. 42]{spbfaran79} \linebreak % чама
 		тоже \cite[л. 37]{spbfaran79} \linebreak
 		ꞓama [cama] \cite[л. 39 об, 54]{spbfaran79}
@@ -792,7 +821,7 @@
 		\cite[28]{lavrov1969} \linebreak	
 		\cite{bogoraz1934} 
 		\tabularnewline \midrule
-\tenevilglyph{2i_2cD_2l}
+\tenevilglyph[yes][3]{2i_2cD_2l}
 	&	все \cite[л. 42]{spbfaran79} \linebreak	
 		ьmьlo [ымыԓьо = весь] \cite[л. 52 об]{spbfaran79} % ымыԓьо
 	& 	все
@@ -800,7 +829,7 @@
 	& 	
 	& 	\cite[360, 361, 364]{davydova2015a} 
 		\tabularnewline \midrule
-\tenevilglyph{U_q}
+\tenevilglyph[yes][4]{U_q}
 	&	но \cite[л. 42]{spbfaran79} \linebreak	
 		naqam [наӄам = но, однако] \cite[л. 39, 52 об, 54, 56]{spbfaran79} % наӄам
 	& 	
@@ -809,7 +838,7 @@
 	& 	\cite[360, 361, 364]{davydova2015a} \linebreak
 		нахам [наӄам] [34.8]
 		\tabularnewline \midrule
-\tenevilglyph{o_2CY}
+\tenevilglyph[yes][4]{o_2CY}
 	&	хорошо \cite[л. 43]{spbfaran79} \linebreak	
 		meꞓәnkь [mæсәnkь, мэчынкы = хорошо] \cite[л. 39, 52]{spbfaran79} \linebreak % мэчынкы
 		латно [ладно] \cite[л. 67]{spbfaran79}
@@ -818,7 +847,7 @@
 	& 	
 	& 	\cite[360, 361, 364]{davydova2015a} 
 		\tabularnewline \midrule
-\tenevilglyph[no]{SMY_iX}
+\tenevilglyph[no][3]{SMY_iX}
 	&	слабый \cite[л. 43]{spbfaran79} \linebreak	
 		nьrulqin [ныруԓӄин = слабый] \cite[л. 52, 52 об]{spbfaran79} \linebreak % ныруԓӄин
 		nьrulium \cite[л. 52 об, 56]{spbfaran79} \linebreak
@@ -827,28 +856,28 @@
 	&	
 	& 	
 	& 	\tabularnewline \midrule
-\tenevilglyph[no]{S_iX}
+\tenevilglyph[no][3]{S_iX}
 	&	не могли \cite[л. 43]{spbfaran79} \linebreak	
 		nanilrawcьm (?) \cite[л. 39]{spbfaran79} % НУЖЕН ПЕРЕВОД
 	& 	
 	&	
 	& 	
 	& 	\tabularnewline \midrule
-\tenevilglyph{i_4l_2l}
+\tenevilglyph[yes][3]{i_4l_2l}
 	&	тосковать* \cite[л. 43]{spbfaran79} 
 	& 	
 	&	
 	& 	
 	& 	[9.3] 
 		\tabularnewline \midrule % тут вверх ногами
-\tenevilglyph{i_4l}
+\tenevilglyph[yes][1]{i_4l}
 	&	
 	& 	
 	&	
 	& 	
 	& 	ом [?] [37.2] 
 		\tabularnewline \midrule
-\tenevilglyph{U2E_JX}
+\tenevilglyph[yes][4]{U2E_JX}
 	&	лето наступило \cite[л. 43]{spbfaran79} \linebreak	
 		elerurkьn = лето начинается [ælærurkьn = лето начинается] \cite[л. 52 об]{spbfaran79} \linebreak % НУЖНА ТРАНСКРИПЦИЯ 
 		лет [лето] \cite[л. 66]{spbfaran79}
@@ -858,14 +887,14 @@
 	& 	\cite[362]{davydova2015a} \linebreak
 		\cite[28]{lavrov1969} 
 		\tabularnewline \midrule
-\tenevilglyph{U_JX_3'}
+\tenevilglyph[yes][4]{U_JX_3'}
 	&	симои [зимой] \cite[л. 66]{spbfaran79}
 	& 	
 	&	
 	& 	
 	& 	семои [зимой] [34.11]
 		\tabularnewline \midrule
-\tenevilglyph{2O}
+\tenevilglyph[yes][4]{2O}
 	&	пусть, чтобы, opopo [опопы = пусть] \cite[л. 43]{spbfaran79} \linebreak % опопы
 		пусть \cite[л. 53]{spbfaran79} \linebreak
 		opopo \cite[л. 52 об]{spbfaran79} 
@@ -875,7 +904,7 @@
 	& 	\cite[364]{davydova2015a} \linebreak
 		опопы [= пусть] [34.8]
 		\tabularnewline \midrule
-\tenevilglyph{o_3iS}
+\tenevilglyph[yes][4]{o_3iS}
 	&	пускай, maꞓьnan [macьnan, мачынан = пусть] \cite[л. 43]{spbfaran79} \linebreak % мачынан
 		maꞓьnan [macьnan] \cite[л. 52 об, 56]{spbfaran79} \linebreak
 		мачнан [macьnan] \cite[л. 68]{spbfaran79} 
@@ -885,7 +914,7 @@
 	& 	\cite[364]{davydova2015a} \linebreak
 		\cite{bogoraz1934} 
 		\tabularnewline \midrule
-\tenevilglyph{u-o_b}
+\tenevilglyph[yes][4]{u-o_b}
 	&	как же, miŋkri [миӈкри = куда, как] \cite[л. 43]{spbfaran79} \linebreak % миӈкри
 		miŋkri-lu \cite[л. 56]{spbfaran79} \linebreak % НУЖЕН ПЕРЕВОД ԓымиӈкыри? миӈкри-?
 		кута [куда] \cite[л. 66]{spbfaran79} \linebreak
@@ -896,20 +925,20 @@
 	& 	
 	& 	\cite[364]{davydova2015a} 
 		\tabularnewline \midrule
-\tenevilglyph{u-o}
+\tenevilglyph[yes][1]{u-o}
 	&	аке [?] \cite[л. 68]{spbfaran79}
 	& 	
 	&	
 	& 	
 	& 	[25.9] 
 		\tabularnewline \midrule
-\tenevilglyph[no]{U_iX_b}
+\tenevilglyph[no][2]{U_iX_b}
 	&	завидовать \cite[л. 43]{spbfaran79}
 	& 	
 	&	divide the reindeer herd
 	& 	
 	& 	\tabularnewline \midrule
-\tenevilglyph{i_2kU_2kD}
+\tenevilglyph[yes][4]{i_2kU_2kD}
 	&	шкура \cite[л. 44]{spbfaran79} \linebreak
 		nelgen [nælgьn, нэԓгын = шкура]* \cite[л. 49 об]{spbfaran79} \linebreak % нэԓгын
 		писик [пыжик] \cite[л. 68]{spbfaran79}
@@ -918,34 +947,34 @@
 	& 	
 	& 	\cite[364]{davydova2015a} 
 		\tabularnewline \midrule
-\tenevilglyph{i_2kU_kD_2Q}
+\tenevilglyph[yes][3]{i_2kU_kD_2Q}
 	&	неторос [недоросль] \cite[л. 68]{spbfaran79} 
 	& 	
 	&	
 	& 	
 	& 	\cite[364]{davydova2015a} 
 		\tabularnewline \midrule
-\tenevilglyph{i_2kU_kD_2Q_iX}
+\tenevilglyph[yes][3]{i_2kU_kD_2Q_iX}
 	&	посела [постель (шкура взрослого оленя)] \cite[л. 68]{spbfaran79} 
 	& 	
 	&	
 	& 	
 	& 	[32.17об]
 		\tabularnewline \midrule
-\tenevilglyph{i_kU_b_3Q_c}
+\tenevilglyph[yes][1]{i_kU_b_3Q_c}
 	&	саски [?] \cite[л. 68]{spbfaran79} 
 	& 	
 	&	
 	& 	
 	& 	\cite[364]{davydova2015a} 
 		\tabularnewline \midrule
-\tenevilglyph{k_o_oN}
+\tenevilglyph[yes][3]{k_o_oN}
 	&	випороток [выпороток] \cite[л. 68]{spbfaran79} 
 	& 	
 	&	
 	& 	
 	& 	[1.1] \tabularnewline \midrule
-\tenevilglyph{2k}
+\tenevilglyph[yes][4]{2k}
 	&	мука \cite[л. 44]{spbfaran79} \linebreak
 		мука \cite[л. 66 об]{spbfaran79}
 	& 	мука
@@ -953,14 +982,14 @@
 	& 	
 	& 	[25.6]
 		\tabularnewline \midrule
-\tenevilglyph{vY_z}
+\tenevilglyph[yes][4]{vY_z}
 	&	русский \cite[л. 44]{spbfaran79} 
 	& 	
 	&	Russian holding fire-arms
 	& 	русский*
 	& 	\cite[364]{davydova2015a} 
 		\tabularnewline \midrule
-\tenevilglyph{a_vY_z}
+\tenevilglyph[yes][4]{a_vY_z}
 	&	
 	& 	
 	&	
@@ -968,20 +997,20 @@
 	& 	совхос [совхоз] [32.13] \linebreak
 		оленсохоси [оленсовхоз] [34.11об]
 		\tabularnewline \midrule
-\tenevilglyph{bD_b_vY_z}
+\tenevilglyph[yes][4]{bD_b_vY_z}
 	&	
 	& 	
 	&	
 	& 	Ленин
 	& 	ленн [Ленин] [34.9] % часть «ԓыгэн» тут, видимо, в качестве фонетической компоненты 
 		\tabularnewline \midrule
-\tenevilglyph[no]{zR_v}
+\tenevilglyph[no][4]{zR_v}
 	&	следы \cite[л. 45]{spbfaran79} 
 	& 	следы
 	&	
 	& 	
 	& 	\tabularnewline \midrule
-\tenevilglyph{c_2cD_q}
+\tenevilglyph[yes][4]{c_2cD_q}
 	&	волк \cite[л. 45, 53]{spbfaran79} \linebreak
 		волк \cite[л. 68 об]{spbfaran79} \linebreak
 		в «убил \textit{волка»} \cite[л. 68 об]{spbfaran79}
@@ -991,21 +1020,21 @@
 	& 	\cite[360]{davydova2015a} \linebreak
 		воки [волки] [34.12]
 		\tabularnewline \midrule
-\tenevilglyph{cD_b}
+\tenevilglyph[yes][4]{cD_b}
 	&	мтвет [медведь] \cite[л. 68 об]{spbfaran79}
 	& 	
 	&	
 	& 	
 	& 	мысвеси [медведи] [34.12]
 		\tabularnewline \midrule
-\tenevilglyph{I-IE} 
+\tenevilglyph[yes][4]{I-IE} 
 	&	
 	& 	
 	&	
 	& 	
 	& 	рысомака [росомаха] [34.12]
 		\tabularnewline \midrule
-\tenevilglyph{2CY} % С лисами сплошная путаница
+\tenevilglyph[yes][4]{2CY} % С лисами сплошная путаница
 	&	reqokalgьn [рэӄокаԓгын = лисица, песец] \cite[л. 54]{spbfaran79} % рэӄокаԓгын
 	& 	
 	&	
@@ -1013,20 +1042,20 @@
 	& 	[11.3] \linebreak
 		лесесея [лисица] [34.12]
 		\tabularnewline \midrule
-\tenevilglyph[no]{2CY_c} 
+\tenevilglyph[no][3]{2CY_c} 
 	&	голубой песец \cite[л. 46]{spbfaran79} 
 	& 	голубой песец
 	&	
 	& 	
 	& 	\tabularnewline \midrule
-\tenevilglyph[no]{2CY_2c} 
+\tenevilglyph[no][2]{2CY_2c} 
 	&	песец \cite[л. 45]{spbfaran79} \linebreak
 		сорнпур [чернобурая] \cite[л. 69 об]{spbfaran79} 
 	& 	
 	&	
 	& 	
 	& 	\tabularnewline \midrule
-\tenevilglyph{2CY_cFD} 
+\tenevilglyph[yes][3]{2CY_cFD} 
 	&	красная лисица* \cite[л. 45]{spbfaran79} \linebreak
 		лисита [лисица] \cite[л. 69 об]{spbfaran79}
 	& 	
@@ -1034,7 +1063,7 @@
 	& 	
 	& 	[11.3] 
 		\tabularnewline \midrule
-\tenevilglyph{2CY_o_I_3q} 
+\tenevilglyph[yes][2]{2CY_o_I_3q} 
 	&	огневка \cite[л. 45]{spbfaran79} \linebreak
 		песеч [песец] \cite[л. 69 об]{spbfaran79}
 	& 	
@@ -1042,28 +1071,28 @@
 	& 	
 	& 	[4.4об]*
 		\tabularnewline \midrule
-\tenevilglyph[no]{2CY_o_I_3q_c} 
+\tenevilglyph[no][2]{2CY_o_I_3q_c} 
 	&	чернобурая \cite[л. 45]{spbfaran79} \linebreak
 		кулубои [голубой] \cite[л. 69 об]{spbfaran79}
 	& 	
 	&	
 	& 	
 	& 	\tabularnewline \midrule
-\tenevilglyph[no]{2CY_o_I_3q_2jF} 
+\tenevilglyph[no][3]{2CY_o_I_3q_2jF} 
 	&	сиводушка \cite[л. 45]{spbfaran79}
 	& 	
 	&	
 	& 	
 	& 	\tabularnewline \midrule
-\tenevilglyph{2cF_k_2qY} 
+\tenevilglyph[yes][4]{2cF_k_2qY} 
 	&	заяц \cite[л. 46]{spbfaran79} \linebreak
 		melitolgьn [melotalgьn, мэԓётаԓгын = заяц] \cite[л. 54]{spbfaran79} % мэԓётаԓгын
 	& 	заяц
 	&	a hare
 	& 	
-	& 	[11.7]
+	& 	[рядом с изображением кролика] [11.1]
 		\tabularnewline \midrule
-\tenevilglyph{v-_jF}
+\tenevilglyph[yes][4]{v-_jF}
 	&	кострула [кастрюля] \cite[л. 68]{spbfaran79}
 	& 	
 	&	
@@ -1071,79 +1100,79 @@
 	& 	\cite[364]{davydova2015a} \linebreak
 		в «7 ветра» [7 ведер] [34.19об]
 		\tabularnewline \midrule
-\tenevilglyph[no]{O_v}
+\tenevilglyph[no][3]{O_v}
 	&	тас [таз] \cite[л. 66]{spbfaran79}
 	& 	
 	&	
 	& 	
 	& 	\tabularnewline \midrule
-\tenevilglyph[no]{O_v_vD}
+\tenevilglyph[no][3]{O_v_vD}
 	&	в «кастрюлька» \cite[л. 46]{spbfaran79}
 	& 	кастрюля
 	&	
 	& 	
 	& 	\tabularnewline \midrule
-\tenevilglyph[no]{O_v_2jF}
+\tenevilglyph[no][3]{O_v_2jF}
 	&	тарелка \cite[л. 46]{spbfaran79}
 	& 	тарелка
 	&	
 	& 	
 	& 	\tabularnewline \midrule
-\tenevilglyph{i_c_c_2j}
+\tenevilglyph[yes][3]{i_c_c_2j}
 	&	
 	& 	свечка
 	&	
 	& 	
 	& 	\cite[364]{davydova2015a}
 		\tabularnewline \midrule
-\tenevilglyph{R_o-o}
+\tenevilglyph[yes][3]{R_o-o}
 	&	молоко \cite[л. 49]{spbfaran79} 
 	& 	молоко
 	&	
 	& 	
 	& 	[4.4об]
 		\tabularnewline \midrule
-\tenevilglyph{R_o-o_2j}
+\tenevilglyph[yes][3]{R_o-o_2j}
 	&	молоко \cite[л. 49]{spbfaran79} 
 	& 	молоко
 	&	
 	& 	
 	& 	[2.101]
 		\tabularnewline \midrule
-\tenevilglyph[no]{R_o-o_2b}
+\tenevilglyph[no][3]{R_o-o_2b}
 	&	банка с керосином \cite[л. 46]{spbfaran79} 
 	& 	банка с керосином
 	&	
 	& 	
 	& 	\tabularnewline \midrule
-\tenevilglyph[no]{R-o-o_3iS_'}
+\tenevilglyph[no][3]{R-o-o_3iS_'}
 	&	банка с жиром \cite[л. 46]{spbfaran79} 
 	& 	банка с жиром
 	&	
 	& 	
 	& 	\tabularnewline \midrule
-\tenevilglyph{R_o-o_c_zR}
+\tenevilglyph[yes][3]{R_o-o_c_zR}
 	&	банка с салом (с маслом) \cite[л. 46]{spbfaran79} 
 	& 	банка с салом
 	&	
 	& 	
 	& 	[4.1]
 		\tabularnewline \midrule
-\tenevilglyph{R_o-o_2CE}
+\tenevilglyph[yes][3]{R_o-o_2CE}
 	&	банка с сахаром \cite[л. 49]{spbfaran79} 
 	& 	
 	&	
 	& 	
 	& 	[4.7]
 		\tabularnewline \midrule
-\tenevilglyph{C_c_zR} 
+\tenevilglyph[yes][3]{C_c_zR} 
 	&	в «олений \textit{жир} это» \cite[л. 46]{spbfaran79}
 	& 	
 	&	
 	& 	
 	& 	[4.5об]
 		\tabularnewline \midrule
-\tenevilglyph{c_2b}
+\tenevilglyph[yes][4]{c_2b}
 	&	белый \cite[л. 46]{spbfaran79} \linebreak
 		пелои [белый] \cite[л. 68]{spbfaran79}
 	& 	белый
@@ -1152,7 +1181,7 @@
 	& 	\cite[362–364]{davydova2015a} \linebreak
 		\cite[28]{lavrov1969}
 		\tabularnewline \midrule
-\tenevilglyph{o-o_J}
+\tenevilglyph[yes][4]{o-o_J}
 	&	маленький \cite[л. 46]{spbfaran79} \linebreak
 		nьpluqin [ныппыԓюӄин = маленький] \cite[л. 46]{spbfaran79} % ныппыԓюӄин
 	& 	маленький
@@ -1161,21 +1190,21 @@
 	& 	\cite[360]{davydova2015a} \linebreak
 		малйнкй [маленький] [37.7об]
 		\tabularnewline \midrule
-\tenevilglyph{O_bN}
+\tenevilglyph[yes][3]{O_bN}
 	&	
 	& 	крадет
 	&	
 	& 	
 	& 	\cite{bogoraz1934}
 		\tabularnewline \midrule
-\tenevilglyph{U_bN}
+\tenevilglyph[yes][3]{U_bN}
 	&	вороватый \cite[л. 47]{spbfaran79} 
 	& 	вороватый
 	&	
 	& 	
 	& 	\cite{bogoraz1934}
 		\tabularnewline \midrule
-\tenevilglyph{i_G}
+\tenevilglyph[yes][4]{i_G}
 	&	хороший \cite[л. 47]{spbfaran79} \linebreak
 		хоросой [хороший]* \cite[л. 66, 68 об]{spbfaran79} 
 	& 	хороший
@@ -1185,7 +1214,7 @@
 		\cite{bogoraz1934} \linebreak
 		хоросо [хорошо] [33.4] 
 		\tabularnewline \midrule
-\tenevilglyph{i_o_G}
+\tenevilglyph[yes][3]{i_o_G}
 	&	
 	& 	мастероватый
 	&	
@@ -1193,21 +1222,21 @@
 	& 	\cite{bogoraz1934} \linebreak
 		[25.13об]
 		\tabularnewline \midrule
-\tenevilglyph{i_G_b}
+\tenevilglyph[yes][3]{i_G_b}
 	&	поправилас [поправилась] \cite[л. 66 об]{spbfaran79}
 	& 	
 	&	
 	& 	
 	& 	[25.13]
 		\tabularnewline \midrule
-\tenevilglyph{i_G_bX}
+\tenevilglyph[yes][1]{i_G_bX}
 	&	блно [?] \cite[л. 66]{spbfaran79}
 	& 	
 	&	
 	& 	
 	& 	[4.8] 
 		\tabularnewline \midrule
-\tenevilglyph{BD}
+\tenevilglyph[yes][4]{BD}
 	&	худой \cite[л. 47]{spbfaran79} \linebreak
 		хутои [худой] \cite[л. 68 об]{spbfaran79} 
 	& 	худой
@@ -1218,21 +1247,21 @@
 		iэтке [э'тки = плохо, скверно] [34.8] % э'тки
 		плохо [34.11]
 		\tabularnewline \midrule
-\tenevilglyph{BD_cD}
+\tenevilglyph[yes][4]{BD_cD}
 	&	
 	& 	
 	&	
 	& 	
 	& 	плохои [плохой] [37.2]
 		\tabularnewline \midrule
-\tenevilglyph{O_jN}
+\tenevilglyph[yes][3]{O_jN}
 	&	ночью \cite[л. 47]{spbfaran79} 
 	& 	
 	&	
 	& 	
 	& 	\cite[360, 362]{davydova2015a} 
 		\tabularnewline \midrule
-\tenevilglyph{2o_2j}
+\tenevilglyph[yes][2]{2o_2j}
 	&	в «стойбище, олени (богатый оленевод)» \cite[л. 47]{spbfaran79} \linebreak
 		в «на стойбище» \cite[л. 53]{spbfaran79} \linebreak
 		отлакир [әtlьq-, эԓԓыӄ- = тундра] \cite[л. 68]{spbfaran79} % эԓԓыӄ-
@@ -1241,13 +1270,13 @@
 	& 	
 	& 	\cite[364]{davydova2015a} 
 		\tabularnewline \midrule
-\tenevilglyph[no]{i_j_jF}
+\tenevilglyph[no][3]{i_j_jF}
 	&	ложка \cite[л. 48]{spbfaran79}
 	& 	ложка
 	&	
 	& 	
 	& 	\tabularnewline \midrule
-\tenevilglyph{u_p}
+\tenevilglyph[yes][4]{u_p}
 	&	чайник \cite[л. 48]{spbfaran79} \linebreak
 		саиник [чайник] \cite[л. 53]{spbfaran79}
 	& 	чайник
@@ -1255,27 +1284,27 @@
 	& 	
 	& 	\cite[364]{davydova2015a}
 		\tabularnewline \midrule
-\tenevilglyph{u_p_b}
+\tenevilglyph[yes][3]{u_p_b}
 	&	белый чайник \cite[л. 48]{spbfaran79} 
 	& 	белый чайник
 	&	
 	& 	
 	& 	\cite[364]{davydova2015a}
 		\tabularnewline \midrule
-\tenevilglyph[no]{u_pD_bD}
+\tenevilglyph[no][3]{u_pD_bD}
 	&	медный чайник \cite[л. 48]{spbfaran79} 
 	& 	медный чайник
 	&	
 	& 	
 	& 	\tabularnewline \midrule
-\tenevilglyph{u_p_2b}
+\tenevilglyph[yes][3]{u_p_2b}
 	&	широкий чайник \cite[л. 48]{spbfaran79} 
 	& 	
 	&	
 	& 	
 	& 	\cite[364]{davydova2015a}
 		\tabularnewline \midrule
-\tenevilglyph{jFY_jF}
+\tenevilglyph[yes][4]{jFY_jF}
 	&	ремень* \cite[л. 48]{spbfaran79} \linebreak
 		ремен [ремень] \cite[л. 66 об]{spbfaran79}
 	& 	
@@ -1283,52 +1312,52 @@
 	& 	
 	& 	[32.2об]
 		\tabularnewline \midrule
-\tenevilglyph[no]{O_jXX}
+\tenevilglyph[no][4]{O_jXX}
 	&	тюленья шкура \cite[л. 48]{spbfaran79} \linebreak
 		нерпа \cite[л. 66 об]{spbfaran79}
 	& 	тюленья шкура
 	&	
 	& 	
 	& 	\tabularnewline \midrule
-\tenevilglyph[no]{O_2b}
+\tenevilglyph[no][4]{O_2b}
 	&	шкура лахтака \cite[л. 48]{spbfaran79} \linebreak
 		лахтак \cite[л. 66 об]{spbfaran79}
 	& 	
 	&	
 	& 	
 	& 	\tabularnewline \midrule
-\tenevilglyph[no]{O_2b_c_zR}
+\tenevilglyph[no][3]{O_2b_c_zR}
 	&	морча [морж] \cite[л. 66 об]{spbfaran79}
 	& 	
 	&	
 	& 	
 	& 	\tabularnewline \midrule
-\tenevilglyph{2CE}
+\tenevilglyph[yes][3]{2CE}
 	&	сахар \cite[л. 44, 49]{spbfaran79}
 	& 	
 	&	
 	& 	
 	& 	[25.6] 
 		\tabularnewline \midrule
-\tenevilglyph[no]{I_q} 
+\tenevilglyph[no][3]{I_q} 
 	&	трубка \cite[л. 49]{spbfaran79} 
 	& 	трубка
 	&	a pipe
 	& 	
 	& 	\tabularnewline \midrule
-\tenevilglyph[no]{I_q_UE_JX}
+\tenevilglyph[no][3]{I_q_UE_JX}
 	&	папироска \cite[л. 49]{spbfaran79} 
 	& 	папироска
 	&	
 	& 	
 	& 	\tabularnewline \midrule
-\tenevilglyph[no]{I_q_UE_JX_b_q}
+\tenevilglyph[no][3]{I_q_UE_JX_b_q}
 	&	трубка с мундштуком \cite[л. 49]{spbfaran79} 
 	& 	
 	&	
 	& 	
 	& 	\tabularnewline \midrule
-\tenevilglyph{UE_JX} 
+\tenevilglyph[yes][4]{UE_JX} 
 	&	
 	& 	
 	&	
@@ -1338,14 +1367,14 @@
 		в «песмо» [письмо] [34.8об] \linebreak
 		в «касет» [газета] [34.8об]
 		\tabularnewline \midrule
-\tenevilglyph{UE_JX_j_q} 
+\tenevilglyph[yes][4]{UE_JX_j_q} 
 	&	
 	& 	
 	&	
 	& 	
 	& 	еенки [деньги] [34.1]
 		\tabularnewline \midrule
-\tenevilglyph{l_JXE} % знаки на л. 50 и л. 66 зеркальны
+\tenevilglyph[yes][2]{l_JXE} % знаки на л. 50 и л. 66 зеркальны
 	&	не мог* \cite[л. 50]{spbfaran79} \linebreak
 		нимнок [?] \cite[л. 66 об]{spbfaran79}
 	& 	
@@ -1353,7 +1382,7 @@
 	& 	
 	& 	[9.1]
 		\tabularnewline \midrule
-\tenevilglyph{cF_CF}
+\tenevilglyph[yes][4]{cF_CF}
 	&	так \cite[л. 50]{spbfaran79} \linebreak
 		әnmen [энмэн = также, итак] \cite[л. 39 об]{spbfaran79} \linebreak % энмэн
 		дак [так] \cite[л. 66 об]{spbfaran79}
@@ -1364,7 +1393,7 @@
 		\cite[26, 28]{lavrov1969} \linebreak
 		етак [так] [36.1]
 		\tabularnewline \midrule
-\tenevilglyph{o_jX}
+\tenevilglyph[yes][4]{o_jX}
 	&	так себе, attaw [а'тав = напрасно, зря] \cite[л. 50]{spbfaran79} \linebreak % а'тав
 		attaw \cite[л. 52 об]{spbfaran79} \linebreak
 		всетакии (нука) (?)  \cite[л. 53]{spbfaran79} 
@@ -1374,21 +1403,21 @@
 	& 	\cite[361]{davydova2015a} \linebreak
 		так [32.6]
 		\tabularnewline \midrule % [25.12]
-\tenevilglyph{i_2l_iSY}
+\tenevilglyph[yes][3]{i_2l_iSY}
 	&	несмотря на то, что* \cite[л. 50]{spbfaran79} 
 	& 	
 	&	
 	& 	
 	& 	\cite[360]{davydova2015a} 
 		\tabularnewline \midrule
-\tenevilglyph{B_2BD}
+\tenevilglyph[yes][3]{B_2BD}
 	&	быть \cite[л. 50]{spbfaran79} 
 	& 	
 	&	
 	& 	
 	& 	\cite[364]{davydova2015a} 
 		\tabularnewline \midrule
-\tenevilglyph{o_l}
+\tenevilglyph[yes][4]{o_l}
 	&	мало \cite[л. 50]{spbfaran79} \linebreak
 		kitkit [киткит = мало, немного] \cite[л. 39 об]{spbfaran79} % киткит
 	& 	
@@ -1397,7 +1426,7 @@
 	& 	\cite[360, 361, 364]{davydova2015a} \linebreak
 		немноско [немножко] [34.11]
 		\tabularnewline \midrule
-\tenevilglyph{oI_vD}
+\tenevilglyph[yes][2]{oI_vD}
 	&	вероятно \cite[л. 50]{spbfaran79} \linebreak
 		наверно \cite[л. 67]{spbfaran79}
 	& 	
@@ -1406,7 +1435,7 @@
 	& 	\cite[364]{davydova2015a} \linebreak
 		анако [?] [33.4]
 		\tabularnewline \midrule
-\tenevilglyph{bD_b}
+\tenevilglyph[yes][3]{bD_b}
 	&	только \cite[л. 50]{spbfaran79} \linebreak
 		lien [liæn, ԓыгэн = как только] \cite[л. 52 об, 56]{spbfaran79} % ԓыгэн
 	& 	только
@@ -1415,7 +1444,7 @@
 	& 	\cite[361, 364]{davydova2015a} \linebreak
 		\cite[28]{lavrov1969} 
 		\tabularnewline \midrule
-\tenevilglyph{u_2k_uN_2k}
+\tenevilglyph[yes][2]{u_2k_uN_2k}
 	&	спали (ушли?) \cite[л. 50]{spbfaran79}
 	& 	
 	&	
@@ -1423,7 +1452,7 @@
 	& 	[25.9] \linebreak
 		спас [спать?] [33.4]
 		\tabularnewline \midrule
-\tenevilglyph{cU_2q_cD_2q}
+\tenevilglyph[yes][3]{cU_2q_cD_2q}
 	&	словно, как бы \cite[л. 50]{spbfaran79} \linebreak
 		qajaagьtkь \cite[л. 52 об]{spbfaran79} % НУЖЕН ПЕРЕВОД
 	& 	
@@ -1431,7 +1460,7 @@
 	& 	
 	& 	\cite[360–362, 364]{davydova2015a} 
 		\tabularnewline \midrule
-\tenevilglyph{i_oB}
+\tenevilglyph[yes][3]{i_oB}
 	&	тайно \cite[л. 50]{spbfaran79} \linebreak
 		wьnvь [vinvә, винвэ = тайно, крадучись] \cite[л. 56]{spbfaran79} % винвэ
 	& 	тайный
@@ -1440,7 +1469,7 @@
 	& 	\cite[364]{davydova2015a} \linebreak
 		\cite{bogoraz1934}
 		\tabularnewline \midrule
-\tenevilglyph{c_J}
+\tenevilglyph[yes][4]{c_J}
 	&	в поле \cite[л. 50]{spbfaran79} \linebreak
 		nutek [нутэк = на земле] \cite[л. 56]{spbfaran79} % нутэк
 	& 	в поле
@@ -1449,7 +1478,7 @@
 	& 	\cite[360]{davydova2015a} \linebreak
 		\cite[28]{lavrov1969}
 		\tabularnewline \midrule
-\tenevilglyph{c_J_2j}
+\tenevilglyph[yes][3]{c_J_2j}
 	&	nutesqan [nutæsqәn, нутэсӄын = земля, почва] \cite[л. 39]{spbfaran79} % нутэсӄын
 	& 	
 	&	
@@ -1457,7 +1486,7 @@
 	& 	\cite[362, 364]{davydova2015a} \linebreak
 		\cite[28]{lavrov1969} 
 		\tabularnewline \midrule
-\tenevilglyph{i_2bX}
+\tenevilglyph[yes][3]{i_2bX}
 	&	сразу \cite[л. 51]{spbfaran79} \linebreak
 		awetuwaq [авэтываӄ = быстро, проворно, сразу] \cite[л. 56]{spbfaran79} % авэтываӄ
 	& 	сразу
@@ -1465,7 +1494,7 @@
 	& 	
 	& 	[2.1?]* 
 		\tabularnewline \midrule
-\tenevilglyph{o_m_j}
+\tenevilglyph[yes][4]{o_m_j}
 	&	мама \cite[л. 51, 37]{spbfaran79} \linebreak
 		мама \cite[л. 67]{spbfaran79} 
 	& 	
@@ -1475,7 +1504,7 @@
 		\cite[28]{lavrov1969} \linebreak
 		мама [33.5об]
 		\tabularnewline \midrule
-\tenevilglyph{B_b_oX}
+\tenevilglyph[yes][4]{B_b_oX}
 	&	остров Кулючин \cite[л. 51]{spbfaran79} \linebreak
 		на Колючено \cite[л. 37]{spbfaran79} 
 	& 	
@@ -1483,7 +1512,7 @@
 	& 	
 	& 	\cite[360]{davydova2015a} 
 		\tabularnewline \midrule
-\tenevilglyph{UD_i_2l}
+\tenevilglyph[yes][4]{UD_i_2l}
 	&	покочевали* \cite[л. 51]{spbfaran79}  % вверх ногами
 	& 	
 	&	
@@ -1491,14 +1520,14 @@
 	& 	[25.8об] \linebreak
 		ялхытык [яԓгытык = кочевать] [34.8] % яԓгытык
 		\tabularnewline \midrule
-\tenevilglyph{i_2iY}
+\tenevilglyph[yes][3]{i_2iY}
 	&	вверх \cite[л. 51]{spbfaran79} 
 	& 	вверх
 	&	
 	& 	
 	& 	\cite[361]{davydova2015a} 
 		\tabularnewline \midrule
-\tenevilglyph{u_v_cD}
+\tenevilglyph[yes][3]{u_v_cD}
 	&	вполне \cite[л. 51]{spbfaran79} \linebreak
 		arala [аръаԓя = совсем, вовсе] \cite[л. 52]{spbfaran79} % аръаԓя
 	& 	
@@ -1507,7 +1536,7 @@
 	& 	\cite[361, 364]{davydova2015a} \linebreak
 		\cite[28]{lavrov1969} 
 		\tabularnewline \midrule
-\tenevilglyph{cF-cF}
+\tenevilglyph[yes][4]{cF-cF}
 	&	тоже, опять \cite[л. 51]{spbfaran79} \linebreak
 		опять \cite[л. 53]{spbfaran79} 
 	& 	тоже, опять
@@ -1516,7 +1545,7 @@
 	& 	\cite[361, 362]{davydova2015a} \linebreak
 		апес [опять] [33.4]
 		\tabularnewline \midrule
-\tenevilglyph{oF_2l_lG}
+\tenevilglyph[yes][4]{oF_2l_lG}
 	&	близко \cite[л. 51, 53]{spbfaran79} \linebreak
 		ꞓьmꞓә [cьmcь, чымче = близко] \cite[л. 54]{spbfaran79} \linebreak % чымче
 		плиско [близко] \cite[л. 68 об]{spbfaran79}
@@ -1526,7 +1555,7 @@
 	& 	\cite[364]{davydova2015a} \linebreak 
 		\cite{bogoraz1934} 
 		\tabularnewline \midrule
-\tenevilglyph{cU_2cD}
+\tenevilglyph[yes][3]{cU_2cD}
 	&	после того, әŋqorә \cite[л. 51, 53]{spbfaran79} \linebreak
 		әnqre \cite[л. 39]{spbfaran79} 
 	& 	после того
@@ -1535,7 +1564,7 @@
 	& 	\cite[361, 362, 364]{davydova2015a} \linebreak
 		\cite[28]{lavrov1969} 
 		\tabularnewline \midrule
-\tenevilglyph{o_2CE}
+\tenevilglyph[yes][4]{o_2CE}
 	&	milgьrә [milgьr, миԓгэр = ружье] \cite[л. 54]{spbfaran79} \linebreak % миԓгэр
 		русёь [ружье] \cite[л. 68 об]{spbfaran79}
 	& 	
@@ -1544,7 +1573,7 @@
 	& 	\cite[360, 364]{davydova2015a} \linebreak
 		\cite[28]{lavrov1969} 
 		\tabularnewline \midrule
-\tenevilglyph{o_2q}
+\tenevilglyph[yes][4]{o_2q}
 	&	1 \cite[л. 64]{spbfaran79} \linebreak
 		amunen [әnnæn?, ыннэн? = один] \cite[л. 39 об]{spbfaran79} % ыннэн
 	& 	
@@ -1554,7 +1583,7 @@
 		\cite[361, 364]{davydova2015a} \linebreak
 		\cite[26]{lavrov1969} 
 		\tabularnewline \midrule
-\tenevilglyph{o_2q_j}
+\tenevilglyph[yes][4]{o_2q_j}
 	&	20 \cite[л. 64]{spbfaran79} 
 	& 	
 	&	
@@ -1563,20 +1592,20 @@
 		\cite[361, 363]{davydova2015a} \linebreak
 		\cite[26]{lavrov1969}
 		\tabularnewline \midrule
-\tenevilglyph{i_b_s_j_o_2q}
+\tenevilglyph[yes][4]{i_b_s_j_o_2q}
 	&	
 	& 	
 	&	
 	& 	1000*
 	& 	1000 [25.1об] 
 		\tabularnewline \midrule
-\tenevilglyph{i_b_s_j_o_q_j}
+\tenevilglyph[yes][4]{i_b_s_j_o_q_j}
 	&	
 	& 	
 	&	
 	& 	
 	& 	20000 [36.2] \tabularnewline \midrule
-\tenevilglyph{B-}
+\tenevilglyph[yes][4]{B-}
 	&	2 \cite[л. 64]{spbfaran79} \linebreak
 		двоих \cite[л. 68]{spbfaran79}
 	& 	
@@ -1586,28 +1615,28 @@
 		\cite[361, 363, 364]{davydova2015a} \linebreak
 		\cite[28]{lavrov1969} 
 		\tabularnewline \midrule
-\tenevilglyph{B-_j}
+\tenevilglyph[yes][4]{B-_j}
 	&	
 	& 	
 	&	
 	& 	40
 	& 	40 \cite[360]{davydova2015a} 
 		\tabularnewline \midrule
-\tenevilglyph{B-_2oI_jF_j}
+\tenevilglyph[yes][4]{B-_2oI_jF_j}
 	&	
 	& 	
 	&	
 	& 	400
 	& 	[25.2] 
 		\tabularnewline \midrule
-\tenevilglyph{i_b_s_j_B-}
+\tenevilglyph[yes][4]{i_b_s_j_B-}
 	&	
 	& 	
 	&	
 	& 	
 	& 	2000 [36.2] 
 		\tabularnewline \midrule
-\tenevilglyph{o_2q_q_l}
+\tenevilglyph[yes][4]{o_2q_q_l}
 	&	три \cite[л. 41]{spbfaran79} \linebreak
 		ŋьroq [ӈыроӄ = три] \cite[л. 39]{spbfaran79} \linebreak % ӈыроӄ
 		3 \cite[л. 64]{spbfaran79}
@@ -1617,7 +1646,7 @@
 	& 	3 \cite[360, 362]{davydova2015a} \linebreak
 		\cite[361, 363, 364]{davydova2015a} 
 		\tabularnewline \midrule
-\tenevilglyph{o_2q_q_l_j}
+\tenevilglyph[yes][4]{o_2q_q_l_j}
 	&	
 	& 	
 	&	
@@ -1625,21 +1654,21 @@
 	& 	60 \cite[360]{davydova2015a} \linebreak
 		\cite[26]{lavrov1969} 
 		\tabularnewline \midrule
-\tenevilglyph{o_q_q_l_2oI_jF_j}
+\tenevilglyph[yes][3]{o_q_q_l_2oI_jF_j}
 	&	
 	& 	
 	&	
 	& 	600
 	& 	[11.4об]
 		\tabularnewline \midrule
-\tenevilglyph{i_b_s_j_o_q_q_l}
+\tenevilglyph[yes][3]{i_b_s_j_o_q_q_l}
 	&	
 	& 	
 	&	
 	& 	
 	& 	[3000] [32.13об] 
 		\tabularnewline \midrule
-\tenevilglyph{o_q_c_T}
+\tenevilglyph[yes][4]{o_q_c_T}
 	&	4 \cite[л. 64]{spbfaran79}
 	& 	
 	&	
@@ -1648,21 +1677,21 @@
 		\cite[361]{davydova2015a} \linebreak
 		\cite[26]{lavrov1969} 
 		\tabularnewline \midrule
-\tenevilglyph{o_q_c_T_j}
+\tenevilglyph[yes][3]{o_q_c_T_j}
 	&	
 	& 	
 	&	
 	& 	80
 	& 	[25.4]
 		\tabularnewline \midrule
-\tenevilglyph{o_c_T_2oI_jF_j}
+\tenevilglyph[yes][3]{o_c_T_2oI_jF_j}
 	&	
 	& 	
 	&	
 	& 	800
 	& 	[25.4] 
 		\tabularnewline \midrule
-\tenevilglyph{oI_2j}
+\tenevilglyph[yes][4]{oI_2j}
 	&	5 \cite[л. 64]{spbfaran79}
 	& 	
 	&	
@@ -1670,13 +1699,13 @@
 	& 	5 \cite[360]{davydova2015a} \linebreak
 		\cite[361, 364]{davydova2015a} 
 		\tabularnewline \midrule
-\tenevilglyph[no]{i_b_s_j_oI_2j}
+\tenevilglyph[no][3]{i_b_s_j_oI_2j}
 	&	
 	& 	
 	&	
 	& 	5000
 	& 	\tabularnewline \midrule
-\tenevilglyph{oI_3j}
+\tenevilglyph[yes][4]{oI_3j}
 	&	
 	& 	
 	&	
@@ -1684,21 +1713,21 @@
 	& 	\cite[361]{davydova2015a} \linebreak
 		100 [34.19]
 		\tabularnewline \midrule
-\tenevilglyph{o-_q_jF_o}
+\tenevilglyph[yes][4]{o-_q_jF_o}
 	&	6 \cite[л. 64]{spbfaran79}
 	& 	
 	&	
 	& 	6
 	& 	6 \cite[360]{davydova2015a}
 		\tabularnewline \midrule
-\tenevilglyph{o-_q_jF_o_j}
+\tenevilglyph[yes][4]{o-_q_jF_o_j}
 	&	
 	& 	
 	&	
 	& 	
 	& 	120 [34.20об]
 		\tabularnewline \midrule
-\tenevilglyph{o_j_2q}
+\tenevilglyph[yes][4]{o_j_2q}
 	&	7 \cite[л. 64]{spbfaran79}
 	& 	
 	&	
@@ -1706,42 +1735,42 @@
 	& 	7 \cite[360]{davydova2015a} \linebreak
 		\cite[361]{davydova2015a}
 		\tabularnewline \midrule
-\tenevilglyph{o_j_2q_j}
+\tenevilglyph[yes][4]{o_j_2q_j}
 	&	
 	& 	
 	&	
 	& 	
 	& 	140 [2.101] 
 		\tabularnewline \midrule
-\tenevilglyph{o-_2q_j}
+\tenevilglyph[yes][4]{o-_2q_j}
 	&	8 \cite[л. 64]{spbfaran79}
 	& 	
 	&	
 	& 	8
 	& 	8 \cite[360]{davydova2015a} 
 		\tabularnewline \midrule
-\tenevilglyph{o-_2q_j_j}
+\tenevilglyph[yes][4]{o-_2q_j_j}
 	&	
 	& 	
 	&	
 	& 	
-	& 	в «161» [32.15] 
+	& 	в «161» [160] [32.15] 
 		\tabularnewline \midrule
-\tenevilglyph{o_2q_jN_jF_o}
+\tenevilglyph[yes][4]{o_2q_jN_jF_o}
 	&	9 \cite[л. 64]{spbfaran79}
 	& 	
 	&	
 	& 	9
 	& 	9 \cite[360]{davydova2015a} 
 		\tabularnewline \midrule
-\tenevilglyph{o_2q_jN_jF_o_j}
+\tenevilglyph[yes][3]{o_2q_jN_jF_o_j}
 	&	
 	& 	
 	&	
 	& 	
 	& 	[180] [25.3об] 
 		\tabularnewline \midrule
-\tenevilglyph{2oI_2jF}
+\tenevilglyph[yes][4]{2oI_2jF}
 	&	10 \cite[л. 64]{spbfaran79}
 	& 	
 	&	
@@ -1750,14 +1779,14 @@
 		\cite[361, 363]{davydova2015a} \linebreak
 		\cite[26]{lavrov1969} 
 		\tabularnewline \midrule
-\tenevilglyph{2oI_2jF_j}
+\tenevilglyph[yes][3]{2oI_2jF_j}
 	&	
 	& 	
 	&	
 	& 	200
 	& 	[25.3об] 
 		\tabularnewline \midrule
-\tenevilglyph{o_T_2q_2o_l}
+\tenevilglyph[yes][4]{o_T_2q_2o_l}
 	&	
 	& 	
 	&	
@@ -1765,15 +1794,15 @@
 	& 	15 \cite[360]{davydova2015a} \linebreak 
 		\cite[361]{davydova2015a} 
 		\tabularnewline \midrule
-\tenevilglyph{o_T_2q_2o_l_j} 
+\tenevilglyph[yes][4]{o_T_2q_2o_l_j} 
 	&	
 	& 	
 	&	
 	& 	
 	& 	[300] \cite[26]{lavrov1969} \linebreak % Как 15, но с крючком, обычно обозначающим 20. Кроме того, на «лунном календаре», в контексте, видимо, числа, где есть этот знак, 60, 4 и 1, то есть если это в самом деле 15*20=300, то сумма будет 365
-		в 301, 302, 303 и т. д. [4.9об]
+		в 301, 302, 303 и т. д. [300] [4.9об]
 		\tabularnewline \midrule
-\tenevilglyph{CD_CDY}
+\tenevilglyph[yes][2]{CD_CDY}
 	&	тем не менее, wenlьgь [vænligi, вэнԓыги = тем не менее] \cite[л. 42]{spbfaran79} \linebreak % вэнԓыги
 		wenlьgь [vænligi] \cite[л. 52 об]{spbfaran79} \linebreak
 		силно [сильно?] \cite[л. 66 об]{spbfaran79} 
@@ -1782,7 +1811,7 @@
 	& 	
 	& 	\cite{bogoraz1934} 
 		\tabularnewline \midrule
-\tenevilglyph{UD_2c}
+\tenevilglyph[yes][4]{UD_2c}
 	&	мэсяч [месяц] \cite[л. 66]{spbfaran79} 
 	& 	
 	&	
@@ -1791,14 +1820,14 @@
 		\cite[26, 28]{lavrov1969} \linebreak
 		мэсыс [месяц] [34.19]
 		\tabularnewline \midrule
-\tenevilglyph{o_8q}
+\tenevilglyph[yes][3]{o_8q}
 	&	
 	& 	
 	&	the sun
 	& 	
 	& 	[25.8об]
 		\tabularnewline \midrule
-\tenevilglyph{o_7q_Q}
+\tenevilglyph[yes][4]{o_7q_Q}
 	&	сонсо [солнце] \cite[л. 66]{spbfaran79} 
 	& 	
 	&	
@@ -1806,28 +1835,28 @@
 	& 	\cite[361, 364]{davydova2015a}
 		еен [день] [34.11об, 34.16об]
 		\tabularnewline \midrule
-\tenevilglyph{o_7q_L}
+\tenevilglyph[yes][4]{o_7q_L}
 	&	
 	& 	
 	&	
 	& 	
 	& 	утырым [утром] [34.19об]
 		\tabularnewline \midrule
-\tenevilglyph{rI_l_b}
+\tenevilglyph[yes][3]{rI_l_b}
 	&	топор \cite[л. 68 об]{spbfaran79} 
 	& 	
 	&	
 	& 	
 	& 	\cite[364]{davydova2015a} 
 		\tabularnewline \midrule
-\tenevilglyph{c_c_2k}
+\tenevilglyph[yes][3]{c_c_2k}
 	&	лодка \cite[л. 68 об]{spbfaran79} 
 	& 	
 	&	
 	& 	
 	& 	\cite[361]{davydova2015a} 
 		\tabularnewline \midrule
-\tenevilglyph{i_2l}
+\tenevilglyph[yes][3]{i_2l}
 	&	долстои [толстый] \cite[л. 69 об]{spbfaran79} 
 	& 	
 	&	
@@ -1835,21 +1864,21 @@
 	& 	\cite[364]{davydova2015a} \linebreak
 		\cite[28]{lavrov1969} 
 		\tabularnewline \midrule
-\tenevilglyph{i_2j_l}
+\tenevilglyph[yes][3]{i_2j_l}
 	&	донкои [тонкий] \cite[л. 69 об]{spbfaran79} 
 	& 	
 	&	
 	& 	
 	& 	[25.4] 
 		\tabularnewline \midrule
-\tenevilglyph{i_2c}
+\tenevilglyph[yes][1]{i_2c}
 	&	курба [?] \cite[л. 68 об]{spbfaran79} 
 	& 	
 	&	
 	& 	
 	& 	\cite[361, 364]{davydova2015a} 
 		\tabularnewline \midrule
-\tenevilglyph{u_2l}
+\tenevilglyph[yes][3]{u_2l}
 	&	ŋagcьnьn \cite[л. 64 об]{spbfaran79} \linebreak 
 		в собки [в сопки] \cite[л. 68 об]{spbfaran79}
 	& 	
@@ -1857,48 +1886,48 @@
 	& 	
 	& 	\cite[361]{davydova2015a} 
 		\tabularnewline \midrule
-\tenevilglyph{i_jX}
+\tenevilglyph[yes][1]{i_jX}
 	&	 ?...gite...* \cite[л. 39 об]{spbfaran79}  % НУЖНА РАСШИФРОВКА, НУЖЕН ПЕРЕВОД
 	& 	
 	&	
 	& 	
 	& 	\cite[360, 362, 364]{davydova2015a} 
 		\tabularnewline \midrule
-\tenevilglyph[no]{i_jX_o}
+\tenevilglyph[no][1]{i_jX_o}
 	&	 mьgitegәn [?mьgitægәn = пусть я на него посмотрю] \cite[л. 64 об]{spbfaran79} 
 	& 	
 	&	
 	& 	
 	& 	\tabularnewline \midrule
-\tenevilglyph{i_jX_z}
+\tenevilglyph[yes][3]{i_jX_z}
 	&	ime renut [imь-rәnut, имыръэнут = что угодно] \cite[л. 51]{spbfaran79} % имыръэнут
 	& 	
 	&	
 	& 	
 	& 	\cite[364]{davydova2015a} 
 		\tabularnewline \midrule
-\tenevilglyph{U_qD}
+\tenevilglyph[yes][3]{U_qD}
 	&	камусы \cite[л. 37]{spbfaran79} 
 	& 	
 	&	
 	& 	
 	& 	\cite[362, 364]{davydova2015a} 
 		\tabularnewline \midrule
-\tenevilglyph{U_qD_b}
+\tenevilglyph[yes][3]{U_qD_b}
 	&	рукавицы \cite[л. 37]{spbfaran79} 
 	& 	
 	&	
 	& 	
 	& 	\cite[362]{davydova2015a} 
 		\tabularnewline \midrule
-\tenevilglyph{sE}
+\tenevilglyph[yes][4]{sE}
 	&	юукула [юкола]* \cite[л. 68 об]{spbfaran79} 
 	& 	
 	&	
 	& 	юкола сушеная рыба
 	& 	\cite[361]{davydova2015a} 
 		\tabularnewline \midrule
-\tenevilglyph{sE_jFE}
+\tenevilglyph[yes][3]{sE_jFE}
 	&	всала [взяла] \cite[л. 68 об]{spbfaran79} \linebreak
 		в «я \textit{возьму»} \cite[л. 66]{spbfaran79}
 	& 	
@@ -1906,7 +1935,7 @@
 	& 	
 	& 	\cite[360]{davydova2015a} 
 		\tabularnewline \midrule
-\tenevilglyph{sE_jFE_qY}
+\tenevilglyph[yes][4]{sE_jFE_qY}
 	&	
 	& 	
 	&	
@@ -1914,7 +1943,7 @@
 	& 	в «ырыпота» [работа] [35.1] \linebreak
 		в «рыпосе» [работе] [34.18об]
 		\tabularnewline \midrule
-\tenevilglyph{w_j}
+\tenevilglyph[yes][3]{w_j}
 	&	оцин [очень] \cite[л. 66]{spbfaran79} \linebreak
 		в «я \textit{оцин} боюс», «я \textit{оцин} писпокоюс» \cite[л.66]{spbfaran79}
 	& 	
@@ -1922,48 +1951,48 @@
 	& 	
 	& 	\cite[364]{davydova2015a} 
 		\tabularnewline \midrule
-\tenevilglyph{BR}
+\tenevilglyph[yes][3]{BR}
 	&	вместе \cite[л. 55]{spbfaran79} 
 	& 	
 	&	
 	& 	
 	& 	\cite[360, 364]{davydova2015a}
 		\tabularnewline \midrule
-\tenevilglyph{SFE_jF}
+\tenevilglyph[yes][1]{SFE_jF}
 	&	нарта [?] \cite[л. 68]{spbfaran79} 
 	& 	
 	&	
 	& 	
 	& 	\cite[360, 361, 364]{davydova2015a}
 		\tabularnewline \midrule
-\tenevilglyph{O_L_qE}
+\tenevilglyph[yes][3]{O_L_qE}
 	&	доз [дождь] \cite[л. 68]{spbfaran79} 
 	& 	
 	&	
 	& 	
 	& 	\cite[361, 364]{davydova2015a}
 		\tabularnewline \midrule
-\tenevilglyph{O_L_2q}
+\tenevilglyph[yes][3]{O_L_2q}
 	&	холот [холод] \cite[л. 66]{spbfaran79} 
 	& 	
 	&	
 	& 	холодный ветер (в~тексте)
 	& 	 \cite[26]{lavrov1969} 
 		\tabularnewline \midrule
-\tenevilglyph[no]{O_L}
+\tenevilglyph[no][3]{O_L}
 	&	«бурка» [пурга] или «коломеи» \cite[л. 68 об]{spbfaran79} 
 	& 	
 	&	
 	& 	
 	& 	 \tabularnewline \midrule
-\tenevilglyph{i_SX}
+\tenevilglyph[yes][3]{i_SX}
 	&	alьmь [аԓымы? = положим, что] \cite[л. 52 об]{spbfaran79} % аԓымы?
 	& 	
 	&	
 	& 	
 	& 	\cite[361, 364]{davydova2015a}
 		\tabularnewline \midrule
-\tenevilglyph{2C_2c} 
+\tenevilglyph[yes][4]{2C_2c} 
 	&	
 	& 	
 	&	
@@ -1972,40 +2001,40 @@
 		\cite[26, 28]{lavrov1969} \linebreak
 		вотой [водой] [32.15об]
 		\tabularnewline \midrule
-\tenevilglyph{2kU_2QY} 
+\tenevilglyph[yes][3]{2kU_2QY} 
 	&	
 	& 	
 	&	
 	& 	снег
 	& 	\cite[361, 364]{davydova2015a} 
 		\tabularnewline \midrule
-\tenevilglyph{U_ux} 
+\tenevilglyph[yes][3]{U_ux} 
 	&	витал [видал] \cite[л. 67 об, 68 об]{spbfaran79}
 	& 	
 	&	
 	& 	
 	& 	\cite[360, 364]{davydova2015a} 
 		\tabularnewline \midrule
-\tenevilglyph[no]{U_ux_j} 
+\tenevilglyph[no][3]{U_ux_j} 
 	&	нивидал [не видал] \cite[л. 66 об]{spbfaran79}
 	& 	
 	&	
 	& 	
 	& 	\tabularnewline \midrule
-\tenevilglyph{V_2l_i_2q} 
+\tenevilglyph[yes][3]{V_2l_i_2q} 
 	&	крепкои [крепкий] \cite[л. 69 об]{spbfaran79}
 	& 	
 	&	
 	& 	
 	& 	\cite[28]{lavrov1969} 
 		\tabularnewline \midrule
-\tenevilglyph[no]{V_l_lU_i_q_qU} 
+\tenevilglyph[no][3]{V_l_lU_i_q_qU} 
 	&	нирепкои [некрепкий] \cite[л. 69 об]{spbfaran79}
 	& 	
 	&	
 	& 	
 	& 	\tabularnewline \midrule
-\tenevilglyph{v_i_2CX} 
+\tenevilglyph[yes][4]{v_i_2CX} 
 	&	
 	& 	
 	&	
@@ -2014,34 +2043,34 @@
 		\cite[26]{lavrov1969}\linebreak
 		прлехалй [приехали] [32.13об]
 		\tabularnewline \midrule
-\tenevilglyph{i_i_bX} 
+\tenevilglyph[yes][4]{i_i_bX} 
 	&	ŋocьm [ŋocьn, ӈъочьын = бедняк] \cite[л. 39 об]{spbfaran79} % ӈъочьын
 	& 	богатый
 	&	
 	& 	
 	& 	петнаска [бедняжка] [34.8об]
 		\tabularnewline \midrule
-\tenevilglyph[no]{oEN_q} 
+\tenevilglyph[no][2]{oEN_q} 
 	&	goymьcьl(?) [gajmьcьjьn, гаймычьыԓьын = богач] \cite[л. 39 об]{spbfaran79} % гаймычьыԓьын
 	& 	бедный
 	&	
 	& 	
 	& 	\tabularnewline \midrule
-\tenevilglyph{2i_2iX_4q} 
+\tenevilglyph[yes][3]{2i_2iX_4q} 
 	&	прсол [пришел] \cite[л. 68 об]{spbfaran79}
 	& 	
 	&	
 	& 	
 	& 	\cite[361]{davydova2015a} 
 		\tabularnewline \midrule
-\tenevilglyph{2i_iX_2q_cF_jF} 
+\tenevilglyph[yes][3]{2i_iX_2q_cF_jF} 
 	&	прныси [принеси] \cite[л. 68 об]{spbfaran79}
 	& 	
 	&	
 	& 	
 	& 	[4.3об] 
 		\tabularnewline \midrule
-\tenevilglyph{i_CD_2jF} 
+\tenevilglyph[yes][1]{i_CD_2jF} 
 	&	длко [?] \cite[л. 68]{spbfaran79}
 	& 	
 	&	
@@ -2049,56 +2078,56 @@
 	& 	\cite[364]{davydova2015a} \linebreak
 		толко [?] [34.11об]
 		\tabularnewline \midrule
-\tenevilglyph{uD_jN} 
+\tenevilglyph[yes][1]{uD_jN} 
 	&	кус [?] \cite[л. 66]{spbfaran79}
 	& 	
 	&	
 	& 	
 	& 	\cite[28]{lavrov1969} 
 		\tabularnewline \midrule
-\tenevilglyph{i_u_uD_b} 
+\tenevilglyph[yes][4]{i_u_uD_b} 
 	&	grep [græp, грэп = песня] \cite[л. 64 об]{spbfaran79} % грэп
 	& 	
 	&	
 	& 	
 	& 	поеот* [поёт] [36.1]
 		\tabularnewline \midrule
-\tenevilglyph{i_u_uD_k_r} 
+\tenevilglyph[yes][4]{i_u_uD_k_r} 
 	&	
 	& 	
 	&	
 	& 	
 	& 	кармоска [гармошка] [36.1]
 		\tabularnewline \midrule
-\tenevilglyph{oF_oN_z} 
+\tenevilglyph[yes][3]{oF_oN_z} 
 	&	колова [голова] \cite[л. 68]{spbfaran79}
 	& 	
 	&	
 	& 	
 	& 	\cite[364]{davydova2015a} 
 		\tabularnewline \midrule
-\tenevilglyph{o_jN_m_z} 
+\tenevilglyph[yes][3]{o_jN_m_z} 
 	&	домои [домой] \cite[л. 66 об]{spbfaran79}
 	& 	
 	&	
 	& 	
 	& 	\cite[363]{davydova2015a} 
 		\tabularnewline \midrule
-\tenevilglyph{iE_b_i} 
+\tenevilglyph[yes][3]{iE_b_i} 
 	&	мало \cite[л. 67]{spbfaran79}
 	& 	
 	&	
 	& 	
 	& 	\cite[361]{davydova2015a} 
 		\tabularnewline \midrule
-\tenevilglyph{j_b_q} 
+\tenevilglyph[yes][3]{j_b_q} 
 	&	посла [пошла] \cite[л. 66]{spbfaran79}
 	& 	
 	&	
 	& 	
 	& 	\cite[360]{davydova2015a} 
 		\tabularnewline \midrule
-\tenevilglyph{j_b_q_2q} 
+\tenevilglyph[yes][3]{j_b_q_2q} 
 	&	слы [шли] \cite[л. 68]{spbfaran79} \linebreak
 		пёс [вёз] \cite[л. 66 об]{spbfaran79}
 	&
@@ -2106,21 +2135,21 @@
 	& 	
 	& 	\cite[360]{davydova2015a} 
 		\tabularnewline \midrule
-\tenevilglyph{i_2j_2cY} 
+\tenevilglyph[yes][3]{i_2j_2cY} 
 	&	
 	& 	
 	&	
 	& 	орел*
 	& 	\cite[28]{lavrov1969} 
 		\tabularnewline \midrule
-\tenevilglyph{C-C_q_j} 
+\tenevilglyph[yes][3]{C-C_q_j} 
 	&	
 	& 	
 	&	
 	& 	ворон
 	& 	[25.13] 
 		\tabularnewline \midrule
-\tenevilglyph{CD-CDX} 
+\tenevilglyph[yes][2]{CD-CDX} 
 	&	недавно* \cite[л. 50]{spbfaran79} \linebreak % значок только умеренно похож
 		цирас [?] \cite[л. 67 об]{spbfaran79} \linebreak
 		в «провсерас» [?] \cite[л. 67 об]{spbfaran79}
@@ -2129,28 +2158,28 @@
 	& 	
 	& 	[25.4об] 
 		\tabularnewline \midrule
-\tenevilglyph{CD-CDX_l} 
+\tenevilglyph[yes][1]{CD-CDX_l} 
 	&	ониметнис [?] \cite[л. 66 об]{spbfaran79}
 	& 	
 	&	
 	& 	
 	& 	\cite[364]{davydova2015a} 
 		\tabularnewline \midrule
-\tenevilglyph{CD-CDX_2q} 
+\tenevilglyph[yes][3]{CD-CDX_2q} 
 	&	прослокот [прошлый год] \cite[л. 66 об]{spbfaran79}
 	& 	
 	&	
 	& 	
 	& 	[25.4] 
 		\tabularnewline \midrule
-\tenevilglyph{CD-CDX_q_2b_c} 
+\tenevilglyph[yes][4]{CD-CDX_q_2b_c} 
 	&	
 	& 	
 	&	
 	& 	
 	& 	кота [когда] [37.2] 
 		\tabularnewline \midrule
-\tenevilglyph{i_b_qY} 
+\tenevilglyph[yes][2]{i_b_qY} 
 	&	нусно [нужно] \cite[л. 66]{spbfaran79} \linebreak
 		в «понравилас» [?] \cite[л. 66]{spbfaran79}
 	& 	
@@ -2158,21 +2187,21 @@
 	& 	
 	& 	[25.7] 
 		\tabularnewline \midrule
-\tenevilglyph{3k} 
+\tenevilglyph[yes][1]{3k} 
 	&	в «понравилас» [?] \cite[л. 66]{spbfaran79}
 	& 	
 	&	
 	& 	
 	& 	\cite[364]{davydova2015a} 
 		\tabularnewline \midrule
-\tenevilglyph{i_j_3b} 
+\tenevilglyph[yes][1]{i_j_3b} 
 	&	«хвачит» или «паска патро» [?] \cite[л. 68 об]{spbfaran79}
 	& 	
 	&	
 	& 	
 	& 	\cite[364]{davydova2015a} 
 		\tabularnewline \midrule
-\tenevilglyph{u_q_l} 
+\tenevilglyph[yes][1]{u_q_l} 
 	&	«паска патро» или «талок» [?] \cite[л. 68 об]{spbfaran79}
 	& 	
 	&	
@@ -2180,7 +2209,7 @@
 	& 	\cite[360, 364]{davydova2015a} \linebreak
 		\cite[28]{lavrov1969} 
 		\tabularnewline \midrule
-\tenevilglyph{2cD_jY} 
+\tenevilglyph[yes][2]{2cD_jY} 
 	&	илплыл* [?] \cite[л. 68]{spbfaran79} % зеркально
 	& 	
 	&	
@@ -2188,21 +2217,21 @@
 	& 	\cite[361]{davydova2015a} \linebreak
 		\cite[26]{lavrov1969} 
 		\tabularnewline \midrule
-\tenevilglyph{u_2j} 
+\tenevilglyph[yes][3]{u_2j} 
 	&	прошол [прошел] \cite[л. 66 об]{spbfaran79} % зеркально
 	& 	
 	&	
 	& 	
 	& 	[25.4] 
 		\tabularnewline \midrule
-\tenevilglyph{c_C_2j} 
+\tenevilglyph[yes][3]{c_C_2j} 
 	&	собака \cite[л. 68 об]{spbfaran79}
 	& 	
 	&	
 	& 	
 	& 	[25.3] 
 		\tabularnewline \midrule
-\tenevilglyph{k_2j} 
+\tenevilglyph[yes][4]{k_2j} 
 	&	щаи [чай] \cite[л. 68 об]{spbfaran79}
 	& 	
 	&	
@@ -2210,7 +2239,7 @@
 	& 	[25.9] \linebreak
 		в «чаеопат» [\textit{чай} пить] [32.16об]
 		\tabularnewline \midrule
-\tenevilglyph{2LE} 
+\tenevilglyph[yes][1]{2LE} 
 	&	полноь [?] \cite[л. 66 об]{spbfaran79}
 	& 	
 	&	
@@ -2218,36 +2247,36 @@
 	& 	[25.4об] \linebreak
 		полнои [?] [34.11]
 		\tabularnewline \midrule
-\tenevilglyph{uD_z} 
+\tenevilglyph[yes][3]{uD_z} 
 	&	рука \cite[л. 68]{spbfaran79}
 	& 	
 	&	
 	& 	
 	& 	[25.13] 
 		\tabularnewline \midrule
-\tenevilglyph{o-o_z} 
+\tenevilglyph[yes][3]{o-o_z} 
 	&	клас [глаз] \cite[л. 68]{spbfaran79}
 	& 	
 	&	
 	& 	
 	& 	[6.1] 
 		\tabularnewline \midrule
-\tenevilglyph{l_i} 
+\tenevilglyph[yes][3]{l_i} 
 	&	нос \cite[л. 68]{spbfaran79}
 	& 	
 	&	
 	& 	
 	& 	[25.15об] 
 		\tabularnewline \midrule
-\tenevilglyph{2c_2bX} 
+\tenevilglyph[yes][1]{2c_2bX} 
 	&	в «провсерас» \cite[л. 67 об]{spbfaran79}
 	& 	
 	&	
 	& 	
 	& 	[25.7] 
 		\tabularnewline \midrule
-\tenevilglyph{o_2q_2j} 
-	&	послы [пошли (от «слать»)?] \cite[л. 68 об]{spbfaran79}
+\tenevilglyph[yes][4]{o_2q_2j} 
+	&	послы [пошли (от «слать»)] \cite[л. 68 об]{spbfaran79}
 	& 	
 	&	
 	& 	
@@ -2255,14 +2284,14 @@
 		посевыке [посылке] [34.8об] \linebreak
 		в «песмо» [письмо] [34.8об] 
 		\tabularnewline \midrule
-\tenevilglyph{o-o-o} 
+\tenevilglyph[yes][1]{o-o-o} 
 	&	
 	& 	
 	&	
 	& 	
 	& 	осенако [?] [34.12] 
 		\tabularnewline \midrule
-\tenevilglyph{vD_2qY} 
+\tenevilglyph[yes][4]{vD_2qY} 
 	&	aagek [aacek, а'ачек = молодой человек] \cite[л. 65 об]{spbfaran79} % а'ачек
 	& 	
 	&	
@@ -2270,14 +2299,14 @@
 	& 	[4.2?] \linebreak
 		в «молотои» [молодой] [34.11об]
 		\tabularnewline \midrule
-\tenevilglyph{2o_2jY} 
+\tenevilglyph[yes][3]{2o_2jY} 
 	&	в «я упрала» [«я убрала»] \cite[л. 67]{spbfaran79}
 	& 	
 	&	
 	& 	
 	& 	[4.2?] 
 		\tabularnewline \midrule
-\tenevilglyph{CD_jFN} 
+\tenevilglyph[yes][4]{CD_jFN} 
 	&	кова [?] \cite[л. 66]{spbfaran79} \linebreak
 		ковта [?] \cite[л. 66]{spbfaran79}
 	& 	
@@ -2286,7 +2315,7 @@
 	& 	[4.2?] \linebreak
 		какта [как-то?] [34.11]
 		\tabularnewline \midrule
-\tenevilglyph{i_b_jX} 
+\tenevilglyph[yes][4]{i_b_jX} 
 	&	
 	& 	
 	&	
@@ -2295,14 +2324,14 @@
 		вот [32.6] \linebreak
 		ŋotьqen [ŋotьqәn = вон тут] [4.10об] % НУЖЕН ПЕРЕВОД ӈотыӈкы? ӈотыӈӄэн?
 		\tabularnewline \midrule
-\tenevilglyph{2b_2l} 
+\tenevilglyph[yes][4]{2b_2l} 
 	&	
 	& 	
 	&	
 	& 	
 	& 	стотакои [что такое] [35.6]
 		\tabularnewline \midrule
-\tenevilglyph{G_t} 
+\tenevilglyph[yes][4]{G_t} 
 	&	
 	& 	
 	&	
@@ -2310,7 +2339,7 @@
 	& 	теыеене [тэгйиӈ = кашель, грипп] [34.8] \linebreak % тэгйиӈ
 		касли [кашель] [34.11]
 		\tabularnewline \midrule
-\tenevilglyph{r_t} 
+\tenevilglyph[yes][4]{r_t} 
 	&	
 	& 	
 	&	
@@ -2318,7 +2347,7 @@
 	& 	пыраснек [праздник] [34.10об] \linebreak
 		в «захтре перхоймая» [завтра первое мая] [39.7об]
 		\tabularnewline \midrule
-\tenevilglyph{i_b_JX} 
+\tenevilglyph[yes][4]{i_b_JX} 
 	&	
 	& 	
 	&	
@@ -2327,7 +2356,7 @@
 		сахтре [завтра] [34.18об] \linebreak
 		в «захтре перхоймая» [завтра первое мая] [39.7об]
 		\tabularnewline \midrule
-\tenevilglyph{U2E} 
+\tenevilglyph[yes][4]{U2E} 
 	&	
 	& 	
 	&	
@@ -2335,70 +2364,70 @@
 	& 	усеся [учиться] [34.12] \linebreak
 		в «усеся» [учиться] [34.11об] 
 		\tabularnewline \midrule
-\tenevilglyph{cD_2k} 
+\tenevilglyph[yes][4]{cD_2k} 
 	&	
 	& 	
 	&	
 	& 	
 	& 	там [33.4, 34.1] 
 		\tabularnewline \midrule
-\tenevilglyph{i_qY_vD} 
+\tenevilglyph[yes][3]{i_qY_vD} 
 	&	тапак [табак] \cite[л. 68 об.]{spbfaran79}
 	& 	
 	&	
 	& 	
 	& 	[4.1об]
 		\tabularnewline \midrule
-\tenevilglyph{c_q_cD_q} 
+\tenevilglyph[yes][4]{c_q_cD_q} 
 	&	
 	& 	
 	&	
 	& 	
 	& 	осын [очень] [37.2]
 		\tabularnewline \midrule
-\tenevilglyph{UD_uDE} 
+\tenevilglyph[yes][4]{UD_uDE} 
 	&	
 	& 	
 	&	
 	& 	
 	& 	натваре [на дворе] [34.11об]
 		\tabularnewline \midrule
-\tenevilglyph{q_c_cD_q} 
+\tenevilglyph[yes][4]{q_c_cD_q} 
 	&	
 	& 	
 	&	
 	& 	
 	& 	сороно [всё равно] [34.11об]
 		\tabularnewline \midrule
-\tenevilglyph{O_JX_b} 
+\tenevilglyph[yes][1]{O_JX_b} 
 	&	
 	& 	
 	&	
 	& 	
 	& 	насоеас [?] [33.4]
 		\tabularnewline \midrule
-\tenevilglyph{3iX} 
+\tenevilglyph[yes][1]{3iX} 
 	&	
 	& 	
 	&	
 	& 	
 	& 	месе [?] [34.21об]
 		\tabularnewline \midrule
-\tenevilglyph{k_j_jF} 
+\tenevilglyph[yes][4]{k_j_jF} 
 	&	
 	& 	
 	&	
 	& 	
 	& 	нехосыт [не хочет] [37.2, 37.2об]
 		\tabularnewline \midrule
-\tenevilglyph{i_2q_l_q_i_L} 
+\tenevilglyph[yes][4]{i_2q_l_q_i_L} 
 	&	
 	& 	
 	&	
 	& 	
 	& 	ролтырхын [руԓтыркын = сторониться] [34.10] % руԓтыркын
 		\tabularnewline \midrule
-\tenevilglyph{o_2q_l} 
+\tenevilglyph[yes][4]{o_2q_l} 
 	&	
 	& 	
 	&	
