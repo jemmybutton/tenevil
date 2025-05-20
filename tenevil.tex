@@ -43,7 +43,7 @@
 \newcounter{glyph}
 \setcounter{glyph}{1}
 
-\DeclareDocumentCommand{\tenevilglyph}{o o m}{%
+\DeclareDocumentCommand{\tenevilglyph}{o o o m}{%
 \def\tmpyes{yes}
 \def\tmpone{#1}
 \theglyph~{\IfNoValueTF{#2}{}{(#2)}}\hfill~\linebreak{%
@@ -54,9 +54,27 @@
 			\color{gray}%
 		\fi%
 		}
-		\tenevilfont\fontsize{40pt}{40pt}\selectfont\fontchar{#3}
+		\tenevilfont\fontsize{40pt}{40pt}\selectfont\fontchar{#4}
+		\global\def\currentChar{\tenevilfont\selectfont\fontchar{#4}}
 		}%
+	\IfNoValueTF{#3}{}{%
+		\global\def\currentGlyphName{#3}%
+		\global\expandafter\edef\csname TenevilGlyph\currentGlyphName\endcsname{#4}%
+	}%
 \stepcounter{glyph}%
+}
+
+\DeclareDocumentCommand{\currentGlyphWithAffixes}{m m}{%
+\def\argone{#1}%
+\def\argtwo{#2}%
+	\fontsize{30pt}{\the\baselineskip}
+	\ifx\argone\empty{}\else%
+		\tenevilfont\selectfont\fontchar{\csname TenevilGlyph#1\endcsname}%
+	\fi%
+	\currentChar%
+	\ifx\argtwo\empty{}\else%
+		\tenevilfont\selectfont\fontchar{\csname TenevilGlyph#2\endcsname}%
+	\fi%
 }
 
 %
@@ -80,6 +98,80 @@
  	&	Картотека И. П. Лаврова
 	& 	В записях самого Теневиля \cite{davydova2015a,lavrov1969,bogoraz1934} 
 		\tabularnewline \midrule
+\multicolumn{6}{c}{«Алфавитные» знаки} \\ \midrule
+\tenevilglyph[yes][3][A]{*cTR} 
+	&	а/о
+	&	
+	&	
+	&	а [2] \linebreak
+		о [3]
+	&	a [напечатано в книге, знак рядом] [12.12об] 
+		\tabularnewline \midrule 
+\tenevilglyph[yes][3][E]{*jF} 
+	&	е/э/н
+	&	
+	&	
+	&	е [2]
+	&	e [напечатано в книге, знак рядом] [12.11] \linebreak
+		ә [напечатано в книге, знак рядом] [12.16] \linebreak
+		n [напечатано в книге, знак рядом] [12.16] 
+		\tabularnewline \midrule 
+\tenevilglyph[yes][3][K]{*'} 
+	&	к
+	&	
+	&	
+	&	к* [2] % тут три черточки вместо одной
+	&	k* [напечатано в книге, знак рядом] [12.11] 
+		\tabularnewline \midrule 
+\tenevilglyph[yes][3][L]{*jFEN} 
+	&	ԓ
+	&	
+	&	
+	&	л [2]
+	&	l [напечатано в книге, знак рядом] [12.11об, 12.12об] 
+		\tabularnewline \midrule 
+\tenevilglyph[yes][3][M]{*o} 
+	&	м
+	&	
+	&	
+	&	м [3]
+	&	m [напечатано в книге, знак рядом] [12.11, 12.13] 
+		\tabularnewline \midrule 
+\tenevilglyph[yes][3][P]{*c_cD} % TODO: встречается в словах, надо включить
+	&	п
+	&	
+	&	
+	&	п [3]
+	&	\tabularnewline \midrule 
+\tenevilglyph[yes][3][R]{*jFE} 
+	&	р
+	&	
+	&	
+	&	р [3]
+	&	r [напечатано в книге, знак рядом] [12.12] 
+		\tabularnewline \midrule 
+\tenevilglyph[yes][3][C]{*iY} % TODO: встречается в словах, надо включить
+	&	с, ч
+	&	
+	&	
+	&	с, ч [3]
+	&	\tabularnewline \midrule 
+\tenevilglyph[yes][3][T]{*cT} 
+	&	t
+	&	
+	&	
+	&	т* [3]
+	&	t [напечатано в книге, знак рядом] [12.9, 12.12] 
+		\tabularnewline \midrule 
+\tenevilglyph[yes][3][Y]{*g} 
+	&	ы
+	&	
+	&	
+	&	
+	&	ь [напечатано в книге, знак рядом] [12.11об] \linebreak
+		ы [32.14]
+		\tabularnewline \midrule 
+\multicolumn{6}{c}{«Основные» знаки} \\ \midrule
 \tenevilglyph[yes][4]{i_2cU_2cD}
 	&	ӄԓявыԓ
 	&	qlaul [ӄԓявыԓ = мужчина] \cite[л. 64 об.]{spbfaran79} % ӄԓявыԓ
@@ -287,7 +379,7 @@
 	&	gьt [гыт = ты] \cite[л. 65 об]{spbfaran79} % гыт
 	&	
 	&
-	& 	в «ььt» [гыт] [5.1об] % закорючка справа, вероятно, ошибка
+	& 	в «ььt» [гыт]  [5.1об] \currentGlyphWithAffixes{}{T} % закорючка справа, вероятно, фонетическая 
 		\tabularnewline \midrule
 \tenevilglyph[no][4]{o-_jY}
 	&	тури
@@ -2787,7 +2879,7 @@
 	&	
 	&	посёлок Снежное [110]
 	& 	\cite[364]{davydova2015a} \linebreak
-		в «пасык» [34.8] % TODO: нужна интерпретация
+		в «пасык» [34.8] \currentGlyphWithAffixes{}{K} % TODO: нужна интерпретация
 		\tabularnewline \midrule
 \tenevilglyph[yes][4]{uF_2l} 
 	&	ӄымэк
@@ -4226,7 +4318,7 @@
 	&	
 	&	
 	&	поселок Анадырь [11]
-	&	в «анатры»  [37.2] 
+	&	в «анатры»  [37.2] \currentGlyphWithAffixes{}{T}
 		\tabularnewline \midrule 
 \tenevilglyph[yes][3]{i_2q_JXEEN} 
 	&	тъычгургын
@@ -4326,79 +4418,6 @@
 	&	
 	&	
 	&	nьretьlaqen [ИЛИ:1.8] % TODO: нужен перевод
-		\tabularnewline \midrule 
-\midrule % «Алфавитные» знаки
-\tenevilglyph[yes][3]{*cTR} 
-	&	а/о
-	&	
-	&	
-	&	а [2] \linebreak
-		о [3]
-	&	a [напечатано в книге, знак рядом] [12.12об] 
-		\tabularnewline \midrule 
-\tenevilglyph[yes][3]{*jF} 
-	&	е/э/н
-	&	
-	&	
-	&	е [2]
-	&	e [напечатано в книге, знак рядом] [12.11] \linebreak
-		ә [напечатано в книге, знак рядом] [12.16] \linebreak
-		n [напечатано в книге, знак рядом] [12.16] 
-		\tabularnewline \midrule 
-\tenevilglyph[yes][3]{*'} 
-	&	к
-	&	
-	&	
-	&	к* [2] % тут три черточки вместо одной
-	&	k* [напечатано в книге, знак рядом] [12.11] 
-		\tabularnewline \midrule 
-\tenevilglyph[yes][3]{*jFEN} 
-	&	ԓ
-	&	
-	&	
-	&	л [2]
-	&	l [напечатано в книге, знак рядом] [12.11об, 12.12об] 
-		\tabularnewline \midrule 
-\tenevilglyph[yes][3]{*o} 
-	&	м
-	&	
-	&	
-	&	м [3]
-	&	m [напечатано в книге, знак рядом] [12.11, 12.13] 
-		\tabularnewline \midrule 
-\tenevilglyph[yes][3]{*c_cD} % TODO: встречается в словах, надо включить
-	&	п
-	&	
-	&	
-	&	п [3]
-	&	\tabularnewline \midrule 
-\tenevilglyph[yes][3]{*jFE} 
-	&	р
-	&	
-	&	
-	&	р [3]
-	&	r [напечатано в книге, знак рядом] [12.12] 
-		\tabularnewline \midrule 
-\tenevilglyph[yes][3]{*iY} % TODO: встречается в словах, надо включить
-	&	с, ч
-	&	
-	&	
-	&	с, ч [3]
-	&	\tabularnewline \midrule 
-\tenevilglyph[yes][3]{*cT} 
-	&	t
-	&	
-	&	
-	&	т* [3]
-	&	t [напечатано в книге, знак рядом] [12.9, 12.12] 
-		\tabularnewline \midrule 
-\tenevilglyph[yes][3]{*g} 
-	&	ы
-	&	
-	&	
-	&	
-	&	ь [напечатано в книге, знак рядом] [12.11об] \linebreak
-		ы [32.14]
 		\tabularnewline \midrule 
 \bottomrule
 \end{longtable}
