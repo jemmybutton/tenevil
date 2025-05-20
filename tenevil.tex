@@ -13,6 +13,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[russian]{babel}
 \usepackage{tipa}
+\usepackage{xparse}
 \usepackage[style=russian]{csquotes}
 
 %\usepackage[datamodel=archive,backend=biber,style=gost-numeric]{biblatex}
@@ -64,18 +65,22 @@
 \stepcounter{glyph}%
 }
 
+\ExplSyntaxOn
 \DeclareDocumentCommand{\currentGlyphWithAffixes}{m m}{%
 \def\argone{#1}%
 \def\argtwo{#2}%
+	{%
 	\fontsize{30pt}{\the\baselineskip}
 	\ifx\argone\empty{}\else%
-		\tenevilfont\selectfont\fontchar{\csname TenevilGlyph#1\endcsname}%
+		\clist_map_inline:nn { #1 } {\tenevilfont\selectfont\fontchar{\csname TenevilGlyph##1\endcsname}}%
 	\fi%
 	\currentChar%
 	\ifx\argtwo\empty{}\else%
-		\tenevilfont\selectfont\fontchar{\csname TenevilGlyph#2\endcsname}%
+		\clist_map_inline:nn { #2 } {\tenevilfont\selectfont\fontchar{\csname TenevilGlyph##1\endcsname}}%
 	\fi%
+	}
 }
+\ExplSyntaxOff
 
 %
 %	первый опциональный аргумент — найден ли этот знак, написанный рукой Теневиля, yes/no
@@ -90,7 +95,7 @@
 
 \begin{document}
 \begin{landscape}
-\begin{longtable}{p{1.25cm}>{\raggedright}p{3cm}>{\raggedright}p{6.5cm}>{\raggedright}p{3.5cm}>{\raggedright}p{3.5cm}>{\raggedright}p{6.5cm}}
+\begin{longtable}{p{1.25cm}>{\raggedright}p{2.5cm}>{\raggedright}p{6.5cm}>{\raggedright}p{3.5cm}>{\raggedright}p{3.5cm}>{\raggedright}p{7cm}}
 \toprule
 	&	Выбранная интерпретация
  	& 	СПбФ АРАН \cite{spbfaran79} 
@@ -379,7 +384,7 @@
 	&	gьt [гыт = ты] \cite[л. 65 об]{spbfaran79} % гыт
 	&	
 	&
-	& 	в «ььt» [гыт]  [5.1об] \currentGlyphWithAffixes{}{T} % закорючка справа, вероятно, фонетическая 
+	& 	ььt [гыт]  [5.1об] \currentGlyphWithAffixes{}{T} % закорючка справа, вероятно, фонетическая 
 		\tabularnewline \midrule
 \tenevilglyph[no][4]{o-_jY}
 	&	тури
@@ -1290,6 +1295,16 @@
 	&	
 	&	
 	& 	artel [а'ртеԓь = артель; напечатано в книге, знак рядом] [12.12об]
+		\tabularnewline \midrule
+\tenevilglyph[yes][4]{f-b}
+	&	пионер
+	&	
+	&	
+	&	
+	& 	pioneren [пионерэн = пионерский; напечатано в книге, знак рядом] [12.18об] \currentGlyphWithAffixes{}{E} \linebreak
+		pionerte [пионертэ = пионеры; напечатано в книге, знак рядом] [12.18об] \currentGlyphWithAffixes{}{T} \linebreak
+		pioneretь [напечатано в книге, знак рядом] [12.18об] \currentGlyphWithAffixes{}{T} \linebreak % TODO: нужен перевод, нужна транскрипция
+		pionero [напечатано в книге, знак рядом] [12.18об] \currentGlyphWithAffixes{}{A} \linebreak
 		\tabularnewline \midrule
 \tenevilglyph[yes][1]{f_lE}
 	&
@@ -2879,7 +2894,7 @@
 	&	
 	&	посёлок Снежное [110]
 	& 	\cite[364]{davydova2015a} \linebreak
-		в «пасык» [34.8] \currentGlyphWithAffixes{}{K} % TODO: нужна интерпретация
+		пасык [34.8] \currentGlyphWithAffixes{}{K} % TODO: нужна интерпретация
 		\tabularnewline \midrule
 \tenevilglyph[yes][4]{uF_2l} 
 	&	ӄымэк
@@ -2952,7 +2967,9 @@
 	&	рукавицы \cite[л. 37]{spbfaran79} 
 	&	
 	&	лилит [ԓиԓит = варежки], рукавицы [79]
-	& 	\cite[362]{davydova2015a} 
+	& 	\cite[362]{davydova2015a} \linebreak
+		lelelgьn [ԓеԓеԓгын; напечатано в книге, знак рядом] [12.23об]  \currentGlyphWithAffixes{}{E} \linebreak
+		lilit [ԓиԓит; напечатано в книге, знак рядом] [12.23об] \currentGlyphWithAffixes{}{T}
 		\tabularnewline \midrule
 \tenevilglyph[yes][4]{sE}
 	&	тэвъэԓ
@@ -2970,15 +2987,17 @@
 	&	нийгулеткин, учиться [74] % похоже на ошибку, TODO: нужна транскрипция
 	& 	\cite[360]{davydova2015a} \linebreak
 		pirirkьn [= берет; напечатано в книге, знак рядом] [12.23об] \linebreak % TODO: уточнить перевод, нужна транскрипция
-		в «опере» [берет] [30.7]
+		perejo [= взятое; напечатано в книге, знак рядом] [12.23об] \currentGlyphWithAffixes{}{A}
+		опере [берет] [30.7] \currentGlyphWithAffixes{}{P,L}
 		\tabularnewline \midrule
 \tenevilglyph[yes][4]{sE_jFE_qY}
 	&
 	&	
 	&	
 	&
-	& 	в «ырыпота» [работа] [35.1] \linebreak
-		в «рыпосе» [работе] [34.18об]
+	& 	ырыпота [работа] [35.1] \currentGlyphWithAffixes{}{E,M} \linebreak
+		рыпосе [работе] [34.18об] \currentGlyphWithAffixes{}{L,E} \linebreak
+		mьceretьk [ИЛИ:1.4] \currentGlyphWithAffixes{}{K}
 		\tabularnewline \midrule
 \tenevilglyph[yes][3]{sE_jFE_qYE}
 	&
@@ -3517,12 +3536,14 @@
 	&
 	& 	[32.7]
 		\tabularnewline \midrule
-\tenevilglyph[yes][3]{o-o_z} 
-	&
+\tenevilglyph[yes][4]{o-o_z} 
+	&	ԓыԓет
 	&	клас [глаз] \cite[л. 68]{spbfaran79}
 	&	
 	&	лилет, глаза [32] % TODO: нужна транскрипция
-	& 	[6.1] 
+	& 	[6.1] \linebreak
+		lelalgьn [ԓыԓяԓгын = глаз; напечатано в книге, знак рядом] [12.23об] \currentGlyphWithAffixes{}{E} \linebreak
+		lilet [ԓыԓет = глаза; напечатано в книге, знак рядом] [12.23об] \currentGlyphWithAffixes{}{T}
 		\tabularnewline \midrule
 \tenevilglyph[yes][4]{o-o_z-q_I_q} 
 	&	тинԓыԓет
@@ -4318,7 +4339,7 @@
 	&	
 	&	
 	&	поселок Анадырь [11]
-	&	в «анатры»  [37.2] \currentGlyphWithAffixes{}{T}
+	&	анатры  [37.2] \currentGlyphWithAffixes{}{T}
 		\tabularnewline \midrule 
 \tenevilglyph[yes][3]{i_2q_JXEEN} 
 	&	тъычгургын
@@ -4442,6 +4463,9 @@
 	\end{itemize}
 \item Сам знак.
 \end{itemize}
+
+\subsection{Второй столбец}
+Наиболее вероятная интерпретация данного знака.
 
 \subsection{Остальные столбцы}
 
