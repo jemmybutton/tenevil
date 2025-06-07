@@ -121,12 +121,19 @@
 		ә [напечатано в книге, знак рядом] [12.16] \linebreak
 		n [напечатано в книге, знак рядом] [12.16] 
 		\tabularnewline \midrule 
-\tenevilglyph[yes][3][K]{*'} 
+\tenevilglyph[yes][3][Kf]{*3'} 
 	&	к
 	&	
 	&	
-	&	к* [2] % тут три черточки вместо одной
-	&	k* [напечатано в книге, знак рядом] [12.11] 
+	&	к [2] 
+	&	k [напечатано в книге, знак рядом] [12.11] 
+		\tabularnewline \midrule 
+\tenevilglyph[yes][3][K]{*'} % TODO: добавить источник
+	&	к (сокращенная форма)
+	&	
+	&	
+	&	
+	&	
 		\tabularnewline \midrule 
 \tenevilglyph[yes][3][L]{*jFEN} 
 	&	ԓ
@@ -168,13 +175,20 @@
 	&	т* [3]
 	&	t [напечатано в книге, знак рядом] [12.9, 12.12] 
 		\tabularnewline \midrule 
-\tenevilglyph[yes][3][Y]{*g} 
+\tenevilglyph[yes][3][Yf]{*g} 
 	&	ы
 	&	
 	&	
 	&	
 	&	ь [напечатано в книге, знак рядом] [12.11об] \linebreak
 		ы [32.14]
+		\tabularnewline \midrule 
+\tenevilglyph[yes][3][Y]{*jT} % TODO: добавить источник
+	&	ы (сокращенная форма)
+	&	
+	&	
+	&	
+	&	
 		\tabularnewline \midrule 
 \tenevilglyph[yes][3][YN]{*jT_jF}  % TODO: добавить источник
 	&	ын/эн
@@ -185,6 +199,13 @@
 		\tabularnewline \midrule 
 \tenevilglyph[yes][3][YT]{*jT_cT}  % TODO: добавить источник
 	&	ыт/эт
+	&	
+	&	
+	&	
+	&	
+		\tabularnewline \midrule 
+\tenevilglyph[yes][3][YA]{*jT_cTR}  % TODO: добавить источник
+	&	ыа/эа
 	&	
 	&	
 	&	
@@ -509,7 +530,7 @@
 		атехае [?] [33.5об] \linebreak
 		атегаи [?] [30.3] \linebreak
 		Тынеувел [Теневиль] [35.3] \linebreak
-		в «папа» [30.1об]
+		папа \currentGlyphWithAffixes{}{YA} [30.1об]
 		\tabularnewline \midrule
 \tenevilglyph[yes][4]{sME}
 	&	Теневиль
@@ -2911,7 +2932,7 @@
 	&	
 	&	
 	&	омом [= тепло, жара], чиитэв, тепло [130] % TODO: уточнить перевод
-	& 	в «сопло» [тепло] [34.8]
+	& 	сопло [тепло] \currentGlyphWithAffixes{}{A,M} [34.8]
 		\tabularnewline \midrule
 \tenevilglyph[yes][1]{o_O_8qX}
 	&
@@ -3151,7 +3172,9 @@
 	&	
 	&	
 	&	ёо [= пурга], чеченёо , непогода, холодный ветер [47] % TODO: нужна транскрипция
-	& 	cacajokь [чьэчеӈэюк = начало зимы] [ИЛИ:1.19] \linebreak
+	& 	сiесенкы [чьэчеӈкы = во время мороза] \currentGlyphWithAffixes{}{C,C,K} [34.8] \linebreak
+		холото [холодно] \currentGlyphWithAffixes{}{C,C,K} [34.8] \linebreak
+		cacajokь [чьэчеӈэюк = начало зимы] [ИЛИ:1.19] \linebreak
 		joo [ёо] [ИЛИ:1.5] \linebreak
 		juien \currentGlyphWithAffixes{}{E} [ИЛИ:1.8] \linebreak
 		jojien \currentGlyphWithAffixes{}{YN} [ИЛИ:2.2]
@@ -3366,7 +3389,7 @@
 	&	
 	&	греп [грэп], песня [125]
 	& 	grep [грэп] [12.23; напечатано в книге, знак рядом] \linebreak
-		поеот* [поёт] [36.1]
+		поеот [поёт] \currentGlyphWithAffixes{}{E,T} [36.1]
 		\tabularnewline \midrule
 \tenevilglyph[yes][4]{i_u_uD_k_r} 
 	&
@@ -3719,8 +3742,8 @@
 	&
 	& 	[4.2?] \linebreak
 		oraçekqaj [= юноша; напечатано в книге, знак рядом] [12.22] \linebreak % TODO: уточнить перевод, нужна транскрипция
-		в «молотои» [молодой] [34.11об] \linebreak
 		молотои [молодой] [29.12] \linebreak
+		молотои [молодой] \currentGlyphWithAffixes{}{K,T} [34.11об] \linebreak
 		iaacek [aacek, а'ачек] [ИЛИ:2.22]
 		\tabularnewline \midrule
 \tenevilglyph[yes][3]{2o_2jY} 
@@ -3780,7 +3803,7 @@
 	&
 	& 	пыраснек [праздник] [34.10об] \linebreak
 		прачнек [праздник] [30.3] \linebreak
-		в «перхомаи» [первомай] [30.3] \linebreak
+		перхомаи [первомай] \currentGlyphWithAffixes{}{P,R} [30.3] \linebreak
 		в «захтре перхоймая» [завтра первое мая] [39.7об] \linebreak
 		эeŋeŋkь [ИЛИ:1.14] % TODO: нужна транскрипция
 		\tabularnewline \midrule
