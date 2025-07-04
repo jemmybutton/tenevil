@@ -44,6 +44,8 @@
 \newcounter{glyph}
 \setcounter{glyph}{1}
 
+\def\allchars{}
+
 \DeclareDocumentCommand{\tenevilglyph}{o o o m}{%
 \def\tmpyes{yes}
 \def\tmpone{#1}
@@ -63,6 +65,7 @@
 		\global\expandafter\edef\csname TenevilGlyph\currentGlyphName\endcsname{#4}%
 	}%
 \stepcounter{glyph}%
+\global\expandafter\def\expandafter\allchars\expandafter{\allchars{ }\tenevilfont\fontsize{40pt}{40pt}\selectfont\fontchar{#4}}
 }
 
 \ExplSyntaxOn
@@ -1151,7 +1154,7 @@
 	&	
 	&	
 	&	
-	& 	qutti [ӄутти =другие; слово напечатано] [12.20] \linebreak % ср. ӄоԓ, совсем другой знак
+	& 	qutti [ӄутти = другие; слово напечатано] [12.20] \linebreak % ср. ӄоԓ, совсем другой знак
 		qute [ӄутти] [ИЛИ:1.10]
 		\tabularnewline \midrule
 \tenevilglyph[yes][5]{b_2q_L}
@@ -3070,6 +3073,14 @@
 	& 	teula [= гребцы; слово напечатано] [12.16] \linebreak % TODO: уточнить перевод, нужна транскрипция
 		teulьt [= гребцы; слово напечатано] \currentGlyphWithAffixes{}{T} [12.16]
 		\tabularnewline \midrule
+\tenevilglyph[yes][1]{c_c_2k_o_8q}
+	&	
+	&	
+	&	
+	&	
+	& 	kaçr [5.1] \linebreak
+		колачак \currentGlyphWithAffixes{}{K,A,L,C} [32.15об]
+		\tabularnewline \midrule
 \tenevilglyph[yes][3]{i_2j_l}
 	&
 	&	донкои [тонкий] \cite[л. 69 об]{spbfaran79} 
@@ -4841,6 +4852,13 @@
 	&	
 	&	tьjpьnat [тыйпынат = надел; слово напечатано] \currentGlyphWithAffixes{}{T} [12.20]
 		\tabularnewline \midrule 
+\tenevilglyph[yes][3]{L_uD} 
+	&	
+	&	
+	&	
+	&	
+	&	petьqetie [пинтыӄэтгъи = появился] [ИЛИ:2.17] % Weinstein TODO: уточнить перевод
+		\tabularnewline \midrule 
 \bottomrule
 \end{longtable}
 \end{landscape}
@@ -4925,5 +4943,7 @@
 Пять фотографий «дневниковых записей» Теневиля из архива отдела этнографии Сибири МАЭ РАН.
 
 \printbibliography
+
+%\allchars
 
 \end{document}
