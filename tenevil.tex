@@ -44,7 +44,13 @@
 \newcounter{glyph}
 \setcounter{glyph}{1}
 
+\newcounter{charvariantcounter}
+
 \def\allchars{}
+
+\ExplSyntaxOn
+
+
 
 \DeclareDocumentCommand{\tenevilglyph}{o o o m}{%
 \def\tmpyes{yes}
@@ -57,8 +63,14 @@
 			\color{gray}%
 		\fi%
 		}
-		\tenevilfont\fontsize{40pt}{40pt}\selectfont\fontchar{#4}
-		\global\def\currentChar{\tenevilfont\selectfont\fontchar{#4}}
+		\setcounter{charvariantcounter}{0}
+		\clist_map_inline:nn { #4 } {%
+				\stepcounter{charvariantcounter}%
+				\edef\curname{currentChar\thecharvariantcounter}%
+				{\tenevilfont\fontsize{40pt}{40pt}\selectfont\fontchar{##1}\ %
+				\global\expandafter\def\csname\curname\endcsname{{\tenevilfont\selectfont\fontchar{##1}}}%
+				}%
+			}%
 		}%
 	\IfNoValueTF{#3}{}{%
 		\global\def\currentGlyphName{#3}%
@@ -68,18 +80,19 @@
 \global\expandafter\def\expandafter\allchars\expandafter{\allchars{ }\tenevilfont\fontsize{40pt}{40pt}\selectfont\fontchar{#4}}
 }
 
-\ExplSyntaxOn
-\DeclareDocumentCommand{\currentGlyphWithAffixes}{m m}{%
+\DeclareDocumentCommand{\currentGlyphWithAffixes}{o m m}{%
 \def\argone{#1}%
 \def\argtwo{#2}%
+\def\argthree{#3}%
 	{%
 	\fontsize{30pt}{\the\baselineskip}
-	\ifx\argone\empty{}\else%
-		\clist_map_inline:nn { #1 } {\tenevilfont\selectfont\fontchar{\csname TenevilGlyph##1\endcsname}}%
-	\fi%
-	\currentChar%
 	\ifx\argtwo\empty{}\else%
 		\clist_map_inline:nn { #2 } {\tenevilfont\selectfont\fontchar{\csname TenevilGlyph##1\endcsname}}%
+	\fi%
+	\IfNoValueTF{#1}{\csname currentChar1\endcsname}{\csname currentChar#1\endcsname}%
+	%\ifx\argone\empty{}\csname currentChar1\endcsname\else\csname currentChar#1\endcsname\fi%
+	\ifx\argthree\empty{}\else%
+		\clist_map_inline:nn { #3 } {\tenevilfont\selectfont\fontchar{\csname TenevilGlyph##1\endcsname}}%
 	\fi%
 	}
 }
@@ -2872,7 +2885,7 @@
 	&
 	& 	2000 [36.2] 
 		\tabularnewline \midrule
-\tenevilglyph[yes][5]{o_2q_q_l}
+\tenevilglyph[yes][5]{o_2q_q_l,TD_l}
 	&	3
 	&	три \cite[л. 41]{spbfaran79} \linebreak
 		ŋьroq [ӈыроӄ = три] \cite[л. 39]{spbfaran79} \linebreak % ӈыроӄ
@@ -2880,15 +2893,9 @@
 	&	3 \cite{lavrov1969}
 	&	н'ырок [ӈыроӄ = три], 3, три [43] % TODO: нужна транскрипция
 	& 	3 \cite[360, 362]{davydova2015a} \linebreak
+		3 \currentGlyphWithAffixes[2]{}{} [4.1об] \linebreak
 		\cite[361, 363, 364]{davydova2015a} \linebreak
 		ŋьrurgare [ӈыроргарэ = трое] [ИЛИ:1.9]
-		\tabularnewline \midrule
-\tenevilglyph[yes][5]{TD_l}
-	&	3 (вариант начертания)
-	&	
-	&	
-	&	
-	& 	3 [4.1об]
 		\tabularnewline \midrule
 \tenevilglyph[yes][5]{o_2q_q_l_j}
 	&	60
@@ -2912,35 +2919,31 @@
 	&	кликкликан мынгытклеккэн, пароль [?], 600, шестьсот [122] % TODO: нужна транскрипция
 	& 	[11.4об]
 		\tabularnewline \midrule
-\tenevilglyph[yes][4]{i_b_s_j_o_q_q_l}
+\tenevilglyph[yes][4]{i_b_s_j_o_q_q_l,i_b_s_j_o_TD_l}
 	&	3000
 	&	
 	&	
 	&
-	& 	[3000] [32.13об] 
+	& 	3000 \currentGlyphWithAffixes[2]{}{} [37.5] \linebreak
+		[3000] [32.13об] 
 		\tabularnewline \midrule
-\tenevilglyph[yes][5]{o_q_c_T}
+\tenevilglyph[yes][5]{o_q_c_T,q_c_t}
 	&	4
 	&	4 \cite[л. 64]{spbfaran79}
 	&	4 \cite{lavrov1969}
 	&	н'ырак, 4, четыре [43] % TODO: нужна транскрипция
 	& 	4 \cite[360]{davydova2015a} \linebreak
+		4 \currentGlyphWithAffixes[2]{}{} [4.1об] \linebreak
 		\cite[361]{davydova2015a} \linebreak
 		\cite[26]{lavrov1969} 
 		\tabularnewline \midrule
-\tenevilglyph[yes][5]{q_c_t}
-	&	4 (вариант начертания)
-	&	
-	&	
-	&	
-	& 	4 [4.1об]
-		\tabularnewline \midrule
-\tenevilglyph[yes][4]{o_q_c_T_j}
+\tenevilglyph[yes][5]{o_q_c_T_j}
 	&	80
 	&	
 	&	80 \cite{lavrov1969}
 	&	н'ыракклеккен, 80, восемдесят [44] % TODO: нужна транскрипция
-	& 	[25.4]
+	& 	[25.4] \linebreak
+		80 [57.50]
 		\tabularnewline \midrule
 \tenevilglyph[yes][4]{o_c_T_2oI_jF_j}
 	&	800
@@ -2988,21 +2991,15 @@
 	&	120, мытлын'клеккэн кликкин, сто двадцать [45] % TODO: нужна транскрипция
 	& 	120 [34.20об]
 		\tabularnewline \midrule
-\tenevilglyph[yes][5]{o_j_2q}
+\tenevilglyph[yes][5]{o_j_2q,j_2q}
 	&	7
 	&	7 \cite[л. 64]{spbfaran79}
 	&	7 \cite{lavrov1969}
 	&	н'эрэкмытлын'эн [ӈэръамытԓыӈэн = семь], 7, семь [43] % TODO: нужна транскрипция
 	& 	7 \cite[360]{davydova2015a} \linebreak
+		7 [напечатано] \currentGlyphWithAffixes[2]{}{} [12.14] \linebreak
 		\cite[361]{davydova2015a} \linebreak
 		ŋeriamьlьŋen [ӈэръамытԓыӈэн] [ИЛИ:2.14]
-		\tabularnewline \midrule
-\tenevilglyph[yes][5]{j_2q}
-	&	7 (вариант начертания)
-	&	
-	&	
-	&	
-	& 	7 [12.14]
 		\tabularnewline \midrule
 \tenevilglyph[yes][5]{o_j_2q_j}
 	&	140
@@ -3011,26 +3008,21 @@
 	&	140, мытлын'клеккэн н'ирэккликкин, сто сорок [45] % TODO: нужна транскрипция
 	& 	140 [2.101] 
 		\tabularnewline \midrule
-\tenevilglyph[yes][5]{o-_2q_j}
+\tenevilglyph[yes][5]{o-_2q_j,jF_2j}
 	&	8
 	&	8 \cite[л. 64]{spbfaran79}
 	&	8 \cite{lavrov1969}
 	&	амн'ырооткэн, 8, восемь [44] % TODO: нужна транскрипция
-	& 	8 \cite[360]{davydova2015a} 
-		\tabularnewline \midrule
-\tenevilglyph[yes][5]{jF_2j}
-	&	8 (вариант начертания)
-	&	
-	&	
-	&	
-	& 	8 [12.14]
+	& 	8 \cite[360]{davydova2015a} \linebreak
+		8 [напечатано] \currentGlyphWithAffixes[2]{}{} [12.14]
 		\tabularnewline \midrule
 \tenevilglyph[yes][5]{o-_2q_j_j}
 	&	160
 	&	
 	&	
 	&	160, мытлын'клеккэн н'ырокклеккэн [45] % TODO: нужна транскрипция
-	& 	в «161» [160] [32.15] 
+	& 	в «161» [160] [32.15] \linebreak
+		160 [57.50]
 		\tabularnewline \midrule
 \tenevilglyph[yes][5]{o_2q_jN_jF_o}
 	&	9
@@ -3056,12 +3048,20 @@
 		\cite[361, 363]{davydova2015a} \linebreak
 		\cite[26]{lavrov1969} 
 		\tabularnewline \midrule
-\tenevilglyph[yes][4]{2oI_2jF_j}
+\tenevilglyph[yes][5]{2oI_2jF_j}
 	&	200
 	&	
 	&	200 \cite{lavrov1969}
 	&	мынгытклеккен, 200, двести [122] % TODO: нужна транскрипция
-	& 	[25.3об] 
+	& 	[25.3об] \linebreak
+		200 [57.50]
+		\tabularnewline \midrule
+\tenevilglyph[yes][4]{i_b_s_j_2oI_2jF}
+	&	10000
+	&	
+	&	10000 \cite{lavrov1969}
+	&	
+	& 	10000 [57.48]
 		\tabularnewline \midrule
 \tenevilglyph[yes][5]{o_T_2q_2o_l}
 	&	15
