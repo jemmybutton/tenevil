@@ -15,6 +15,7 @@
 \usepackage{tipa}
 \usepackage{xparse}
 \usepackage[style=russian]{csquotes}
+\usepackage{verbatim}
 
 %\usepackage[datamodel=archive,backend=biber,style=gost-numeric]{biblatex}
 \usepackage[datamodel=archive,backend=biber]{biblatex}
@@ -47,10 +48,12 @@
 \newcounter{charvariantcounter}
 
 \def\allchars{}
+\def\allshortcuts{}
+
+\newwrite \shortcuts
+\openout \shortcuts = charactershortcuts.tex\relax
 
 \ExplSyntaxOn
-
-
 
 \DeclareDocumentCommand{\tenevilglyph}{o o o m}{%
 \def\tmpyes{yes}
@@ -75,9 +78,18 @@
 		}%
 	\IfNoValueTF{#3}{}{%
 		\global\def\currentGlyphName{#3}%
-		\global\expandafter\edef\csname TenevilGlyph\currentGlyphName\endcsname{#4}%
+		%\global\expandafter\edef\csname TenevilGlyph\currentGlyphName\endcsname{#4}%
+		\write\shortcuts{\string\def\expandafter\string\csname TenevilGlyph#3\endcsname{#4}}%
 	}%
 	\stepcounter{glyph}%
+}
+
+\DeclareDocumentCommand{\TenevilGlyphByShortcut}{m}{%
+\ifcsname TenevilGlyph#1\endcsname%
+	\tenevilfont\selectfont\fontchar{\csname TenevilGlyph#1\endcsname}%
+\else%
+?
+\fi%
 }
 
 \DeclareDocumentCommand{\currentGlyphWithAffixes}{o m m}{%
@@ -87,16 +99,18 @@
 	{%
 	\fontsize{30pt}{\the\baselineskip}
 	\ifx\argtwo\empty{}\else%
-		\clist_map_inline:nn { #2 } {\tenevilfont\selectfont\fontchar{\csname TenevilGlyph##1\endcsname}}%
+		\clist_map_inline:nn { #2 } {\TenevilGlyphByShortcut{##1}}%
 	\fi%
 	\IfNoValueTF{#1}{\csname currentChar1\endcsname}{\csname currentChar#1\endcsname}%
 	%\ifx\argone\empty{}\csname currentChar1\endcsname\else\csname currentChar#1\endcsname\fi%
 	\ifx\argthree\empty{}\else%
-		\clist_map_inline:nn { #3 } {\tenevilfont\selectfont\fontchar{\csname TenevilGlyph##1\endcsname}}%
+		\clist_map_inline:nn { #3 } {\TenevilGlyphByShortcut{##1}}%
 	\fi%
 	}
 }
 \ExplSyntaxOff
+
+\IfFileExists{charactershortcuts.tex}{\input{charactershortcuts.tex}}{}
 
 %
 %	первый опциональный аргумент — найден ли этот знак, написанный рукой Теневиля, yes/no
@@ -4410,7 +4424,7 @@
 	& 	\cite[364]{davydova2015a} \linebreak
 		ceŋet [чеӈэт]  [ИЛИ:2.5]
 		\tabularnewline \midrule
-\tenevilglyph[yes][5]{CD_i_C} 
+\tenevilglyph[yes][5][yanra]{CD_i_C} 
 	&	янра, амъянра
 	&	
 	&	
@@ -5012,7 +5026,8 @@
 	&	
 	&	
 	&	
-	&	plekьt [пԓекыт = обувь; слово напечатано] \currentGlyphWithAffixes{}{L,T} [12.20]
+	&	plekьt [пԓекыт = обувь; слово напечатано] \currentGlyphWithAffixes{}{L,T} [12.20] \linebreak
+		tьplegutwaak [= я разулся; слово напечатано] \currentGlyphWithAffixes{}{yanra} [12.20] % TODO: уточнить перевод
 		\tabularnewline \midrule 
 \tenevilglyph[no][3]{r-v_jY} 
 	&	
