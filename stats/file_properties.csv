@@ -6,7 +6,7 @@ N,n_sheets,earliest_year,phonetic_symbols,Kc,K,P,U,b_Q,O,latin,cyrillic
 5,42,1929-1-1,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE
 6,1,,,,,,,,,,
 7,9,1932-6-23,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE
-8,1,,,,,,,,,,
+8,1,,,,,,,,,TRUE,FALSE
 9,74,,,,,,,,,,
 10,1,,,,,,,,,,
 11,8,1933-11-15,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE
@@ -65,13 +65,13 @@ N,n_sheets,earliest_year,phonetic_symbols,Kc,K,P,U,b_Q,O,latin,cyrillic
 65,12,,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,
 66,12,,,,,,,,,,
 67,12,,,,,,,,,,
-68,50,,,,,,,,,,
+68,50,,,,,,,,,TRUE,FALSE
 69,4,,,,,,,,,,
 70,2,,,,,,,,,,
 71,2,,,,,,,,,,
 72,2,,,,,,,,,,
 73,3,,,,,,,,,,
-74,9,,,,,,,,,,
+74,9,,,,,,,,,TRUE,FALSE
 75,1,,,,,,,,,,
 76,9,,,,,,,,,,
 77,9,,,,,,,,,,
