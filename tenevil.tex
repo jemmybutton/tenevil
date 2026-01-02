@@ -120,8 +120,35 @@
 %	первый опциональный аргумент — найден ли этот знак, написанный рукой Теневиля, yes/no
 %
 %	второй — уверенность в интерпретации: см. пояснение под таблицей
-%		
+%	
+%	третий — ключ, по которому можно обращаться к знаку, ниже правила транскрипции
 %
+%	А/Я -> a
+%	Я -> ja
+%	В -> w
+%	Г -> g	
+%	И -> i
+%	Й -> j
+%	К -> k
+%	Ӄ -> q
+%	Ԓ -> l
+%	М -> m
+%	Н -> n
+%	Ӈ -> v
+%	О/Ё -> o
+%	Ё -> jo
+%	П -> p
+%	Р -> r
+%	Т -> t
+%	У/Ю -> u
+%	Ю -> ju
+%	Ч/С -> c
+%	Ъ/Ь/' -> x
+%	Ы -> y
+%	Э/Е -> e
+%	Е -> je
+%
+
 
 \addbibresource{tenevil.bib}
 
@@ -152,8 +179,8 @@
 	&	
 	&	
 	&	
-	&	карломаркз [Карл Маркс] \currentGlyphWithAffixes{K,A,L}{M,melgytannyn} [44.62] \linebreak
-		зехорзкй \currentGlyphWithAffixes{C,Q}{R,melgytannyn} [42.11] % TODO: нужна интерпретация, явно какое-то имя
+	&	карломаркз [Карл Маркс] \currentGlyphWithAffixes{K,A,L}{M,melgytanvyn} [44.62] \linebreak
+		зехорзкй \currentGlyphWithAffixes{C,Q}{R,melgytanvyn} [42.11] % TODO: нужна интерпретация, явно какое-то имя
 		\tabularnewline \midrule 
 \tenevilglyph[yes][4][W]{*cTD} 
 	&	у/о/в
@@ -196,7 +223,7 @@
 	&	
 	&	
 	&	plaq \currentGlyphWithAffixes{P,L,A}{} [ИЛИ:2.24] \linebreak  % TODO: нужен перевод % ilispread:2.23
-		qьnur [ӄынур] \currentGlyphWithAffixes{optyma}{N,A,R} [ИЛИ:2.11об]  % ilispread:2.11
+		qьnur [ӄынур] \currentGlyphWithAffixes{oxptyma}{N,A,R} [ИЛИ:2.11об]  % ilispread:2.11
 		\tabularnewline \midrule 
 \tenevilglyph[yes][4][b]{*jT,*g}
 	&	ь,ъ,' 
@@ -204,8 +231,8 @@
 	&	
 	&	
 	&	kelien [кэԓьин] \currentGlyphWithAffixes{kely}{N} [ИЛИ:2.11об] \linebreak  % ilispread:2.11
-		waliьt [ваԓьыт = пребывающие, живущие] \currentGlyphWithAffixes{varkyn}{T} [ИЛИ:2.26] \linebreak  % ilispread:2.25
-		wiek [въик] \currentGlyphWithAffixes{wik}{K} [ИЛИ:1.13] \linebreak  % ilispread:1.13
+		waliьt [ваԓьыт = пребывающие, живущие] \currentGlyphWithAffixes{warkyn}{T} [ИЛИ:2.26] \linebreak  % ilispread:2.25
+		wiek [въик] \currentGlyphWithAffixes{wxik}{K} [ИЛИ:1.13] \linebreak  % ilispread:1.13
 		ь [слово напечатано] \currentGlyphWithAffixes[2]{}{} [12.11об] \linebreak
 		ъ', ь' \currentGlyphWithAffixes[2]{}{} [32.14]
 		\tabularnewline \midrule 
@@ -259,14 +286,14 @@
 	&	ӄԓявыԓ
 	&	мужчина \cite{lavrov1969}
 	&	клявыл [ӄԓявыԓ], мужчина [126] \linebreak
-		кэлиныгйнетылин [кэԓиныгйивэтыԓьын = учитель], учитель \currentGlyphWithAffixes{}{kalekal} [60]
+		кэлиныгйнетылин [кэԓиныгйивэтыԓьын = учитель], учитель \currentGlyphWithAffixes{}{kelikel} [60]
 	&	qlaul [ӄԓявыԓ = мужчина] \cite[л. 64]{spbfaran79} % ӄԓявыԓ
 	&	[38.1] \linebreak
 		qlaula [ӄԓявыԓя = мужчина; слово напечатано] [12.17об] \linebreak % TODO: уточнить перевод
 		qlaulte [ӄԓявыԓтэ = мужчины; слово напечатано] \currentGlyphWithAffixes{}{T} [12.18] \linebreak
 		qьlauleьm [ӄԓявыԓегым = я мужчина] \currentGlyphWithAffixes{}{M} [ИЛИ:1.9] \linebreak  % ilispread:1.9
 		гылауло [ӄԓявыԓё] \currentGlyphWithAffixes{}{Q,L,O} [44.2об] \linebreak % TODO: нужен перевод
-		kaletko-laul [= учитель; слово напечатано] \currentGlyphWithAffixes{}{kalekal} [12.19об] % TODO: нужна транскрипция
+		kaletko-laul [= учитель; слово напечатано] \currentGlyphWithAffixes{}{kelikel} [12.19об] % TODO: нужна транскрипция
 		\tabularnewline \midrule
 \tenevilglyph[yes][5]{i_2cU_2cD_'}
 	&	ытԓыгын, пэԓӄэтык
@@ -396,7 +423,7 @@
 	& 	\cite[364]{davydova2015a} \linebreak
 		tumgьt [тумгыт = друзья; слово напечатано] [12.20] \linebreak 
 		таварес [товарищ] [34.8об] \linebreak
-		j\=elgь-tomgьn [йъэԓгытомгын = двоюродный брат; слово напечатано] \currentGlyphWithAffixes{jilgyn}{} [19.5об]
+		j\=elgь-tomgьn [йъэԓгытомгын = двоюродный брат; слово напечатано] \currentGlyphWithAffixes{jxilgyn}{} [19.5об]
 		\tabularnewline \midrule
 \tenevilglyph[yes][5]{i_2CF_j}
 	&	нэнэны, ӈинӄэй
@@ -848,7 +875,7 @@
 		\cite[28]{lavrov1969}\linebreak 
 		әnkь [ынкы; слово напечатано] [12.17] \linebreak
 		тот [тут] [32.13] \linebreak
-		вотут [вот тут] \currentGlyphWithAffixes{notqen}{} [32.6] \linebreak
+		вотут [вот тут] \currentGlyphWithAffixes{votqen}{} [32.6] \linebreak
 		тут [32.15об] \linebreak
 		ынкы [32.16об, 42.31] \linebreak
 		ьnkь [ынкы] [ИЛИ:1.3] \linebreak  % ilispread:1.3
@@ -1083,7 +1110,7 @@
 	&	сделал \cite[л. 41]{spbfaran79} \linebreak
 		елат [делать] \cite[л. 68]{spbfaran79}
 	& 	\cite[361, 364]{davydova2015a} \linebreak
-		писат [писать] [32.6] \currentGlyphWithAffixes{}{kalekal} \linebreak
+		писат [писать] [32.6] \currentGlyphWithAffixes{}{kelikel} \linebreak
 		tajkjo [тайкыё = дело, документ, делаемое] \currentGlyphWithAffixes{}{A} [ИЛИ:1.4]  % ilispread:1.4
 		\tabularnewline \midrule
 \tenevilglyph[yes][4]{o_l_jF}
@@ -1136,7 +1163,7 @@
 	&
 	&	
 	& 	wetgau [wetgaw, вэтгав = слово, речь; слово напечатано] [12.24]
-		kalewetgawkь [каԓевэтгавкы = научится читать; слово напечатано] \currentGlyphWithAffixes{}{kalekal} [12.18] % TODO: уточнить перевод
+		kalewetgawkь [каԓевэтгавкы = научится читать; слово напечатано] \currentGlyphWithAffixes{}{kelikel} [12.18] % TODO: уточнить перевод
 		\tabularnewline \midrule
 \tenevilglyph[yes][4]{U_b}
 	&
@@ -1146,7 +1173,7 @@
 	& 	еесик [язык] [32.6об] \linebreak
 		еегиг [язык] [34.16]
 		\tabularnewline \midrule
-\tenevilglyph[yes][5][varkyn]{c_CE}
+\tenevilglyph[yes][5][warkyn]{c_CE}
 	&	варкын, вак
 	& 	пребывать, быть \cite{bogoraz1934}
 	&	варкын [варкын = пребывает, живет], иметься, есть (что-нибудь), (пребывать, быть, Б. Т. 32) [71]
@@ -1256,7 +1283,7 @@
 		tьmnenat [тымнэнат = убил; слово напечатано] \currentGlyphWithAffixes{}{T} [12.13об] \linebreak
 		nenanmьqen [нэнанмыӄэн] \currentGlyphWithAffixes{}{N,N} [ИЛИ:2.8]  % ilispread:2.7
 		\tabularnewline \midrule
-\tenevilglyph[yes][4][wik]{o_4i_k}
+\tenevilglyph[yes][4][wxik]{o_4i_k}
 	&	въик
 	&	
 	&	въик [= умереть, скончаться], вайн'ык [вайӈык = угасать, умирать], умирать [132]
@@ -1383,7 +1410,7 @@
 		\cite[26]{lavrov1969} \linebreak
 		отел [не рукой Т.] [57.26]
 		\tabularnewline \midrule
-\tenevilglyph[yes][5][nelvyl]{aB}
+\tenevilglyph[yes][5][velwyl]{aB}
 	&	ӈэԓвыԓ
 	&	reindeer herd \cite{mindalevich1934}\linebreak
 		стадо оленей \cite{lavrov1969}
@@ -1753,7 +1780,7 @@
 		qәnver \cite[л. 52, 56]{spbfaran79} 		
 	& 	\cite[360, 361]{davydova2015a} \linebreak
 		qьnwer [qanver, ӄынвэр] [ИЛИ:1.3об] \linebreak  % ilispread:1.4
-		qьnwrur [ӄынвэрэвыр = в конце концов, мало помалу] \currentGlyphWithAffixes{}{evyr} [ИЛИ:1.7]  % ilispread:1.7
+		qьnwrur [ӄынвэрэвыр = в конце концов, мало помалу] \currentGlyphWithAffixes{}{ewyr} [ИЛИ:1.7]  % ilispread:1.7
 		\tabularnewline \midrule
 \tenevilglyph[yes][3]{wD_4q}
 	&
@@ -2084,7 +2111,7 @@
 		мука \cite[л. 66 об]{spbfaran79}
 	& 	[25.6]
 		\tabularnewline \midrule
-\tenevilglyph[yes][5][melgytannyn]{vY_z}
+\tenevilglyph[yes][5][melgytanvyn]{vY_z}
 	&	мэԓгытанӈын
 	&	Russian holding fire-arms \cite{mindalevich1934} \linebreak 
 		русский* \cite{lavrov1969}
@@ -2468,7 +2495,7 @@
 	&	нымным
 	&	
 	&	нымным [= поселок, селение], селение [121]
-	&	стойбище, олени (богатый оленевод) \currentGlyphWithAffixes{}{nelvyl} \cite[л. 47]{spbfaran79} \linebreak
+	&	стойбище, олени (богатый оленевод) \currentGlyphWithAffixes{}{velwyl} \cite[л. 47]{spbfaran79} \linebreak
 		на стойбище \cite[л. 53]{spbfaran79} \linebreak
 		отлакир [әtlьq-, эԓԓыӄ- = тундра] \cite[л. 68]{spbfaran79} % эԓԓыӄ- , вероятно, ошибка
 	& 	\cite[364]{davydova2015a} \linebreak
@@ -2650,7 +2677,7 @@
 	&
 	&	трубка с мундштуком \cite[л. 49]{spbfaran79} 
 	& 	\tabularnewline \midrule
-\tenevilglyph[yes][5][kalekal]{UE_JX} 
+\tenevilglyph[yes][5][kelikel]{UE_JX} 
 	&	кэԓикэԓ
 	&	
 	&	кэликэл [кэԓикэԓ = рисунок, картина], книга, письмо, рисунок [60]
@@ -3156,7 +3183,7 @@
 	&	
 	& 	2000 [7.11,36.2] 
 		\tabularnewline \midrule
-\tenevilglyph[yes][5][nyrok]{o_2q_q_l,TD_l}
+\tenevilglyph[yes][5][vyroq]{o_2q_q_l,TD_l}
 	&	3, ӈыроӄ
 	&	3 \cite{lavrov1969}
 	&	н'ырок [ӈыроӄ = три], 3, три [43] 
@@ -3290,7 +3317,7 @@
 	&	
 	&
 	&	
-	& 	10013 [1013] \currentGlyphWithAffixes{}{myngytken,nyrok} [7.7об]
+	& 	10013 [1013] \currentGlyphWithAffixes{}{myngytken,vyroq} [7.7об]
 		\tabularnewline \midrule
 \tenevilglyph[yes][4]{i_b_s_j_oI_2j,i_b_s_j_2j}
 	&	5000
@@ -3482,7 +3509,7 @@
 	&	\cite{bogoraz1934} \linebreak
 		wlьe [vænligi, вэнԓыги] [ИЛИ:1.3об]  % ilispread:1.4
 		\tabularnewline \midrule
-\tenevilglyph[yes][5][jilgyn]{UD_2c}
+\tenevilglyph[yes][5][jxilgyn]{UD_2c}
 	&	йъиԓгын
 	&	
 	&	йилгын [йъиԓгын = луна, месяц], чатам [= луна, месяц], луна, месяц [62] 
@@ -3647,7 +3674,7 @@
 		rinut [ръэнут] [ИЛИ:1.14об] \linebreak  % ilispread:1.15
 		riэnut [ръэнут] [ИЛИ:1.2]  % ilispread:1.2
 		\tabularnewline \midrule
-\tenevilglyph[yes][5][imyrenut]{i_jX_z}
+\tenevilglyph[yes][5][imyrxenut]{i_jX_z}
 	&	имыръэнут
 	&	
 	&	имырэнут [имыръэнут], всякая всячина [117] 
@@ -3785,7 +3812,7 @@
 		kьnmal [кынмаԓ] [ИЛИ:2.13] \linebreak  % ilispread:2.12
 		am-kьnmal [амкынмаԓ = совместно; слово напечатано] \currentGlyphWithAffixes{A,M}{} [12.16]
 		\tabularnewline \midrule
-\tenevilglyph[yes][3][kynmal]{i-q-JFX_2q}
+\tenevilglyph[yes][3]{i-q-JFX_2q}
 	&	
 	&	
 	&	
@@ -3825,7 +3852,7 @@
 	&	
 	& 	teneŋeŋkь \currentGlyphWithAffixes{}{T} [ИЛИ:1. 3] % TODO: нужен перевод
 		\tabularnewline \midrule
-\tenevilglyph[yes][4][evyr]{CFE_q}
+\tenevilglyph[yes][4][ewyr]{CFE_q}
 	&	эвыр
 	&	
 	&	эвыр [= если], если, и [88]
@@ -4132,12 +4159,12 @@
 \tenevilglyph[yes][4]{o_lN_l} % значок почти наверняка другой, но в чем разница — непонятно
 	&	яраӈы
 	&	
-	&	калеткоран [каԓеткоран = школа], школа \currentGlyphWithAffixes{}{kalekal} [107]
+	&	калеткоран [каԓеткоран = школа], школа \currentGlyphWithAffixes{}{kelikel} [107]
 	&	
 	& 	jaraŋь [яраӈы = яранга] [ИЛИ:1.12] \linebreak  % ilispread:1.12
 		jarapь [ярайпы = из яранги] \currentGlyphWithAffixes{}{P} [ИЛИ:1.19] \linebreak  % ilispread:1.19
-		kaletkoragtь [каԓеткорагты = в школу; слово напечатано] \currentGlyphWithAffixes{}{kalekal} [12.18] \linebreak 
-		kaleran \currentGlyphWithAffixes{}{kalekal} [ИЛИ:2.21об] \linebreak  % TODO: нужен перевод % ilispread:2.21
+		kaletkoragtь [каԓеткорагты = в школу; слово напечатано] \currentGlyphWithAffixes{}{kelikel} [12.18] \linebreak 
+		kaleran \currentGlyphWithAffixes{}{kelikel} [ИЛИ:2.21об] \linebreak  % TODO: нужен перевод % ilispread:2.21
 		velьtkorak [вэԓы ткоран = магазин, лавка; слово напечатано] \currentGlyphWithAffixes{}{wilytkuk} [12.15] \linebreak
 		столова [столовая] \currentGlyphWithAffixes{ruk}{Q,A,K,N} [34.16об]
 		\tabularnewline \midrule
@@ -4495,7 +4522,7 @@
 	& 	[25.10] \linebreak
 		genŋiulinet [слово напечатано] [12.20об] \linebreak % TODO: нужен перевод, нужна транскрипция
 		посевыке [посылке] [34.8об] \linebreak
-		песмо [письмо] \currentGlyphWithAffixes{}{kalekal} [34.8об] \linebreak
+		песмо [письмо] \currentGlyphWithAffixes{}{kelikel} [34.8об] \linebreak
 		эlьэŋuke \currentGlyphWithAffixes{etly}{} [ИЛИ:1.2]  % TODO: нужен перевод % ilispread:1.2
 		\tabularnewline \midrule
 \tenevilglyph[yes][5]{vD_2qY} 
@@ -4528,7 +4555,7 @@
 		когда [не рукой Т.] [57.9] \linebreak
 		tete \currentGlyphWithAffixes{}{T,T} [ИЛИ:2.27]  % ilispread:2.26
 		\tabularnewline \midrule
-\tenevilglyph[yes][5][notqen]{i_b_jX} 
+\tenevilglyph[yes][5][votqen]{i_b_jX} 
 	&	ӈотӄэн
 	&	
 	&	н'откэн [ӈотӄэн = этот, эта, это], вот, этот [34]
@@ -4608,9 +4635,9 @@
 	&	рыгъюлевык [рыгъюԓевык = учить], нинэйвык, учить, учиться [74] % TODO: нужна транскрипция
 	&	
 	& 	усеся [учиться] [34.12] \linebreak
-		усеся [учиться] \currentGlyphWithAffixes{}{kalekal} [34.11об] \linebreak
+		усеся [учиться] \currentGlyphWithAffixes{}{kelikel} [34.11об] \linebreak
 		mьneuolrekьnet \currentGlyphWithAffixes{M}{N,E} [ИЛИ:2.2] \linebreak  % TODO: нужен перевод % ilispread:2.1
-		keleguletьk \currentGlyphWithAffixes{}{kalekal,T,K} [ИЛИ:2.20]  % ilispread:2.19
+		keleguletьk \currentGlyphWithAffixes{}{kelikel,T,K} [ИЛИ:2.20]  % ilispread:2.19
 		\tabularnewline \midrule
 \tenevilglyph[yes][5]{U2E} 
 	&
@@ -4684,7 +4711,7 @@
 	& 	сороно [всё равно] [34.11об] \linebreak
 		tьmŋalgulaq [тымӈаԓгоԓяӄ = без разбору, всё равно] [ИЛИ:1.8об]  % ilispread:1.9
 		\tabularnewline \midrule
-\tenevilglyph[yes][5][optyma]{c_cD} 
+\tenevilglyph[yes][5][oxptyma]{c_cD} 
 	&	о'птыма
 	&	
 	&	оптыма [о'птыма = подобно, словно, как], подобно, словно, как [54]
@@ -4895,7 +4922,7 @@
 	& 	\cite[364]{davydova2015a} \linebreak
 		ceŋet [чеӈэт] [ИЛИ:2.5об]  % ilispread:2.5
 		\tabularnewline \midrule
-\tenevilglyph[yes][5][yanra]{CD_i_C} 
+\tenevilglyph[yes][5][janra]{CD_i_C} 
 	&	янра, амъянра
 	&	
 	&	янра [= янрэты = отдельно], отдельно [125]
@@ -5262,7 +5289,7 @@
 	&	kьmiьlgьn [kьmьlgьn, кымъыԓгын = червь] [ИЛИ:2.19] \linebreak  % ilispread:2.18
 		kьmien [кымъын = червь] \currentGlyphWithAffixes{K}{N} [ИЛИ:2.19] \linebreak  % ilispread:2.18
 		veqәn [вэӄын = навага; слово напечатано] \currentGlyphWithAffixes{}{N} [12.25] \linebreak
-		gьtokalekal [гытокаԓе(каԓ) = гусеница] \currentGlyphWithAffixes{}{kalekal} [19.1]
+		gьtokalekal [гытокаԓе(каԓ) = гусеница] \currentGlyphWithAffixes{}{kelikel} [19.1]
 		\tabularnewline \midrule 
 \tenevilglyph[yes][4]{3b_k} 
 	&	апаапагԓыӈын
@@ -5529,7 +5556,7 @@
 	&	
 	&	\cite[362]{davydova2015a} \linebreak
 		plekьt [пԓекыт = обувь; слово напечатано] \currentGlyphWithAffixes{}{L,T} [12.20] \linebreak
-		tьplegutwaak [= я разулся; слово напечатано] \currentGlyphWithAffixes{}{yanra} [12.20] % TODO: уточнить перевод
+		tьplegutwaak [= я разулся; слово напечатано] \currentGlyphWithAffixes{}{janra} [12.20] % TODO: уточнить перевод
 		\tabularnewline \midrule 
 \tenevilglyph[no][3]{r-v_jY} 
 	&	
@@ -5704,7 +5731,7 @@
 	&	
 	&	\cite[364]{davydova2015a} \linebreak
 		пытвытын [пыԓвынтын = железо, металл] [42.31] \linebreak
-		эmьriapьlugьtьn \currentGlyphWithAffixes{imyrenut}{} [ИЛИ:1.8]  % TODO: нужен перевод % ilispread:1.8
+		эmьriapьlugьtьn \currentGlyphWithAffixes{imyrxenut}{} [ИЛИ:1.8]  % TODO: нужен перевод % ilispread:1.8
 		\tabularnewline \midrule 
 \tenevilglyph[yes][3]{3cF_z} 
 	&	
