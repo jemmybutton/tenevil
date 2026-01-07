@@ -61,7 +61,7 @@ N,n_sheets,earliest_year,phonetic_symbols,Kc,K,P,U,b_Q,O,latin,cyrillic
 61,1,,,,,,,,,,
 62,90,,,,,,,,,,
 63,11,1927-1-1,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,
-64,6,1933-10-28,TRUE,FALSE,,,,,,,
+64,6,1933-10-28,TRUE,FALSE,TRUE,TRUE,FALSE,TRUE,FALSE,,
 65,12,,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,
 66,12,,,,,,,,,,
 67,12,,,,,,,,,,
