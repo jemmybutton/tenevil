@@ -462,7 +462,7 @@ page,written,transcription,phonetic_symbols,is_strong
 21,эetьnwa,этынва,A,TRUE
 21,эelь,этԓы,,NA
 21,jeguletke,эйгуԓеткэ,E,FALSE
-21,ьkьэn,,N,NA
+21,ьkьэn,ыкээн,N,NA
 21,эetьnwa,этынва,A,TRUE
 21,cenet,чинит,,FALSE
 21,gewetь,гэвэты,T,NA
@@ -677,7 +677,7 @@ page,written,transcription,phonetic_symbols,is_strong
 29,retemьlqьl,,LQL,NA
 29,jalgьtken,яԓгыткэн,KN,TRUE
 30,cenetken,чиниткин,,FALSE
-30,rekwьtqeьte,,,NA
+30,rekwьtqeьte,рэквытӄэгти,,NA
 30,telpьrkьt,тэԓпыркын,KT,NA
 30,qьnwer,ӄынвэр,,NA
 30,ьnkь,ынкы,,NA
@@ -687,7 +687,7 @@ page,written,transcription,phonetic_symbols,is_strong
 30,moqor,мооӄор,,TRUE
 30,uweŋe,уйӈэ,,FALSE
 30,cenetken,чиниткин,,FALSE
-30,rekwtqьt,,TE,NA
+30,rekwtqьt,рэквытӄэгти,TE,NA
 30,qьnwr,ӄынвэр,,NA
 30,uwŋe,уйӈэ,,FALSE
 30,ьnkь,ынкы,,NA
@@ -802,7 +802,7 @@ page,written,transcription,phonetic_symbols,is_strong
 36,kacet,,KACT,NA
 36,ŋutku,ӈутку,,FALSE
 36,coqocьk,совӄочык,K,TRUE
-36,kaleran,,N,NA
+36,kaleran,каԓеран,N,NA
 36,warkьn,варкын,,TRUE
 36,opopo,опопы,,TRUE
 36,iolencoqocьk,,L,NA
@@ -811,7 +811,7 @@ page,written,transcription,phonetic_symbols,is_strong
 37,cama,чама,,TRUE
 37,kulucek,,K,NA
 37,warkьn,варкын,,TRUE
-37,kaleran,,N,NA
+37,kaleran,каԓеран,N,NA
 37,ьmьlio,ымыԓьо,,TRUE
 37,warkьt,варкыт,T,TRUE
 37,kalerat,,AT,NA
@@ -819,7 +819,7 @@ page,written,transcription,phonetic_symbols,is_strong
 37,cama,чама,,TRUE
 37,coqocьk,совӄочык,,TRUE
 37,warkьn,варкын,,TRUE
-37,kaleran,,N,NA
+37,kaleran,каԓеран,N,NA
 37,ijaatь,ыяагты,T,TRUE
 37,rataŋauŋeŋen,,,NA
 37,iorawelian,о'равэтԓьан,N,TRUE
@@ -858,7 +858,7 @@ page,written,transcription,phonetic_symbols,is_strong
 39,iolecoqocьk,,LK,NA
 39,cama,чама,,TRUE
 39,kolocek,,K,NA
-39,kaleran,,RAN,NA
+39,kaleran,каԓеран,RAN,NA
 39,warkьn,варкын,,TRUE
 39,murgen,мургин,N,FALSE
 39,cenetken,чиниткин,,FALSE
@@ -876,11 +876,11 @@ page,written,transcription,phonetic_symbols,is_strong
 40,lьen,ԓыгэн,,NA
 40,ŋutku,ӈутку,,FALSE
 40,iolecoqocьk,,LK,NA
-40,kaleran,,N,NA
+40,kaleran,каԓеран,N,NA
 40,cama,чама,,TRUE
 40,koqocken,,KAQ,NA
 40,warkьn,варкын,,TRUE
-40,kaleran,,,NA
+40,kaleran,каԓеран,,NA
 41,tьŋeweleьm,,M,NA
 41,gьm,гым,,NA
 41,gьmnenet,гымнинэт,NNT,FALSE
@@ -940,7 +940,7 @@ page,written,transcription,phonetic_symbols,is_strong
 44,gemoьrucelie,,RbE,NA
 44,camiam,чамъам,,TRUE
 44,gьretьk,гынритык,TK,FALSE
-44,ьkььen,,N,NA
+44,ьkььen,ыкээн,N,NA
 44,murgьnan,моргынан,,TRUE
 44,metket,мэткиит,,FALSE
 44,mьtgьrerkьnet,,MRK,NA
