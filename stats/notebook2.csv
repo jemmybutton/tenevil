@@ -906,7 +906,7 @@ page,written,transcription,phonetic_symbols,is_strong
 42,nemьqe,нэмыӄэй,KE,NA
 42,ŋelwьliьken,,KN,NA
 42,meьcer,мигчир,R,FALSE
-42,necьqen,,KEN,NA
+42,necьqen,нитчыӄин,KEN,NA
 42,qonpь,ӄонпы,,TRUE
 42,iaacek,а'ачек,,TRUE
 42,neŋiletqen,нэӈъэԓетӄин,N,FALSE
@@ -947,7 +947,7 @@ page,written,transcription,phonetic_symbols,is_strong
 44,ŋelwьliьt,ӈэԓвыԓьыт,bT,NA
 44,metket,мэткиит,,FALSE
 44,cenet,чинит,,FALSE
-44,ьkььen,,N,NA
+44,ьkььen,ыкээн,N,NA
 44,qoren,ӄорэн,N,TRUE
 44,waьrgьn,вагыргын,,TRUE
 44,cenet,чинит,,FALSE
@@ -999,7 +999,7 @@ page,written,transcription,phonetic_symbols,is_strong
 46,ieьr,игыр,,FALSE
 46,nьmkьqen,нымкыӄин,,FALSE
 46,ieqemьl,э'ӄимыԓ,,FALSE
-46,nwalomore,,N,NA
+46,nwalomore,наваԓёмморэ,N,NA
 46,naqam,наӄам,,TRUE
 46,uwŋe,уйӈэ,,FALSE
 47,neuqenet,нивӄинэт,NT,FALSE
@@ -1043,7 +1043,7 @@ page,written,transcription,phonetic_symbols,is_strong
 48,pьŋьl,пыӈыԓ,,NA
 48,ŋelwьliьken,,KN,NA
 48,nenelietenmure,,,NA
-48,pьkerьk,,,NA
+48,pьkerьk,пыкирык,,NA
 48,elь,этԓы,,NA
 48,eqьlpe,эӄыԓпэ,,NA
 48,apaŋiuŋьtoka,апаӈъэвӈытока,,TRUE
@@ -1051,7 +1051,7 @@ page,written,transcription,phonetic_symbols,is_strong
 48,weler,вэԓер,,FALSE
 49,amьnan,амынан,,TRUE
 49,celgьmemlьqaj,,QAE,NA
-49,necьqen,,NCQ,NA
+49,necьqen,нитчыӄин,NCQ,NA
 49,naqam,наӄам,,TRUE
 49,lьenetьk,ԓыгэнитык,TK,FALSE
 49,nьrulqen,ныруԓӄин,NR,FALSE
@@ -1085,7 +1085,7 @@ page,written,transcription,phonetic_symbols,is_strong
 50,murgьnan,моргынан,,TRUE
 50,gemo,гэмо,,TRUE
 50,naqam,наӄам,,TRUE
-50,nwalmure,,N,NA
+50,nwalmure,наваԓёмморэ,N,NA
 50,gьm,гым,,NA
 50,tьŋeweleьm,,M,NA
 50,tьkelecerkьn,,TK,NA
@@ -1108,7 +1108,7 @@ page,written,transcription,phonetic_symbols,is_strong
 51,cama,чама,,TRUE
 51,эeŋeŋkь,эӈэӈкы,K,NA
 51,tete,титэ,TT,FALSE
-51,ieqemьluk,,AK,NA
+51,ieqemьluk,а'ӄэмԓётвак,AK,NA
 51,kьnmal,кынмаԓ,,TRUE
 51,ьree,ытри,,FALSE
 51,iaqiorawelian,,,NA
