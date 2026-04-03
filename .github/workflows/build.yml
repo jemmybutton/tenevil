@@ -24,7 +24,9 @@ jobs:
       - name: Build the font
         run: fontforge -script processfont.py
       - name: Build the pdf
-        run: lualatex -interaction=nonstopmode tenevil.tex && biber tenevil && lualatex -interaction=nonstopmode tenevil.tex
+        run: lualatex -interaction=nonstopmode tenevil.tex
+        run: biber tenevil
+        run: lualatex -interaction=nonstopmode tenevil.tex
       - uses: actions/upload-artifact@v4
         with:
           name: table-and-font
