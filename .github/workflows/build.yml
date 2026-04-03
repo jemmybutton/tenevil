@@ -23,9 +23,11 @@ jobs:
           exit
       - name: Build the font
         run: fontforge -script processfont.py
-      - name: Build the pdf
+      - name: Run LuaLaTeX
         run: lualatex -interaction=nonstopmode tenevil.tex
+      - name: Run Biber
         run: biber tenevil
+      - name: Build the final pdf
         run: lualatex -interaction=nonstopmode tenevil.tex
       - uses: actions/upload-artifact@v4
         with:
