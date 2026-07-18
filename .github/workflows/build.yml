@@ -30,14 +30,16 @@ jobs:
         run: biber tenevil
       - name: Build the final pdf
         run: lualatex -interaction=nonstopmode tenevil.tex
-      - name: Generate dichotomous keys
+      - name: Generate dichotomous key
         run: R < parsekeys.R --no-save
       - name: Build the character lookup file
-        run: lualatex -interaction=nonstopmode dichotomouskey.tex
+        run: lualatex -interaction=nonstopmode tenevil-character-lookup.tex
+      - name: Build the the final pdf of the character lookup file
+        run: lualatex -interaction=nonstopmode tenevil-character-lookup.tex
       - uses: actions/upload-artifact@v4
         with:
           name: table-and-font
           path: |
               tenevil.pdf
-              dichotomouskey.pdf
+              tenevil-character-lookup.pdf
               tenevil-font.otf
