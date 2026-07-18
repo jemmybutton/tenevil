@@ -20,6 +20,7 @@ jobs:
           su
           apt-get update
           apt-get install -y fontforge
+          apt-get install -y r-base
           exit
       - name: Build the font
         run: fontforge -script processfont.py
@@ -29,9 +30,14 @@ jobs:
         run: biber tenevil
       - name: Build the final pdf
         run: lualatex -interaction=nonstopmode tenevil.tex
+      - name: Generate dichotomous keys
+        run: R < parsekeys.R --no-save
+      - name: Build the character lookup file
+        run: lualatex -interaction=nonstopmode dichotomouskey.tex
       - uses: actions/upload-artifact@v4
         with:
           name: table-and-font
           path: |
               tenevil.pdf
+              dichotomouskey.pdf
               tenevil-font.otf
