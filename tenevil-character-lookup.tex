@@ -1,4 +1,12 @@
 \documentclass{article}
+\usepackage{geometry}
+\geometry{
+ 		a4paper,
+		total={130mm,260mm},
+		left=15mm,
+		top=20mm,
+		marginparwidth=54mm,
+	}
 \usepackage{luaotfload,luacode}
 \usepackage[hidelinks]{hyperref}
 \usepackage{fontspec}
@@ -32,14 +40,14 @@
 	\global\expandafter\edef\csname keyGenPl#1\endcsname{{#3}}
 }
 
-% O — круг (или овал, важно, чтобы полный, без разрывов)
+% O — круг, овал, веретено, полумесяц или капля
 % R — квадрат (или другой четырехугольник)
 % C — дуга
 % J — крючок (изогнутая в одну сторону линия со свободным концом)
 % B — петля (любой формы)
-% S — s-образный элемент (в любую сторону)
+% S — s-образный элемент (в любую сторону) или «коромысло»
 % G — спираль (в любую сторону)
-% L — кочерга (любая линия с одним изломом и свободным концом)
+% L — L, T или +
 % I — палка (прямая линия без изгиба)
 % Q — маленькая черточка (короткая, неопределенной формы)
 % Z — зигзаг или волнистая линия
@@ -47,29 +55,39 @@
 % A — треугольник
 % K — точка, короткая черточка, маленький кружок, маленький наплыв
 
-\keyNames{O}{кружки}{кружков}
-\keyNames{R}{квадраты}{квадратов}
+\keyNames{O}{круги, овалы, веретена, полумесяцы или капли}{кругов, овалов, веретен, полумесяцев или капель}
+\keyNames{R}{многоугольники}{многоугольников}
 \keyNames{C}{дуги}{дуг}
 \keyNames{J}{крючки}{крючков}
 \keyNames{B}{петли}{петель}
-\keyNames{S}{S-образные элементы}{S-образных элементов}
+\keyNames{S}{S-образные элементы или «коромысла»}{S-образных элементов или «коромысел»}
 \keyNames{G}{спирали}{спиралей}
-\keyNames{L}{Г-образные элементы}{Г-образных элементов}
+\keyNames{L}{Г-, T-образные элементы или кресты}{Г-, T-образных элементов или крестов}
 \keyNames{I}{прямые линии}{прямых линий}
 \keyNames{Q}{короткие хвостики}{коротких хвостиков}
 \keyNames{Z}{зигзаги}{зигзагов}
 \keyNames{D}{«ручки»}{«ручек»}
-\keyNames{A}{треугольники}{треугольник}
 \keyNames{K}{точки}{точек}
+\keyNames{V}{вилка}{вилок}
+
+\newcounter{question}
+
+
+\DeclareDocumentCommand{\newQuestion}{}{%
+	\vskip 10pt \par\noindent\refstepcounter{question}\textbf{\thequestion .} 
+}
 
 \DeclareDocumentCommand{\identificationKey}{m m m m}{
-\section{}
-\ifnum#2=1 
-В знаке есть \expandafter\csname keyNomPl#1\endcsname?
-\else
-Количество \expandafter\csname keyGenPl#1\endcsname\  в знаке больше или равно #2?\\
-\fi
-Да — \ref{#3}. Нет — \ref{#4}.
+	\newQuestion%
+	\ifnum#2=1 
+		В знаке есть \expandafter\csname keyNomPl#1\endcsname?
+	\else
+		\newcount\adjustvalue
+		\adjustvalue = #2
+		\advance\adjustvalue by -1%
+		Количество \expandafter\csname keyGenPl#1\endcsname\  в знаке больше \the\adjustvalue?
+	\fi
+	\par Да — \ref{#3}. Нет — \ref{#4}.
 }
 
 \newcounter{glyphnamecounter}
@@ -77,22 +95,22 @@
 
 \ExplSyntaxOn
 \DeclareDocumentCommand{\identificationResult}{m m}{%
-	\section{}%
-	\setcounter{glyphnamecounter}{0}%
+	\newQuestion\nopagebreak%
+	\par\noindent\setcounter{glyphnamecounter}{0}%
 	\clist_map_inline:nn { #2 }{%
 		\setcounter{glyphnumbercounter}{0}%
 		\stepcounter{glyphnamecounter}%
 		\clist_map_inline:nn { #1 }{%
 			\stepcounter{glyphnumbercounter}%
 			\ifnum \value{glyphnamecounter} = \value{glyphnumbercounter}%
-				\mbox{\rule{0pt}{30pt}{\tenevilfont\fontsize{40pt}{40pt}\selectfont\fontchar{##1}}~####1}
+				\mbox{\rule{0pt}{25pt}{\tenevilfont\fontsize{30pt}{30pt}\selectfont\fontchar{##1}}~####1}
 			\fi%
 		}\hskip 0.5cm%
 	}%
 }
 \ExplSyntaxOff
 
-\begin{document}
+\begin{document} 
 
 \input dichotomouskey.tex
 

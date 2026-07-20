@@ -44,6 +44,7 @@ produceTree <- function(keysTableSubset, keysLevel, depth){
   if (
     nrow(firstPart) > 5
     & nrow(secondPart) > 5
+    & nrow(keysTableSubset) >= 15
   ) {
     keysLevel$charactersList <- NA
     keysLevelFirstPart <- keysLevel$AddChild(paste(keyName, "ge", keyValue, sep = ""))
