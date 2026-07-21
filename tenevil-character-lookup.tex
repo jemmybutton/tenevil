@@ -2,13 +2,14 @@
 \usepackage{geometry}
 \geometry{
  		a4paper,
-		total={130mm,260mm},
-		left=15mm,
+		total={135mm,260mm},
+		left=40mm,
 		top=20mm,
-		marginparwidth=54mm,
+		marginparwidth=25mm,
 	}
 \usepackage{luaotfload,luacode}
 \usepackage[hidelinks]{hyperref}
+\usepackage{graphicx}
 \usepackage{fontspec}
 \usepackage[utf8]{inputenc}
 \usepackage[russian]{babel}
@@ -72,13 +73,16 @@
 
 \newcounter{question}
 
-
 \DeclareDocumentCommand{\newQuestion}{}{%
-	\vskip 10pt \par\noindent\refstepcounter{question}\textbf{\thequestion .} 
+	\vskip 25pt \par\noindent\refstepcounter{question}\textbf{\thequestion .} 
 }
+
+\def\lastKey{}
 
 \DeclareDocumentCommand{\identificationKey}{m m m m}{
 	\newQuestion%
+	\def\thisKey{#1}%
+	\ifx\lastKey\thisKey\else\reversemarginpar\marginpar{\vskip -4mm\includegraphics[width=25mm]{keys/#1.pdf}}\fi%
 	\ifnum#2=1 
 		В знаке есть \expandafter\csname keyNomPl#1\endcsname?
 	\else
@@ -87,7 +91,8 @@
 		\advance\adjustvalue by -1%
 		Количество \expandafter\csname keyGenPl#1\endcsname\  в знаке больше \the\adjustvalue?
 	\fi
-	\par Да — \ref{#3}. Нет — \ref{#4}.
+	\par Да — \ref{#3}. Нет — \ref{#4}.%
+	\global\def\lastKey{#1}%
 }
 
 \newcounter{glyphnamecounter}
@@ -95,6 +100,7 @@
 
 \ExplSyntaxOn
 \DeclareDocumentCommand{\identificationResult}{m m}{%
+	\global\def\lastKey{}%
 	\newQuestion\nopagebreak%
 	\par\noindent\setcounter{glyphnamecounter}{0}%
 	\clist_map_inline:nn { #2 }{%
