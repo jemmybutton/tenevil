@@ -64,7 +64,7 @@
 \DeclareDocumentCommand{\tenevilglyph}{o o o m o}{%
 \def\tmpyes{yes}
 \def\tmpone{#1}
-\theglyph~{\IfNoValueTF{#2}{}{(#2)}\IfNoValueTF{#5}{}{*}}\hfill~\linebreak{%
+\theglyph~{\IfNoValueTF{#2}{}{(#2)}\IfNoValueTF{#5}{}{~#5}}\hfill~\linebreak{%
 	\IfNoValueTF{#1}{}{%
 		\ifx\tmpone\tmpyes%
 			%
@@ -179,7 +179,6 @@
 % Q — маленькая черточка (короткая, неопределенной формы)
 % Z — зигзаг или волнистая линия
 % D — «ручка» (круглая или треугольная)
-% K — точка, короткая черточка, маленький кружок, маленький наплыв
 % V — вилка
 
 \addbibresource{tenevil.bib}
@@ -242,7 +241,7 @@
 		ә [слово напечатано] [12.16] \linebreak
 		eulьm \currentGlyphWithAffixes{}{W,L,M} [ИЛИ:2.28об] % ilispread:2.28
 		\tabularnewline \midrule 
-\tenevilglyph[yes][5][K]{*',*3'}[1K,3K]
+\tenevilglyph[yes][5][K]{*',*3'}[1I,3I]
 	&	к, ӄ
 	&	
 	&	к [2] 
@@ -252,7 +251,7 @@
 		k [слово напечатано] \currentGlyphWithAffixes[2]{}{} [12.11] \linebreak
 		q [слово напечатано] \currentGlyphWithAffixes[2]{}{} [12.15об]
 		\tabularnewline \midrule 
-\tenevilglyph[yes][5][Q]{*bTF_jT}[1J1K]
+\tenevilglyph[yes][5][Q]{*bTF_jT}[1J]
 	&	ӄ
 	&	
 	&	
@@ -1007,7 +1006,7 @@
 		ŋukeken [ӈуткэкин = здешний, местный] \currentGlyphWithAffixes{}{K,E} [ИЛИ:1.2об] \linebreak % ilispread:1.3
 		ŋutkeken [ӈуткэкин] \currentGlyphWithAffixes{}{K,K} [ИЛИ:2.19об] % ilispread:2.19
 		\tabularnewline \midrule
-\tenevilglyph[yes][4]{l-l_'}[2L2I1I]
+\tenevilglyph[yes][4]{l-l_'}[2L4I1I]
 	&
 	& 	с этих пор \cite{bogoraz1934}
 	&	с этих пор (Б. Т. 39)
@@ -1017,7 +1016,7 @@
 		ŋuketeьnk [ИЛИ:1.4] \linebreak % TODO: нужна транскрипция % ilispread:1.4
 		ŋotketeьnьk \currentGlyphWithAffixes{}{T,K} [ИЛИ:2.6] % ilispread:2.5
 		\tabularnewline \midrule
-\tenevilglyph[yes][3]{l-l_2c}[2L4I1I2C]
+\tenevilglyph[yes][3]{l-l_2c}[2L4I2C]
 	&
 	&	
 	&	
@@ -1492,7 +1491,7 @@
 	& 	[1.61] \linebreak
 		qьleken [ӄԓикин = теленок-бычок возрастом до года] [ИЛИ:2.10об] % ilispread:2.10
 		\tabularnewline \midrule
-\tenevilglyph[yes][4]{a_k_j_'}[1B1D2J1K]
+\tenevilglyph[yes][4]{a_k_j_'}[1B1D2J1I]
 	&	ычвэк
 	&	
 	&
@@ -1541,7 +1540,7 @@
 		ŋelwliьt [ӈэԓвыԓьыт = стада] \currentGlyphWithAffixes{}{T} [ИЛИ:2.28] \linebreak % ilispread:2.27
 		ŋelwьliьt [ӈэԓвыԓьыт = стада] \currentGlyphWithAffixes{}{b,T} [ИЛИ:2.27об] % ilispread:2.27
 		\tabularnewline \midrule
-\tenevilglyph[yes][3]{a_o}[1B1D1J1K]
+\tenevilglyph[yes][3]{a_o}[1B1D1J]
 	&
 	&	дикий олень \cite{lavrov1969}
 	&
@@ -1883,7 +1882,7 @@
 		metkeet [mætkiit, мэткиит] [ИЛИ:1.4] \linebreak % ilispread:1.4
 		metket [мэткиит] [ИЛИ:2.23об] % ilispread:2.23
 		\tabularnewline \midrule
-\tenevilglyph[yes][5]{I-2l}[1I2L]
+\tenevilglyph[yes][5]{I-2l}[1I2L4I]
 	&	ӄонпы
 	& 	совсем \cite{bogoraz1934}
 	&	конпын' [ӄонпыӈ], совсем, вовсе
@@ -2179,7 +2178,7 @@
 	&
 	& 	riemekrelь [ИЛИ:1.7] % TODO: нужен перевод % ilispread:1.7
 		\tabularnewline \midrule
-\tenevilglyph[yes][2]{U_iX_b}[1C1B]
+\tenevilglyph[yes][2]{U_iX_b}[1C1I1B]
 	&
 	&	divide the reindeer herd \cite{mindalevich1934}
 	&
@@ -2187,7 +2186,7 @@
 	& 	[12.1об] \linebreak
 		nьtemauqen [нытэнмавӄэн = готвится] \currentGlyphWithAffixes{N,T,M}{} [ИЛИ:1.3] % TODO: уточнить перевод % ilispread:1.3
 		\tabularnewline \midrule
-\tenevilglyph[yes][1]{U_iX_2b}[1C1B]
+\tenevilglyph[yes][1]{U_iX_2b}[1C1I2B]
 	&
 	&	
 	&
@@ -2382,7 +2381,7 @@
 	& 	umqь [umqæ, умӄы = белый медведь; слово напечатано] [12.16] \linebreak
 		umqь [умӄы; слово напечатано, рядом с изображением белого медведя] \currentGlyphWithAffixes[2]{}{} [14.16]
 		\tabularnewline \midrule
-\tenevilglyph[yes][4]{I-IE_'}[1I3Q1L1K]
+\tenevilglyph[yes][4]{I-IE_'}[1I3Q1L1I]
 	&
 	&	
 	&
@@ -2509,7 +2508,7 @@
 	&	банка с керосином (Б. Т. 68) [109]
 	&	банка с керосином \cite[л. 46]{spbfaran79} 
 	& 	\tabularnewline \midrule
-\tenevilglyph[no][3]{R-o-o_3iS_'}[1R4I1I2O3S1K]
+\tenevilglyph[no][3]{R-o-o_3iS_'}[1R4I1I2O3S1I]
 	&
 	& 	банка с жиром \cite{bogoraz1934}
 	&	банка с жиром (Б. Т. 66) [109]
@@ -2602,7 +2601,7 @@
 		nьteqen [нытэӈӄин] [ИЛИ:2.24] \linebreak % ilispread:2.23
 		хоросо [хорошо] \currentGlyphWithAffixes{}{A} [37.7об]
 		\tabularnewline \midrule
-\tenevilglyph[yes][5]{i_J}[1G1J]
+\tenevilglyph[yes][5]{i_J}[1I1J]
 	&	нымэԓьэв
 	&	
 	&	
@@ -2613,7 +2612,7 @@
 		nьmliu [нымэԓьэв] [ИЛИ:2.12об] \linebreak % ilispread:2.12
 		nьmelqen [нымэԓӄин = хороший, доброкачественный] [ИЛИ:1.6] % ilispread:1.6
 		\tabularnewline \midrule
-\tenevilglyph[yes][3]{i_o_G}[1G1O]
+\tenevilglyph[yes][3]{i_o_G}[1I1G1O]
 	&
 	& 	мастероватый \cite{bogoraz1934}
 	&	нытэминн'ыкин [нытэминӈыӄин = умелый, умелец, мастер], мастер [64]
@@ -3086,7 +3085,7 @@
 		nejlqetqen [ныйыԓӄэтӄин = спал] [ИЛИ:1.7об] \linebreak % ilispread:1.8
 		mьnjьlqənmьk [= пойдем спать; слово напечатано] \currentGlyphWithAffixes{M}{K} [12.21] % TODO: нужна транскрипция
 		\tabularnewline \midrule
-\tenevilglyph[yes][3]{cU_2q_cD_2q}[2C4Q]
+\tenevilglyph[yes][3]{cU_2q_cD_2q}[2C4I]
 	&	яак
 	&	
 	&
@@ -3101,14 +3100,14 @@
 		jaat \currentGlyphWithAffixes{}{T} [ИЛИ:1.18об] \linebreak % ilispread:1.19
 		nejaarkьnen \currentGlyphWithAffixes{N}{R,N,N} [ИЛИ:2.6об] % ilispread:2.6
 		\tabularnewline \midrule
-\tenevilglyph[yes][3]{cU_q_j_cD_2q}[2C3Q1J]
+\tenevilglyph[yes][3]{cU_q_j_cD_2q}[2C3I1J]
 	&	яаёԓӄыԓ
 	&	
 	&
 	&	
 	& 	jajulqьl [яаёԓӄыԓ = нужный предмет, мне нужно] [ИЛИ:1.6] % ilispread:1.6
 		\tabularnewline \midrule
-\tenevilglyph[yes][1]{cU_2q_cD_2q_o}[2C3Q1O]
+\tenevilglyph[yes][1]{cU_2q_cD_2q_o}[2C4I1O]
 	&
 	&	
 	&
@@ -3658,7 +3657,7 @@
 	&	
 	& 	в «8074» [46а.4об]
 		\tabularnewline \midrule
-\tenevilglyph[yes][5]{o_2q_jN_jF_o,o-o_2'}[2O2Q1J,2O2K]
+\tenevilglyph[yes][5]{o_2q_jN_jF_o,o-o_2'}[2O2Q1J,2O2I]
 	&	9, ӄонъачгынкэн
 	&	9 \cite{lavrov1969}
 	&	коначгын'кэн [ӄонъачгынкэн = девять], 9, девять [44]
