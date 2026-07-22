@@ -5,7 +5,7 @@
 		total={135mm,260mm},
 		left=40mm,
 		top=20mm,
-		marginparwidth=25mm,
+		marginparwidth=30mm,
 	}
 \usepackage{luaotfload,luacode}
 \usepackage[hidelinks]{hyperref}
@@ -74,7 +74,7 @@
 \newcounter{question}
 
 \DeclareDocumentCommand{\newQuestion}{}{%
-	\vskip 25pt \par\noindent\refstepcounter{question}\textbf{\thequestion .} 
+	\vskip 17pt \par\noindent\refstepcounter{question}\textbf{\thequestion .} 
 }
 
 \def\lastKey{}
@@ -82,7 +82,7 @@
 \DeclareDocumentCommand{\identificationKey}{m m m m}{
 	\newQuestion%
 	\def\thisKey{#1}%
-	\ifx\lastKey\thisKey\else\reversemarginpar\marginpar{\vskip -4mm\includegraphics[width=25mm]{keys/#1.pdf}}\fi%
+	\ifx\lastKey\thisKey\else\reversemarginpar\marginpar{\vskip -4mm\includegraphics[width=30mm]{keys/#1.pdf}}\fi%
 	\ifnum#2=1 
 		В знаке есть \expandafter\csname keyNomPl#1\endcsname?
 	\else

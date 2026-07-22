@@ -25,9 +25,8 @@ keysTable <- as.data.frame(t(sapply(1:nrow(rawkeys), function(x){
 rownames(keysTable) <- rawkeys$charactercode
 keysTable$characternumber <- rawkeys$characternumber
 
-
 produceTree <- function(keysTableSubset, keysLevel, depth){
-  splitTable <-as.data.frame(t(sapply(keysList, function(x){
+  splitTable <- as.data.frame(t(sapply(keysList, function(x){
     toHalf <- sapply(1:(max(keysTableSubset[,x])), function(y){
       abs(0.5 - sum(keysTableSubset[,x] >= y)/nrow(keysTableSubset))
     })
@@ -45,6 +44,7 @@ produceTree <- function(keysTableSubset, keysLevel, depth){
     nrow(firstPart) > 5
     & nrow(secondPart) > 5
     & nrow(keysTableSubset) >= 15
+    & depth > 0
   ) {
     keysLevel$charactersList <- NA
     keysLevelFirstPart <- keysLevel$AddChild(paste(keyName, "ge", keyValue, sep = ""))
@@ -52,13 +52,13 @@ produceTree <- function(keysTableSubset, keysLevel, depth){
     keysLevelFirstPart$keyValue <- keyValue
     keysLevelFirstPart$keyKind <- "ge"
     keysLevelFirstPart$nCharacters <- nrow(firstPart)
-    produceTree(firstPart, keysLevelFirstPart, depth+1)
+    produceTree(firstPart, keysLevelFirstPart, depth - 1)
     keysLevelSecondPart <- keysLevel$AddChild(paste(keyName, "ls", keyValue, sep = ""))
     keysLevelSecondPart$keyName <- keyName
     keysLevelSecondPart$keyValue <- keyValue
     keysLevelSecondPart$keyKind <- "ls"
     keysLevelSecondPart$nCharacters <- nrow(secondPart)
-    produceTree(secondPart, keysLevelSecondPart, depth+1)
+    produceTree(secondPart, keysLevelSecondPart, depth - 1)
   } else {
     charactersTable <- as.data.frame(cbind(keysTableSubset$characternumber,rownames(keysTableSubset)))
     names(charactersTable) <- c("number","name")
@@ -68,7 +68,7 @@ produceTree <- function(keysTableSubset, keysLevel, depth){
 
 classificationKeys <- Node$new("key")
 
-produceTree(keysTable, classificationKeys, 0)
+produceTree(keysTable, classificationKeys, 7)
 
 print(classificationKeys,"nCharacters")
 
