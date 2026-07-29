@@ -67,7 +67,8 @@
 \keyNames{Q}{короткие хвостики}{коротких хвостиков}
 \keyNames{Z}{зигзаги}{зигзагов}
 \keyNames{D}{«ручки»}{«ручек»}
-\keyNames{V}{вилка}{вилок}
+\keyNames{V}{вилки}{вилок}
+\keyNames{W}{симметрии}{симметрий}
 
 \newcounter{question}
 
@@ -80,7 +81,7 @@
 \DeclareDocumentCommand{\identificationKey}{m m m m}{
 	\newQuestion%
 	\def\thisKey{#1}%
-	\ifx\lastKey\thisKey\else\reversemarginpar\marginpar{\vskip -4mm\includegraphics[width=30mm]{keys/#1.pdf}}\fi%
+	\ifx\lastKey\thisKey\else\reversemarginpar\marginpar{\IfFileExists{keys/#1.pdf}{\vskip -4mm\includegraphics[width=30mm]{keys/#1.pdf}}{}}\fi%
 	\ifnum#2=1 
 		В знаке есть \expandafter\csname keyNomPl#1\endcsname?
 	\else
