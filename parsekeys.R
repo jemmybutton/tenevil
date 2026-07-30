@@ -5,6 +5,10 @@ library(data.tree)
 rawkeys <- read.csv("characterkeys.csv")
 keysList <- unique(toupper(unlist(strsplit(rawkeys$characterkeys,"[0-9]"))))
 keysList <- keysList[2:length(keysList)]
+keysTable <- data.frame(characternumber = rep(NA,nrow(rawkeys)))
+for (i in keysList){
+  keysTable[,i] <- NA
+}
 for (i in c("minN","maxN")){
   keysTable[[i]] <- as.data.frame(t(sapply(1:nrow(rawkeys), function(x){
     currentLine <- rawkeys[x,]
@@ -33,7 +37,7 @@ for (i in c("minN","maxN")){
 
 produceTree <- function(keysTableSubset, keysLevel, depth){
   splitTable <- as.data.frame(t(sapply(keysList, function(x){
-    toHalf <- sapply(1:(max(keysTableSubset[,x])), function(y){
+    toHalf <- sapply(1:(max(keysTableSubset[["maxN"]][,x])), function(y){
       abs(sum(keysTableSubset[["maxN"]][,x] >= y) - sum(keysTableSubset[["minN"]][,x] < y))
     })
     minIndex <- which(toHalf == min(toHalf))[1]
@@ -51,7 +55,7 @@ produceTree <- function(keysTableSubset, keysLevel, depth){
   if (
     nrow(partA) > 5
     & nrow(partB) > 5
-    & nrow(keysTableSubset) >= 15
+    & nrow(keysTableSubset[["minN"]]) >= 15
     & depth > 0
   ) {
     keysLevel$charactersList <- NA
