@@ -37,14 +37,23 @@ for (i in c("minN","maxN")){
 
 produceTree <- function(keysTableSubset, keysLevel, depth){
   splitTable <- as.data.frame(t(sapply(keysList, function(x){
-    toHalf <- sapply(1:(max(keysTableSubset[["maxN"]][,x])), function(y){
-      abs(sum(keysTableSubset[["maxN"]][,x] >= y) - sum(keysTableSubset[["minN"]][,x] < y))
-    })
-    minIndex <- which(toHalf == min(toHalf))[1]
-    c(minIndex,toHalf[minIndex])
+    toHalf <- as.data.frame(t(sapply((1 + min(keysTableSubset[["maxN"]][,x])):(max(keysTableSubset[["maxN"]][,x])), function(y){
+      candidatePartA <- keysTableSubset[keysTableSubset[["maxN"]][,x] >= y,]
+      candidatePartB <- keysTableSubset[keysTableSubset[["minN"]][,x] < y,]
+      partSizeDifference <- abs(nrow(candidatePartA) - nrow(candidatePartB))
+      uniqueRowsA <- unique(rbind(candidatePartA[["minN"]][,keysList],candidatePartA[["maxN"]][,keysList]))
+      uniqueA <- nrow(uniqueRowsA)
+      uniqueRowsB <- unique(rbind(candidatePartB[["minN"]][,keysList],candidatePartB[["maxN"]][,keysList]))
+      uniqueB <- nrow(uniqueRowsB)
+      uniqueUnion <- nrow(unique(rbind(uniqueRowsA,uniqueRowsB)))
+      c(y, partSizeDifference, (uniqueA + uniqueB - uniqueUnion)/uniqueUnion)
+    })))
+    names(toHalf) <- c("index","psd","ui")
+    minIndex <- toHalf$index[which(toHalf$psd == min(toHalf$psd))[1]]
+    c(minIndex,toHalf$psd[which(toHalf$index == minIndex)])
   })))
   names(splitTable) <- c("index","value")
-  splitPosition <- splitTable[which(splitTable$value == min(splitTable$value))[1],]
+  splitPosition <- splitTable[which(splitTable$value == min(splitTable$value, na.rm = T))[1],]
   keyName <- rownames(splitPosition)
   keyValue <- splitPosition$index
   partA <- keysTableSubset[keysTableSubset[["maxN"]][,keyName] >= keyValue,]
@@ -53,8 +62,8 @@ produceTree <- function(keysTableSubset, keysLevel, depth){
   partB[["maxN"]][partB[["maxN"]][,keyName] >= keyValue, keyName] <- keyValue - 1
 
   if (
-    nrow(partA) > 5
-    & nrow(partB) > 5
+    nrow(partA) > 3
+    & nrow(partB) > 3
     & nrow(keysTableSubset[["minN"]]) >= 15
     & depth > 0
   ) {
