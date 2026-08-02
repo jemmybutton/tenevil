@@ -42,7 +42,7 @@
 \def\fontchar#1{\directlua{documentdata.fontchar "#1"}}
 
 \newcounter{glyph}
-\setcounter{glyph}{1}
+\setcounter{glyph}{0}
 
 \newcounter{charvariantcounter}
 \newcounter{optioncounter}
@@ -65,10 +65,19 @@
 	\cite[\nopp #1]{#2}%
 }%
 
-\DeclareDocumentCommand{\tenevilglyph}{o o o m o}{%
-\def\tmpyes{yes}
-\def\tmpone{#1}
-\theglyph~{\IfNoValueTF{#2}{}{(#2)}\IfNoValueTF{#5}{}{}}\hfill~\linebreak{%
+\DeclareDocumentCommand{\refList}{>{\SplitList{-}}m}{%
+  \ProcessList{#1}{\produceRefernce}%
+}
+
+\DeclareDocumentCommand{\produceRefernce}{m}{%
+  \ref{glyph:#1}~
+}
+
+\DeclareDocumentCommand{\tenevilglyph}{o o o m o o}{%
+\def\tmpyes{yes}%
+\def\tmpnone{none}%
+\def\tmpone{#1}%
+\vphantom{Glyph:}\refstepcounter{glyph}\theglyph{\IfNoValueTF{#2}{}{(#2)}\IfNoValueTF{#5}{}{}}\hfill~\vskip 1mm{%
 	\IfNoValueTF{#1}{}{%
 		\ifx\tmpone\tmpyes%
 			%
@@ -91,20 +100,33 @@
 						\fi%
 					}%
 				}%
-				{\tenevilfont\fontsize{40pt}{40pt}\selectfont\fontchar{##1}\ %
-				\global\expandafter\def\csname\curname\endcsname{{\tenevilfont\selectfont\fontchar{##1}}}%
-				\global\expandafter\def\expandafter\allchars\expandafter{\allchars{ }\tenevilfont\fontsize{40pt}{40pt}\selectfont\fontchar{##1}\ }%
+				{\tenevilfont\fontsize{40pt}{40pt}\selectfont\fontchar{##1}\ %				\global\expandafter\def\csname\curname\endcsname{{\tenevilfont\selectfont\fontchar{##1}}}%
+				\global\expandafter\def\expandafter\allchars\expandafter{\allchars{ }\tenevilfont\fontsize{40pt}{40pt}\selectfont\fontchar{##1}\ }\linebreak%
 				\IfNoValueTF{#3}{}{%
 					\ifnum\value{charvariantcounter} = 1%
+						\label{glyph:#3}%
 						\write\shortcuts{\string\def\expandafter\string\csname TenevilGlyph#3\endcsname{##1}}%
 					\else
+						\label{glyph:#3\arabic{charvariantcounter}}%
 						\write\shortcuts{\string\def\expandafter\string\csname TenevilGlyph#3\endcsname\roman{charvariantcounter}{##1}}
 					\fi
 				}%
 				}%
+				\IfNoValueTF{#6}{}{%
+					\setcounter{optioncounter}{0}%
+					\clist_map_inline:nn { #6 } {%
+						\stepcounter{optioncounter}%
+						\ifnum \value{optioncounter} = \value{charvariantcounter}%
+							\def\tmptwo{####1}%
+							\ifx\tmptwo\tmpnone%
+							\else%
+							{\tiny \refList{####1}}
+							\fi
+						\fi%
+					}%
+				}%
 			}%
 		}%
-	\stepcounter{glyph}%
 }
 
 
@@ -167,6 +189,8 @@
 %	Ы -> y
 %	Э/Е -> e
 %	Е -> je
+%
+%  NB: гортанная смычка, x, если она кириллицей пишется после первой гласной, переставляется в начало слова
 
 %
 % Ключи:
@@ -175,15 +199,16 @@
 % + R — квадрат
 % + G — спираль (в любую сторону)
 % + B — петля (любой формы)
-% V — вилка
+% + V — вилка
+% + S — s-образный элемент (в любую сторону)
+% Z — зигзаг или волнистая линия
 
 % C — дуга
 % J — крючок (изогнутая в одну сторону линия со свободным концом)
-% S — s-образный элемент (в любую сторону) или «коромысло»
 % L — L, T или +
 % I — прямая или слегка изогнутая линия (прямая линия без изгиба)
 % Q — маленькая черточка (короткая, неопределенной формы)
-% Z — зигзаг или волнистая линия
+
 % D — «ручка» (круглая или треугольная)
 
 % W — у знака есть либо осевая либо вращательная симметрия
@@ -341,7 +366,7 @@
 		гылауло [ӄԓявыԓё = мужчина] \currentGlyphWithAffixes{}{Q,L,O} \citearchive[44.2об]{iea} \linebreak 
 		kaletko-laul [= учитель; слово напечатано] \currentGlyphWithAffixes{}{kelikel} \citearchive[12.19об]{iea} % TODO: нужна транскрипция
 		\tabularnewline \midrule
-\tenevilglyph[yes][5]{i_2cU_2cD_'} % old keys: [4J1I]
+\tenevilglyph[yes][5]{i_2cU_2cD_'}[][qlawyl] % old keys: [4J1I]
 	&	ытԓыгын, пэԓӄэтык
 	& 	отец \cite{bogoraz1934}
 	&	ынпыначгын, старик \citearchive[40.126]{iea}
@@ -361,7 +386,7 @@
 		ьlььn [ытԓыгын] \currentGlyphWithAffixes{}{N} \citearchive[1.21]{ili} \linebreak % ilispread:1.21
 		әtlьgьk [ытԓыгык = к отцу; слово напечатано] \currentGlyphWithAffixes{}{K} \citearchive[12.22]{iea} 
 		\tabularnewline \midrule
-\tenevilglyph[yes][3]{i_2cU_j_2cD}[1v] % old keys: [3J1J]
+\tenevilglyph[yes][3]{i_2cU_j_2cD}[1v][qlawyl] % old keys: [3J1J]
 	&	ы'вэӄуч
 	&	
 	&
@@ -382,7 +407,7 @@
 	&	
 	&	tur-irьn [туриръын = новая кухлянка; слово напечатано] \citearchive[7.13]{iea}
 		\tabularnewline \midrule
-\tenevilglyph[yes][5]{i_2cU_2C} % old keys: [2J2C1W]
+\tenevilglyph[yes][5][vewysqet]{i_2cU_2C} % old keys: [2J2C1W]
 	&	ӈэвысӄэт
 	&	a woman \cite{mindalevich1934}
 	&	н'эвыскэт [ӈэвысӄэт], женщина \citearchive[40.26]{iea}
@@ -393,14 +418,14 @@
 		неузкетте [ӈэвысӄэтти] \citearchive[41.6об]{iea} \linebreak
 		увутык \currentGlyphWithAffixes{W,T}{} \citearchive[29.2об]{iea} % TODO: нужен перевод, имя?
 		\tabularnewline \midrule
-\tenevilglyph[yes][3]{i_2cU_j_2C}[1s] % old keys: [1J2C]
+\tenevilglyph[yes][3]{i_2cU_j_2C}[1s][vewysqet] % old keys: [1J2C]
 	&
 	&	
 	&
 	&	жена \cite[л. 65 об.]{spbfaran79}
 	&	\cite[364]{davydova2015a}
 		\tabularnewline \midrule
-\tenevilglyph[yes][5]{i_2cU_l_2C} % old keys: [2J2C1L]
+\tenevilglyph[yes][5]{i_2cU_l_2C}[][vewysqet] % old keys: [2J2C1L]
 	&	ытԓя
 	&	
 	&
@@ -410,14 +435,14 @@
 	&	\cite[360, 364]{davydova2015a} \linebreak
 		ьla [әtla, ытԓя] \citearchive[1.21]{ili} % ilispread:1.21
 		\tabularnewline \midrule
-\tenevilglyph[yes][3]{i_2cU_t_2C} % old keys: [2J2C1L]
+\tenevilglyph[yes][3]{i_2cU_t_2C}[][vewysqet] % old keys: [2J2C1L]
 	&
 	&	a woman awaiting the birth of her child \cite{mindalevich1934}
 	&
 	&	родившая мать \cite[л. 64]{spbfaran79}
 	&	[65.6об]
 		\tabularnewline \midrule
-\tenevilglyph[yes][3]{i_2cU_2C_h} % old keys: [3J2C]
+\tenevilglyph[yes][3]{i_2cU_2C_h}[][vewysqet] % old keys: [3J2C]
 	&	
 	&	
 	&
@@ -443,7 +468,7 @@
 		ekkete [эккэтэ = сыновья; слово напечатано] \currentGlyphWithAffixes{}{T} \citearchive[12.11]{iea} \linebreak % TODO: уточнить перевод
 		ekket [эккэт] \currentGlyphWithAffixes{}{T} \citearchive[2.22]{ili} % ilispread:2.21
 		\tabularnewline \midrule
-\tenevilglyph[yes][5]{i_2cU_CF} % old keys: [2J1C1I1W]
+\tenevilglyph[yes][5]{i_2cU_CF}[][vewysqet] % old keys: [2J1C1I1W]
 	&	ӈээкык
 	&	
 	&
@@ -453,19 +478,19 @@
 	 	ŋэkьk [ӈээкык = дочь] \citearchive[1.23]{ili} \linebreak % ilispread:1.24
 	 	ŋekьk [ӈээкык] \citearchive[2.10об]{ili} % ilispread:1.10
 	 	\tabularnewline \midrule
-\tenevilglyph[no][3]{i_2cU_3CF} % old keys: [2J3C1I1W]
+\tenevilglyph[no][3]{i_2cU_3CF}[][vewysqet] % old keys: [2J3C1I1W]
 	&
 	&	
 	&
 	&	ситра [сестра] \cite[л. 67]{spbfaran79} 
 	& 	\tabularnewline \midrule
-\tenevilglyph[no][3]{i_2CF_v_q_'}[1v] % old keys: [2C1I1L2I1I]
+\tenevilglyph[no][3]{i_2CF_v_q_'}[1v][tumgytun] % old keys: [2C1I1L2I1I]
 	&
 	&	
 	&
 	&	прат [брат] \cite[л. 67]{spbfaran79} % йичьэмиттумгын?
 	& 	\tabularnewline \midrule
-\tenevilglyph[yes][5]{i_vd_q_i}[1v] % old keys: [1L2I2I]
+\tenevilglyph[yes][5][tumgytun]{i_vd_q_i}[1v] % old keys: [1L2I2I]
 	&	тумгытум
 	&	друг \cite{lavrov1969}
 	&	тумгытум [= товарищ], товарищ \citearchive[40.50]{iea}
@@ -486,7 +511,7 @@
 		ŋenqej [ŋenqәj, ӈинӄэй = мальчик] \citearchive[1.7]{ili} \linebreak % ilispread:1.7
 		ŋenqьte [ӈинӄэгти = дети] \citearchive[1.10]{ili} % ilispread:1.10
 		\tabularnewline \midrule
-\tenevilglyph[yes][3]{i_2cU_CF_h} % old keys: [2J1C1I1J]
+\tenevilglyph[yes][3]{i_2cU_CF_h}[][vewysqet] % old keys: [2J1C1I1J]
 	&
 	&	
 	&
@@ -653,7 +678,7 @@
 	&	
 	& 	эmьrgen [эмыргин = именно их] \citearchive[1.16об]{ili} % МП % ilispread:1.17
 		\tabularnewline \midrule
-\tenevilglyph[yes][5]{R_2bN}[1R2B] % old keys: [1R4I2B1W]
+\tenevilglyph[yes][5][kupren]{R_2bN}[1R2B] % old keys: [1R4I2B1W]
 	&	купрэн
 	& 	сеть \cite{bogoraz1934}\linebreak
 		a net \cite{mindalevich1934}
@@ -667,21 +692,21 @@
 		kupret [купрэт = сети; слово напечатано] \citearchive[12.25]{iea} \linebreak
 		kuprete [купрэтэ = сетями; слово напечатано] \currentGlyphWithAffixes{}{T} \citearchive[12.25]{iea}
 		\tabularnewline \midrule 
-\tenevilglyph[yes][3]{R_2bN_bXX}[1R2B2b] % old keys: [1R4I2B]
+\tenevilglyph[yes][3]{R_2bN_bXX}[1R2B1B1b][kupren,ryrytkuk] % old keys: [1R4I2B]
 	&	
 	& 	
 	&	
 	&	свашот [свяжут] \cite[л. 68]{spbfaran79} % TODO: уточнить интерпретацию
 	& 	~[4.4об]
 		\tabularnewline \midrule 
-\tenevilglyph[yes][3]{j-jXXX}[2b] % old keys: [2B1W]
+\tenevilglyph[yes][3][ryrytkuk]{j-jXXX}[1B1b] % old keys: [2B1W]
 	&	рырыткук
 	&	
 	&	
 	&	
 	&	ррткок [рырыткук = расстилать, распутывать, развязывать] [42.2] % в контексте сети
 		\tabularnewline \midrule 
-\tenevilglyph[yes][2]{sME_2b,sME-f_2b}[2B1S,2B1S] % old keys: [1S2B2Q,1S2B2Q2I]
+\tenevilglyph[yes][2]{sME_2b,sME-f_2b}[2B1S,2B1S][none,xorawetlxan] % old keys: [1S2B2Q,1S2B2Q2I]
 	&
 	&	как звать? \cite{lavrov1969} % это похоже на ошибку
 	&	как тебя звать \citearchive[40.16]{iea}
@@ -699,7 +724,7 @@
 		папа \currentGlyphWithAffixes{}{Q,A} \citearchive[30.1об]{iea} \linebreak
 		Тыневел [Тыневиль] \currentGlyphWithAffixes[2]{}{} \citearchive[41.1об]{iea}
 		\tabularnewline \midrule
-\tenevilglyph[yes][5]{sME,sME-f}[1S,1S] % old keys: [1S2Q,1S2Q2I]
+\tenevilglyph[yes][5]{sME,sME-f}[1S,1S][none,xorawetlxan] % old keys: [1S2Q,1S2Q2I]
 	&	Тыневиль
 	&	Теневиль \cite{lavrov1969}
 	&	имя Теневиля
@@ -745,7 +770,7 @@
 		Rалына [Раулина] [30.1] \linebreak
 		Rая [Рая\cite{druri1989} = Раулина, жена Тыневиля] \citearchive[30.3, 32.10, 39.4об, 43.6]{iea}
 		\tabularnewline \midrule
-\tenevilglyph[yes][5]{i_2cY,i_2cY-f} % old keys: [1I4J2V1W,1I4J2I2V]
+\tenevilglyph[yes][5]{i_2cY,i_2cY-f}[2V,2V][none,xorawetlxan] % old keys: [1I4J2V1W,1I4J2I2V]
 	&	Егор, Этувьи
 	&	Этувьи \cite{lavrov1969}
 	&	Этувьи (Егор), имя сына Теневиля \citearchive[40.7]{iea}
@@ -757,7 +782,7 @@
 		Eekor [Егор] \citearchive[1.9, 2.10]{ili} \linebreak % ilispread:2.9
 		Еекор [Егор] \currentGlyphWithAffixes[2]{}{} \citearchive[44.2об]{iea}
 		\tabularnewline \midrule
-\tenevilglyph[yes][5]{UD_2b,UD-f_2b}[2B2V,2B2V] % old keys: [1C2B,1C2B2I]
+\tenevilglyph[yes][5]{UD_2b,UD-f_2b}[2B,2B][none,xorawetlxan] % old keys: [1C2B,1C2B2I]
 	& 	Эгынкеу
 	&	
 	&	Эйчинкеу, имя сына Теневиля \citearchive[40.115]{iea}
@@ -790,14 +815,14 @@
 	& 	\cite[363]{davydova2015a} \linebreak
 		Вантоли [не рукой Т.] [57.9]
 		\tabularnewline \midrule
-\tenevilglyph[yes][1]{i_2cU_CF_i_2l} % old keys: [2J1C1I1I2L] % TODO: Вероятно имя собственное, но надо проверить
+\tenevilglyph[yes][1]{i_2cU_CF_i_2l}[][vewysqet] % old keys: [2J1C1I1I2L] % TODO: Вероятно имя собственное, но надо проверить
 	&
 	&	
 	&	Элтхеут (имя) \citearchive[40.27]{iea}
 	&
 	& 	Еетхеут \citearchive[29.2, 35.3, 45.7]{iea}
 		\tabularnewline \midrule
-\tenevilglyph[yes][1]{f_i_2l} % old keys: [1I2L2I] % TODO: Вероятно имя собственное, но надо проверить
+\tenevilglyph[yes][1]{f_i_2l}[][xorawetlxan] % old keys: [1I2L2I] % TODO: Вероятно имя собственное, но надо проверить
 	&
 	&	
 	&
@@ -1730,7 +1755,7 @@
 	&	
 	& 	mьkeliьn [мыкыԓьын = многочисленный] \citearchive[1.3об]{ili} % ilispread:1.4
 		\tabularnewline \midrule
-\tenevilglyph[yes][5]{f} % old keys: [3I]
+\tenevilglyph[yes][5][xorawetlxan]{f} % old keys: [3I]
 	&	о'равэтԓьан
 	& 	человек \cite{bogoraz1934}\linebreak
 		человек \cite{lavrov1969}
@@ -1802,7 +1827,7 @@
 	&	
 	& 	ierьl \citearchive[2.10]{ili} % TODO: нужен перевод % ilispread:2.9
 		\tabularnewline \midrule
-\tenevilglyph[yes][1]{BD_f}[1B] % old keys: [1B3I]
+\tenevilglyph[yes][1]{BD_f}[1B][xetki-xorawetlxan] % old keys: [1B3I]
 	&
 	&	
 	&	
@@ -1810,7 +1835,7 @@
 	& 	iaqorawlian \citearchive[1.12об]{ili} \linebreak % TODO: нужен перевод а'къоравэтльан? % ilispread:1.13
 		iaqiorawelian \citearchive[2.27]{ili} % ilispread:2.26
 		\tabularnewline \midrule
-\tenevilglyph[yes][4]{i_G_f}[1G] % old keys: [1I1G3I]
+\tenevilglyph[yes][4]{i_G_f}[1G][nytevqin-xorawetlxan] % old keys: [1I1G3I]
 	&	таӈъоравэтԓьан
 	&	
 	&	
@@ -2598,7 +2623,7 @@
 	&	\cite{bogoraz1934} \linebreak
 		tulerkьnin [= украл; слово напечатано] \citearchive[12.13об]{iea} % TODO: нужна транскрипция
 		\tabularnewline \midrule
-\tenevilglyph[yes][5]{i_G}[1G] % old keys: [1I1G]
+\tenevilglyph[yes][5][nytevqin]{i_G}[1G] % old keys: [1I1G]
 	&	нытэӈӄин
 	& 	хороший \cite{bogoraz1934}
 	&	нытэн'кин [нытэӈӄин = славный, добрый, хороший], хороший \citearchive[40.64]{iea}
@@ -2678,7 +2703,7 @@
 	&	
 	& 	amtaŋьciet [амтаӈычьэты = очень весело] \citearchive[1.12об]{ili} % ilispread:1.13
 		\tabularnewline \midrule
-\tenevilglyph[yes][5]{BD,B}[1B,1B] % old keys: [1B1W,1B1W]
+\tenevilglyph[yes][5][xetki]{BD,B}[1B,1B] % old keys: [1B1W,1B1W]
 	&	э'тки
 	& 	худой \cite{bogoraz1934}
 	&	этки [э'тки = плохо, скверно], плохой \citearchive[40.10]{iea}
@@ -4266,7 +4291,7 @@
 		nьrelioŋьrkьnen \currentGlyphWithAffixes{}{N,R,L} \citearchive[2.4]{ili} \linebreak % TODO: нужен перевод % ilispread:2.3
 		nьrelioŋьrkьnen \currentGlyphWithAffixes{}{R,L,W} \citearchive[2.4об]{ili} % TODO: нужен перевод % ilispread:2.4
 		\tabularnewline \midrule
-\tenevilglyph[no][3]{U_ux_j} % old keys: [1C1S] % TODO: вероятно, просто отрицательная частица добавлена, можно грохнуть будет
+\tenevilglyph[no][3]{U_ux_j}[1S] % old keys: [1C1S] % TODO: вероятно, просто отрицательная частица добавлена, можно грохнуть будет
 	&
 	&	
 	&
@@ -5052,7 +5077,7 @@
 	&	
 	& 	ролтырхын [руԓтыркын = сторониться] \citearchive[34.10]{iea} % руԓтыркын
 		\tabularnewline \midrule
-\tenevilglyph[yes][5]{o_2q_l} % old keys: [1O2I1L]
+\tenevilglyph[yes][5]{o_2q_l} [1O]% old keys: [1O2I1L]
 	&	ӄээӄын
 	&	
 	&	кейыкын [ӄээӄын = еще немного, еще], еще \citearchive[40.46]{iea}
@@ -5138,7 +5163,7 @@
 	&	
 	& 	waeeьqac \citearchive[27.18об]{iea} % TODO: нужен перевод
 		\tabularnewline \midrule
-\tenevilglyph[yes][3]{jY} % old keys: [2J1V]
+\tenevilglyph[yes][3]{jY}[1V] % old keys: [2J1V]
 	&	виин
 	&	
 	&
