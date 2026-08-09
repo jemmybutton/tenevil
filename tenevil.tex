@@ -65,12 +65,21 @@
 }%
 
 \DeclareDocumentCommand{\refList}{>{\SplitList{-}}m}{%
-  \ProcessList{#1}{\produceRefernce}%
+	  \ProcessList{#1}{\produceRefernce}%
 }
 
 \DeclareDocumentCommand{\produceRefernce}{m}{%
-  \ref{glyph:#1}~%
+	  \ref{glyph:#1}~%
 }
+
+\DeclareDocumentCommand{\keySetList}{>{\SplitList{-}}m}{%
+	  \ProcessList{#1}{\writeKeyLines}%
+}
+
+\DeclareDocumentCommand{\writeKeyLines}{m}{%
+	  \immediate\write\characterkeys{\theglyph,"\lastCharId","#1"}%
+}
+
 
 \DeclareDocumentCommand{\tenevilglyph}{o o o m o o}{%
 \def\tmpyes{yes}%
@@ -86,16 +95,18 @@
 		}
 		\setcounter{charvariantcounter}{0}
 		\clist_map_inline:nn { #4 } {%
+				\global\def\lastCharId{##1}
 				\stepcounter{charvariantcounter}%
 				\edef\curname{currentChar\thecharvariantcounter}%
 				\IfNoValueTF{#5}{%
-					\immediate\write\characterkeys{\theglyph,"##1", ""}%
+					\immediate\write\characterkeys{\theglyph,"\lastCharId", ""}%
 					}{%
 					\setcounter{optioncounter}{0}%
 					\clist_map_inline:nn { #5 } {%
 						\stepcounter{optioncounter}%
 						\ifnum \value{optioncounter} = \value{charvariantcounter}%
-							\immediate\write\characterkeys{\theglyph,"##1", "####1"}
+							%\immediate\write\characterkeys{\theglyph,"##1", "####1"}
+							\keySetList{####1}%
 						\fi%
 					}%
 				}%

@@ -31,7 +31,7 @@ for (i in c("minN","maxN")){
       }
     })
   })))
-  rownames(keysTable[[i]]) <- rawkeys$charactercode
+  keysTable[[i]]$charactercode <- rawkeys$charactercode
   keysTable[[i]]$characternumber <- rawkeys$characternumber
 }
 
@@ -89,8 +89,9 @@ produceTree <- function(keysTableSubset, keysLevel, countKeys, depth){
     keysLevelPartB$nCharacters <- nrow(partB)
     produceTree(partB, keysLevelPartB, countKeys, depth - 1)
   } else {
-    charactersTable <- as.data.frame(cbind(keysTableSubset[["minN"]]$characternumber,rownames(keysTableSubset[["minN"]])))
+    charactersTable <- as.data.frame(cbind(keysTableSubset[["minN"]]$characternumber,keysTableSubset[["minN"]]$charactercode))
     names(charactersTable) <- c("number","name")
+    charactersTable <- charactersTable[!duplicated(charactersTable$name),]
     keysLevel$charactersTable <- charactersTable
   }
 }
