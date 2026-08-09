@@ -35,22 +35,30 @@ for (i in c("minN","maxN")){
   keysTable[[i]]$characternumber <- rawkeys$characternumber
 }
 
-produceTree <- function(keysTableSubset, keysLevel, depth){
+produceTree <- function(keysTableSubset, keysLevel, countKeys, depth){
   splitTable <- as.data.frame(t(sapply(keysList, function(x){
-    toHalf <- as.data.frame(t(sapply((1 + min(keysTableSubset[["maxN"]][,x])):(max(keysTableSubset[["maxN"]][,x])), function(y){
+    if (countKeys){
+      minKeys <- (1 + min(keysTableSubset[["maxN"]][,x]))
+      maxKeys <- (max(keysTableSubset[["maxN"]][,x]))
+    } else {
+      minKeys <- 1
+      maxKeys <- 1
+    }
+    toHalf <- as.data.frame(t(sapply(minKeys:maxKeys, function(y){
       candidatePartA <- keysTableSubset[keysTableSubset[["maxN"]][,x] >= y,]
       candidatePartB <- keysTableSubset[keysTableSubset[["minN"]][,x] < y,]
       partSizeDifference <- abs(nrow(candidatePartA) - nrow(candidatePartB))
+      subDistToHalf <- abs(nrow(candidatePartA) - 0.5*nrow(keysTableSubset)) + abs(nrow(candidatePartB) - 0.5*nrow(keysTableSubset))
       uniqueRowsA <- unique(rbind(candidatePartA[["minN"]][,keysList],candidatePartA[["maxN"]][,keysList]))
       uniqueA <- nrow(uniqueRowsA)
       uniqueRowsB <- unique(rbind(candidatePartB[["minN"]][,keysList],candidatePartB[["maxN"]][,keysList]))
       uniqueB <- nrow(uniqueRowsB)
       uniqueUnion <- nrow(unique(rbind(uniqueRowsA,uniqueRowsB)))
-      c(y, partSizeDifference, (uniqueA + uniqueB - uniqueUnion)/uniqueUnion)
+      c(y, partSizeDifference, subDistToHalf, (uniqueA + uniqueB - uniqueUnion)/uniqueUnion)
     })))
-    names(toHalf) <- c("index","psd","ui")
+    names(toHalf) <- c("index","psd","sdh","ui")
     minIndex <- toHalf$index[which(toHalf$psd == min(toHalf$psd))[1]]
-    c(minIndex,toHalf$psd[which(toHalf$index == minIndex)])
+    c(minIndex,toHalf$sdh[which(toHalf$index == minIndex)])
   })))
   names(splitTable) <- c("index","value")
   splitPosition <- splitTable[which(splitTable$value == min(splitTable$value, na.rm = T))[1],]
@@ -73,13 +81,13 @@ produceTree <- function(keysTableSubset, keysLevel, depth){
     keysLevelPartA$keyValue <- keyValue
     keysLevelPartA$keyKind <- "ge"
     keysLevelPartA$nCharacters <- nrow(partA)
-    produceTree(partA, keysLevelPartA, depth - 1)
+    produceTree(partA, keysLevelPartA, countKeys, depth - 1)
     keysLevelPartB <- keysLevel$AddChild(paste(keyName, "ls", keyValue, sep = ""))
     keysLevelPartB$keyName <- keyName
     keysLevelPartB$keyValue <- keyValue
     keysLevelPartB$keyKind <- "ls"
     keysLevelPartB$nCharacters <- nrow(partB)
-    produceTree(partB, keysLevelPartB, depth - 1)
+    produceTree(partB, keysLevelPartB, countKeys, depth - 1)
   } else {
     charactersTable <- as.data.frame(cbind(keysTableSubset[["minN"]]$characternumber,rownames(keysTableSubset[["minN"]])))
     names(charactersTable) <- c("number","name")
@@ -89,7 +97,7 @@ produceTree <- function(keysTableSubset, keysLevel, depth){
 
 classificationKeys <- Node$new("key")
 
-produceTree(keysTable, classificationKeys, 10)
+produceTree(keysTable, classificationKeys, FALSE, 10)
 
 print(classificationKeys,"nCharacters")
 
