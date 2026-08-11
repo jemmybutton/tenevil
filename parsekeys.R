@@ -1,26 +1,16 @@
-install.packages("data.tree")
-
-library(data.tree)
+library(rpart)
 
 rawkeys <- read.csv("characterkeys.csv")
 keysList <- unique(toupper(unlist(strsplit(rawkeys$characterkeys,"[0-9]"))))
 keysList <- keysList[2:length(keysList)]
-keysTable <- data.frame(characternumber = rep(NA,nrow(rawkeys)))
-for (i in keysList){
-  keysTable[,i] <- NA
-}
-for (i in c("minN","maxN")){
-  keysTable[[i]] <- as.data.frame(t(sapply(1:nrow(rawkeys), function(x){
+
+keysTable <- as.data.frame(t(sapply(1:nrow(rawkeys), function(x){
     currentLine <- rawkeys[x,]
     currentKeys <- strsplit(currentLine$characterkeys, "(?<=..)", perl = TRUE)[[1]]
     currentKeysTable <- as.data.frame(t(sapply(currentKeys, function(y){strsplit(y, "")[[1]][c(2,1)]})))
     sapply(keysList, function(y){
       if (ncol(currentKeysTable) > 0){
-        if (i == "minN"){
-          n <- sum(as.numeric(currentKeysTable[currentKeysTable[,1] == y,2]))
-        } else {
-          n <- sum(as.numeric(currentKeysTable[toupper(currentKeysTable[,1]) == y,2]))
-        }
+        n <- sum(as.numeric(currentKeysTable[currentKeysTable[,1] == y,2]))
         if (length(n) > 0){
           n
         } else {
@@ -31,100 +21,59 @@ for (i in c("minN","maxN")){
       }
     })
   })))
-  keysTable[[i]]$charactercode <- rawkeys$charactercode
-  keysTable[[i]]$characternumber <- rawkeys$characternumber
-}
+keysTable$charactercode <- rawkeys$charactercode
+keysTable$characternumber <- rawkeys$characternumber
 
-produceTree <- function(keysTableSubset, keysLevel, countKeys, depth){
-  splitTable <- as.data.frame(t(sapply(keysList, function(x){
-    if (countKeys){
-      minKeys <- (1 + min(keysTableSubset[["maxN"]][,x]))
-      maxKeys <- (max(keysTableSubset[["maxN"]][,x]))
+binaryKeysTable <- keysTable
+binaryKeysTable[,keysList] <- binaryKeysTable[,keysList] > 0
+
+fit <- rpart(charactercode~.-characternumber, data = binaryKeysTable, method = "class", control = rpart.control(maxdepth = 15, cp = 0.0001, minsplit = 10))
+
+splitsVector <- cumsum(fit$frame$ncompete+fit$frame$nsurrogate+1-(fit$frame$var == "<leaf>"))
+
+getSplitDirection <- function(x){
+  if(fit$frame$var[x] != "<leaf>"){
+    if (x == 1){
+      splitStart <- 1
     } else {
-      minKeys <- 1
-      maxKeys <- 1
+      splitStart <- splitsVector[x-1]+1
     }
-    toHalf <- as.data.frame(t(sapply(minKeys:maxKeys, function(y){
-      candidatePartA <- keysTableSubset[keysTableSubset[["maxN"]][,x] >= y,]
-      candidatePartB <- keysTableSubset[keysTableSubset[["minN"]][,x] < y,]
-      partSizeDifference <- abs(nrow(candidatePartA) - nrow(candidatePartB))
-      subDistToHalf <- abs(nrow(candidatePartA) - 0.5*nrow(keysTableSubset)) + abs(nrow(candidatePartB) - 0.5*nrow(keysTableSubset))
-      uniqueRowsA <- unique(rbind(candidatePartA[["minN"]][,keysList],candidatePartA[["maxN"]][,keysList]))
-      uniqueA <- nrow(uniqueRowsA)
-      uniqueRowsB <- unique(rbind(candidatePartB[["minN"]][,keysList],candidatePartB[["maxN"]][,keysList]))
-      uniqueB <- nrow(uniqueRowsB)
-      uniqueUnion <- nrow(unique(rbind(uniqueRowsA,uniqueRowsB)))
-      c(y, partSizeDifference, subDistToHalf, (uniqueA + uniqueB - uniqueUnion)/uniqueUnion)
-    })))
-    names(toHalf) <- c("index","psd","sdh","ui")
-    minIndex <- toHalf$index[which(toHalf$psd == min(toHalf$psd))[1]]
-    c(minIndex,toHalf$sdh[which(toHalf$index == minIndex)])
-  })))
-  names(splitTable) <- c("index","value")
-  splitPosition <- splitTable[which(splitTable$value == min(splitTable$value, na.rm = T))[1],]
-  keyName <- rownames(splitPosition)
-  keyValue <- splitPosition$index
-  partA <- keysTableSubset[keysTableSubset[["maxN"]][,keyName] >= keyValue,]
-  partA[["minN"]][partA[["minN"]][,keyName] < keyValue, keyName] <- keyValue
-  partB <- keysTableSubset[keysTableSubset[["minN"]][,keyName] < keyValue,]
-  partB[["maxN"]][partB[["maxN"]][,keyName] >= keyValue, keyName] <- keyValue - 1
-
-  if (
-    nrow(partA) > 3
-    & nrow(partB) > 3
-    & nrow(keysTableSubset[["minN"]]) >= 15
-    & depth > 0
-  ) {
-    keysLevel$charactersList <- NA
-    keysLevelPartA <- keysLevel$AddChild(paste(keyName, "ge", keyValue, sep = ""))
-    keysLevelPartA$keyName <- keyName
-    keysLevelPartA$keyValue <- keyValue
-    keysLevelPartA$keyKind <- "ge"
-    keysLevelPartA$nCharacters <- nrow(partA)
-    produceTree(partA, keysLevelPartA, countKeys, depth - 1)
-    keysLevelPartB <- keysLevel$AddChild(paste(keyName, "ls", keyValue, sep = ""))
-    keysLevelPartB$keyName <- keyName
-    keysLevelPartB$keyValue <- keyValue
-    keysLevelPartB$keyKind <- "ls"
-    keysLevelPartB$nCharacters <- nrow(partB)
-    produceTree(partB, keysLevelPartB, countKeys, depth - 1)
+    splitEnd <- splitsVector[x]
+    trait <- fit$frame$var[x]
+    rv <- fit$splits[splitStart:splitEnd,"ncat"]
+    if (length(rv) > 1){
+      rv <- rv[trait]
+    }
   } else {
-    charactersTable <- as.data.frame(cbind(keysTableSubset[["minN"]]$characternumber,keysTableSubset[["minN"]]$charactercode))
-    names(charactersTable) <- c("number","name")
-    charactersTable <- charactersTable[!duplicated(charactersTable$name),]
-    keysLevel$charactersTable <- charactersTable
+    rv <- NA
   }
+  rv
 }
-
-classificationKeys <- Node$new("key")
-
-produceTree(keysTable, classificationKeys, FALSE, 10)
-
-print(classificationKeys,"nCharacters")
 
 fileName <- "dichotomouskey.tex"
 write("", fileName)
 
-classificationKeys$Do(function(x){
-  if(length(x$children)>0){
-    keyLabel <- x$pathString
-    childALabel <- x$children[[1]]$pathString
-    childBLabel <- x$children[[2]]$pathString
-    childrenTrait <- x$children[[1]]$keyName
-    childrenValue <- x$children[[1]]$keyValue
+for (i in 1:nrow(fit$frame)){
+  currentRow <- fit$frame[i,]
+  nodeNumber <- as.numeric(rownames(currentRow))
+  if (currentRow$var != "<leaf>"){
+    if (getSplitDirection(i) == -1){
+      refA <- 2*nodeNumber+1
+      refB <- 2*nodeNumber
+    } else {
+      refA <- 2*nodeNumber
+      refB <- 2*nodeNumber+1
+    }
     questionLine <- paste(
-      "\\identificationKey{",childrenTrait,"}","{",childrenValue,"}"
-      ,"{",childALabel,"}","{",childBLabel,"}"
-      ,"\\label{",keyLabel,"}", sep = "")
+      "\\identificationKey{",currentRow$var,"}","{",1,"}"
+      ,"{",paste("node",refA,sep=""),"}","{",paste("node",refB,sep=""),"}"
+      ,"\\label{",paste("node",nodeNumber,sep=""),"}", sep = "")
     write(questionLine, fileName, append = TRUE)
   } else {
-    keyLabel <- x$pathString
-    charactersTable <- x$charactersTable
-    charNumbers <- charactersTable$number
-    charNames  <- charactersTable$name
+    charactersTable <- unique(keysTable[fit$where == i, c("charactercode", "characternumber")])
     resultLine <- paste(
-      "\\identificationResult{", paste(charNumbers, collapse = ","),"}","{", paste(charNames, collapse = ","),"}"
-      ,"\\label{",keyLabel,"}", sep = "")
+      "\\identificationResult{", paste(charactersTable$characternumber, collapse = ","),"}","{", paste(charactersTable$charactercode, collapse = ","),"}"
+      ,"\\label{",paste("node",nodeNumber,sep=""),"}", sep = "")
     write(resultLine, fileName, append = TRUE)
   }
-})
+}
