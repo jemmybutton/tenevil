@@ -30,11 +30,11 @@ binaryKeysTable[,keysList] <- binaryKeysTable[,keysList] > 0
 fit <- rpart(charactercode~.-characternumber,
     data = binaryKeysTable, method = "class",
       control = rpart.control(
-        maxdepth = 15,
-        cp = 0.0001,
+        maxdepth = 20,
+        cp = 0.00001,
         minsplit = 8,
-        minbucket = 4,
-        maxcompete = 20, maxsurrogate = 20, ))
+        minbucket = 2,
+        maxcompete = 20, maxsurrogate = 20, xval = 20))
 
 splitsVector <- cumsum(fit$frame$ncompete+fit$frame$nsurrogate+1-(fit$frame$var == "<leaf>"))
 
@@ -60,7 +60,7 @@ getSplitDirection <- function(x){
 fileName <- "dichotomouskey.tex"
 write("", fileName)
 
-parseTree <- function(nodeNumberInFrame){
+parseTree <- function(nodeNumberInFrame, depth){
   currentRow <- fit$frame[nodeNumberInFrame,]
   nodeNumber <- as.numeric(rownames(currentRow))
   if (currentRow$var != "<leaf>"){
@@ -72,22 +72,22 @@ parseTree <- function(nodeNumberInFrame){
       refB <- 2*nodeNumber+1
     }
     questionLine <- paste(
-      "\\identificationKey{",currentRow$var,"}","{",1,"}"
+      "\\identificationKey[",depth,"]{",currentRow$var,"}","{",1,"}"
       ,"{",paste("node",refA,sep=""),"}","{",paste("node",refB,sep=""),"}"
       ,"\\label{",paste("node",nodeNumber,sep=""),"}", sep = "")
     nodeNumbers <- rownames(fit$frame)
     #print(questionLine)
     write(questionLine, fileName, append = TRUE)
-    parseTree(which(nodeNumbers == refA))
-    parseTree(which(nodeNumbers == refB))
+    parseTree(which(nodeNumbers == refA), depth + 1)
+    parseTree(which(nodeNumbers == refB), depth + 1)
   } else {
     charactersTable <- unique(keysTable[fit$where == nodeNumberInFrame, c("charactercode", "characternumber")])
     resultLine <- paste(
-      "\\identificationResult{", paste(charactersTable$characternumber, collapse = ","),"}","{", paste(charactersTable$charactercode, collapse = ","),"}"
+      "\\identificationResult[",depth,"]{", paste(charactersTable$characternumber, collapse = ","),"}","{", paste(charactersTable$charactercode, collapse = ","),"}"
       ,"\\label{",paste("node",nodeNumber,sep=""),"}", sep = "")
     #print(resultLine)
     write(resultLine, fileName, append = TRUE)
   }
 }
 
-parseTree(1)
+parseTree(1, 0)

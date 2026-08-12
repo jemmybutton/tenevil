@@ -10,9 +10,13 @@
 \usepackage{luaotfload,luacode}
 \usepackage[hidelinks]{hyperref}
 \usepackage{graphicx}
+\usepackage{circledsteps}
 \usepackage{fontspec}
 \usepackage[utf8]{inputenc}
 \usepackage[russian]{babel}
+
+\pgfkeys{/csteps/inner color=white}
+\pgfkeys{/csteps/fill color=black}
 
 \setmainfont[Scale=0.8]{Noto Serif}
 
@@ -76,40 +80,45 @@
 
 \newcounter{question}
 
-\DeclareDocumentCommand{\newQuestion}{}{%
-	\vskip 17pt \par\noindent\refstepcounter{question}\textbf{\thequestion .} 
+\newcount\dotcounter
+
+\DeclareDocumentCommand{\newQuestion}{m}{%
+	\dotcounter0%
+	\vskip 17pt \par\noindent%
+	\textbf{\loop\ifnum\dotcounter < #1 · \ \ \advance\dotcounter by 1\repeat}%
+	\refstepcounter{question}\Circled{\textbf{\thequestion}}\ %
 }
 
 \def\lastKey{}
 
-\DeclareDocumentCommand{\identificationKey}{m m m m}{
-	\newQuestion%
+\DeclareDocumentCommand{\identificationKey}{o m m m m}{
+	\IfNoValueTF{#1}{\newQuestion{0}}{\newQuestion{#1}}%
 	\def\thisKey{#1}%
-	\ifx\lastKey\thisKey\else\reversemarginpar\marginpar{\IfFileExists{keys/#1.pdf}{\vskip -4mm\includegraphics[width=30mm]{keys/#1.pdf}}{}}\fi%
-	\ifnum#2=1 
-		В знаке есть \expandafter\csname keyNomPl#1\endcsname?
+	\ifx\lastKey\thisKey\else\reversemarginpar\marginpar{\IfFileExists{keys/#2.pdf}{\vskip -4mm\includegraphics[width=30mm]{keys/#2.pdf}}{}}\fi%
+	\ifnum#3=1 
+		В знаке есть \expandafter\csname keyNomPl#2\endcsname?
 	\else
 		\newcount\adjustvalue
 		\adjustvalue = #2
 		\advance\adjustvalue by -1%
-		Количество \expandafter\csname keyGenPl#1\endcsname\  в знаке больше \the\adjustvalue?
+		Количество \expandafter\csname keyGenPl#2\endcsname\  в знаке больше \the\adjustvalue?
 	\fi
-	\par Да — \ref{#3}. Нет — \ref{#4}.%
-	\global\def\lastKey{#1}%
+	\par\noindent Да — \ref{#4}. Нет — \ref{#5}.%
+	\global\def\lastKey{#2}%
 }
 
 \newcounter{glyphnamecounter}
 \newcounter{glyphnumbercounter}
 
 \ExplSyntaxOn
-\DeclareDocumentCommand{\identificationResult}{m m}{%
+\DeclareDocumentCommand{\identificationResult}{o m m}{%
 	\global\def\lastKey{}%
-	\newQuestion\nopagebreak%
+	\IfNoValueTF{#1}{\newQuestion{0}}{\newQuestion{#1}}\nopagebreak%
 	\par\noindent\setcounter{glyphnamecounter}{0}%
-	\clist_map_inline:nn { #2 }{%
+	\clist_map_inline:nn { #3 }{%
 		\setcounter{glyphnumbercounter}{0}%
 		\stepcounter{glyphnamecounter}%
-		\clist_map_inline:nn { #1 }{%
+		\clist_map_inline:nn { #2 }{%
 			\stepcounter{glyphnumbercounter}%
 			\ifnum \value{glyphnamecounter} = \value{glyphnumbercounter}%
 				\mbox{\rule{0pt}{25pt}{\tenevilfont\fontsize{30pt}{30pt}\selectfont\fontchar{##1}}~####1}
