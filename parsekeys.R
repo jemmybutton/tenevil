@@ -33,7 +33,7 @@ fit <- rpart(charactercode~.-characternumber,
         maxdepth = 20,
         cp = 0.00001,
         minsplit = 8,
-        minbucket = 2,
+        minbucket = 5,
         maxcompete = 20, maxsurrogate = 20, xval = 20))
 
 splitsVector <- cumsum(fit$frame$ncompete+fit$frame$nsurrogate+1-(fit$frame$var == "<leaf>"))
@@ -60,7 +60,7 @@ getSplitDirection <- function(x){
 fileName <- "dichotomouskey.tex"
 write("", fileName)
 
-parseTree <- function(nodeNumberInFrame, depth){
+parseTree <- function(nodeNumberInFrame, parentNodeNumber, depth){
   currentRow <- fit$frame[nodeNumberInFrame,]
   nodeNumber <- as.numeric(rownames(currentRow))
   if (currentRow$var != "<leaf>"){
@@ -73,21 +73,24 @@ parseTree <- function(nodeNumberInFrame, depth){
     }
     questionLine <- paste(
       "\\identificationKey[",depth,"]{",currentRow$var,"}","{",1,"}"
-      ,"{",paste("node",refA,sep=""),"}","{",paste("node",refB,sep=""),"}"
+      ,"{",paste("node",refA,sep=""),"}"
+      ,"{",paste("node",refB,sep=""),"}"
+      ,"{",paste("node",parentNodeNumber,sep=""),"}"
       ,"\\label{",paste("node",nodeNumber,sep=""),"}", sep = "")
     nodeNumbers <- rownames(fit$frame)
     #print(questionLine)
     write(questionLine, fileName, append = TRUE)
-    parseTree(which(nodeNumbers == refA), depth + 1)
-    parseTree(which(nodeNumbers == refB), depth + 1)
+    parseTree(which(nodeNumbers == refA), nodeNumber, depth + 1)
+    parseTree(which(nodeNumbers == refB), nodeNumber, depth + 1)
   } else {
     charactersTable <- unique(keysTable[fit$where == nodeNumberInFrame, c("charactercode", "characternumber")])
     resultLine <- paste(
       "\\identificationResult[",depth,"]{", paste(charactersTable$characternumber, collapse = ","),"}","{", paste(charactersTable$charactercode, collapse = ","),"}"
+      ,"{",paste("node",parentNodeNumber,sep=""),"}"
       ,"\\label{",paste("node",nodeNumber,sep=""),"}", sep = "")
     #print(resultLine)
     write(resultLine, fileName, append = TRUE)
   }
 }
 
-parseTree(1, 0)
+parseTree(1, 0, 0)
