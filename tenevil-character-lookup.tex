@@ -15,6 +15,9 @@
 \usepackage[utf8]{inputenc}
 \usepackage[russian]{babel}
 
+\newif\ifdebug
+\debugfalse % если true, на каждом этапе показываются ключи
+
 \pgfkeys{/csteps/inner color=white}
 \pgfkeys{/csteps/fill color=black}
 
@@ -86,13 +89,13 @@
 	\dotcounter1%
 	\vskip 17pt \par\noindent%
 	\textbf{\loop\ifnum\dotcounter < #2 · \ \ \advance\dotcounter by 1\repeat}%
-	\refstepcounter{question}\ifnum#2>0{\hyperref[#1]{<}}\fi\ \ \Circled{\textbf{\thequestion}}\ %
+	\refstepcounter{question}\ifnum#2>0{\hyperref[#1]{<}\ \ }\fi\Circled{\textbf{\thequestion}}\ %
 }
 
 \def\lastKey{}
 
-\DeclareDocumentCommand{\identificationKey}{o m m m m m}{
-	\IfNoValueTF{#1}{\newQuestion{0}}{\newQuestion[#6]{#1}}%
+\DeclareDocumentCommand{\identificationKey}{m m m m m m m m}{
+	\newQuestion[#6]{#1}\ \ifdebug \ +#7\ -#8 \fi\ %
 	\def\thisKey{#1}%
 	\ifx\lastKey\thisKey\else\reversemarginpar\marginpar{\IfFileExists{keys/#2.pdf}{\vskip -4mm\includegraphics[width=30mm]{keys/#2.pdf}}{}}\fi%
 	\ifnum#3=1 
@@ -111,9 +114,9 @@
 \newcounter{glyphnumbercounter}
 
 \ExplSyntaxOn
-\DeclareDocumentCommand{\identificationResult}{o m m m}{%
+\DeclareDocumentCommand{\identificationResult}{m m m m m m}{%
 	\global\def\lastKey{}%
-	\IfNoValueTF{#1}{\newQuestion{0}}{\newQuestion[#4]{#1}}\nopagebreak%
+	\newQuestion[#4]{#1}\ \ifdebug \ +#5\ -#6 \fi\ \nopagebreak%
 	\par\noindent\setcounter{glyphnamecounter}{0}%
 	\clist_map_inline:nn { #3 }{%
 		\setcounter{glyphnumbercounter}{0}%

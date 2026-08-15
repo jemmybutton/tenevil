@@ -60,10 +60,11 @@ getSplitDirection <- function(x){
 fileName <- "dichotomouskey.tex"
 write("", fileName)
 
-parseTree <- function(nodeNumberInFrame, parentNodeNumber, depth){
+parseTree <- function(nodeNumberInFrame, parentNodeNumber, includedTraits, excludedTraits, depth){
   currentRow <- fit$frame[nodeNumberInFrame,]
   nodeNumber <- as.numeric(rownames(currentRow))
-  if (currentRow$var != "<leaf>"){
+  currentKey <- currentRow$var
+  if (currentKey != "<leaf>"){
     if (getSplitDirection(nodeNumberInFrame) == -1){
       refA <- 2*nodeNumber+1
       refB <- 2*nodeNumber
@@ -72,25 +73,39 @@ parseTree <- function(nodeNumberInFrame, parentNodeNumber, depth){
       refB <- 2*nodeNumber+1
     }
     questionLine <- paste(
-      "\\identificationKey[",depth,"]{",currentRow$var,"}","{",1,"}"
+      "\\identificationKey{",depth,"}{",currentKey,"}","{",1,"}"
       ,"{",paste("node",refA,sep=""),"}"
       ,"{",paste("node",refB,sep=""),"}"
       ,"{",paste("node",parentNodeNumber,sep=""),"}"
+      ,"{",paste(includedTraits,collapse=""),"}"
+      ,"{",paste(excludedTraits,collapse=""),"}"
       ,"\\label{",paste("node",nodeNumber,sep=""),"}", sep = "")
     nodeNumbers <- rownames(fit$frame)
     #print(questionLine)
     write(questionLine, fileName, append = TRUE)
-    parseTree(which(nodeNumbers == refA), nodeNumber, depth + 1)
-    parseTree(which(nodeNumbers == refB), nodeNumber, depth + 1)
+    parseTree(
+      nodeNumberInFrame = which(nodeNumbers == refA),
+      parentNodeNumber = nodeNumber,
+      includedTraits = c(includedTraits, currentKey),
+      excludedTraits = excludedTraits,
+      depth = depth + 1)
+    parseTree(
+      nodeNumberInFrame = which(nodeNumbers == refB),
+      parentNodeNumber = nodeNumber,
+      includedTraits = includedTraits,
+      excludedTraits = c(excludedTraits, currentKey),
+      depth = depth + 1)
   } else {
     charactersTable <- unique(keysTable[fit$where == nodeNumberInFrame, c("charactercode", "characternumber")])
     resultLine <- paste(
-      "\\identificationResult[",depth,"]{", paste(charactersTable$characternumber, collapse = ","),"}","{", paste(charactersTable$charactercode, collapse = ","),"}"
+      "\\identificationResult{",depth,"}{", paste(charactersTable$characternumber, collapse = ","),"}","{", paste(charactersTable$charactercode, collapse = ","),"}"
       ,"{",paste("node",parentNodeNumber,sep=""),"}"
+      ,"{",paste(includedTraits,sep="",collapse=""),"}"
+      ,"{",paste(excludedTraits,sep="",collapse=""),"}"
       ,"\\label{",paste("node",nodeNumber,sep=""),"}", sep = "")
     #print(resultLine)
     write(resultLine, fileName, append = TRUE)
   }
 }
 
-parseTree(1, 0, 0)
+parseTree(1, 0, c(), c(), 0)
