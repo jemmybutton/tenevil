@@ -29,6 +29,7 @@ binaryKeysTable[,keysList] <- binaryKeysTable[,keysList] > 0
 
 fit <- rpart(charactercode~.-characternumber,
     data = binaryKeysTable, method = "class",
+    parms = list(split = "gini"),
       control = rpart.control(
         maxdepth = 20,
         cp = 0.00001,
