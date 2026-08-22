@@ -82,7 +82,7 @@
 
 
 \DeclareDocumentCommand{\tenevilglyph}{o o o m o o}{%
-\parbox[t]{1.25cm}{%
+\begin{minipage}[t]{\linewidth}%
 	\def\tmpyes{yes}%
 	\def\tmpnone{none}%
 	\def\tmpone{#1}%
@@ -141,7 +141,7 @@
 					}%
 				}%
 			}%
-	}%
+	\end{minipage}%
 }
 
 
