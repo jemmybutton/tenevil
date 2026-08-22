@@ -82,64 +82,66 @@
 
 
 \DeclareDocumentCommand{\tenevilglyph}{o o o m o o}{%
-\def\tmpyes{yes}%
-\def\tmpnone{none}%
-\def\tmpone{#1}%
-\vphantom{}\refstepcounter{glyph}\theglyph{\IfNoValueTF{#2}{}{~(#2)}\IfNoValueTF{#5}{}{}}\hfill~\vskip 1mm{%
-	\IfNoValueTF{#1}{}{%
-		\ifx\tmpone\tmpyes%
-			%
-		\else%
-			\color{gray}%
-		\fi%
-		}
-		\setcounter{charvariantcounter}{0}
-		\clist_map_inline:nn { #4 } {%
-				\global\def\lastCharId{##1}
-				\stepcounter{charvariantcounter}%
-				\edef\curname{currentChar\thecharvariantcounter}%
-				\IfNoValueTF{#5}{%
-					\immediate\write\characterkeys{\theglyph,"\lastCharId", ""}%
-					}{%
-					\setcounter{optioncounter}{0}%
-					\clist_map_inline:nn { #5 } {%
-						\stepcounter{optioncounter}%
-						\ifnum \value{optioncounter} = \value{charvariantcounter}%
-							%\immediate\write\characterkeys{\theglyph,"##1", "####1"}
-							\keySetList{####1}%
-						\fi%
-					}%
-				}%
-				{\tenevilfont\fontsize{40pt}{40pt}\selectfont\fontchar{##1}}\linebreak%
-				\global\expandafter\def\csname\curname\endcsname{{\tenevilfont\selectfont\fontchar{##1}}}%
-				\global\expandafter\def\expandafter\allchars\expandafter{\allchars{ }\tenevilfont\fontsize{40pt}{40pt}\selectfont\fontchar{##1}}%
-				\IfNoValueTF{#3}{}{%
-					\ifnum\value{charvariantcounter} = 1%
-						\label{glyph:#3}%
-						\write\shortcuts{\string\def\expandafter\string\csname TenevilGlyph#3\endcsname{##1}}%
-					\else%
-						\label{glyph:#3\roman{charvariantcounter}}%
-						\write\shortcuts{\string\def\expandafter\string\csname TenevilGlyph#3\endcsname\roman{charvariantcounter}{##1}}%
-					\fi%
-				}%
-				{\tiny%
-					\IfNoValueTF{#6}{}{%
+\parbox[t]{1.25cm}{%
+	\def\tmpyes{yes}%
+	\def\tmpnone{none}%
+	\def\tmpone{#1}%
+	\vphantom{}\refstepcounter{glyph}\theglyph{\IfNoValueTF{#2}{}{~(#2)}\IfNoValueTF{#5}{}{}}\hfill~\vskip 1mm{%
+		\IfNoValueTF{#1}{}{%
+			\ifx\tmpone\tmpyes%
+				%
+			\else%
+				\color{gray}%
+			\fi%
+			}
+			\setcounter{charvariantcounter}{0}
+			\clist_map_inline:nn { #4 } {%
+					\global\def\lastCharId{##1}
+					\stepcounter{charvariantcounter}%
+					\edef\curname{currentChar\thecharvariantcounter}%
+					\IfNoValueTF{#5}{%
+						\immediate\write\characterkeys{\theglyph,"\lastCharId", ""}%
+						}{%
 						\setcounter{optioncounter}{0}%
-						\clist_map_inline:nn { #6 } {%
+						\clist_map_inline:nn { #5 } {%
 							\stepcounter{optioncounter}%
 							\ifnum \value{optioncounter} = \value{charvariantcounter}%
-								\def\tmptwo{####1}%
-								\ifx\tmptwo\tmpnone%
-									\linebreak%
-								\else%
-									\refList{####1}~\hfill\linebreak%
-								\fi
+								%\immediate\write\characterkeys{\theglyph,"##1", "####1"}
+								\keySetList{####1}%
 							\fi%
+						}%
+					}%
+					{\tenevilfont\fontsize{40pt}{40pt}\selectfont\fontchar{##1}}\linebreak%
+					\global\expandafter\def\csname\curname\endcsname{{\tenevilfont\selectfont\fontchar{##1}}}%
+					\global\expandafter\def\expandafter\allchars\expandafter{\allchars{ }\tenevilfont\fontsize{40pt}{40pt}\selectfont\fontchar{##1}}%
+					\IfNoValueTF{#3}{}{%
+						\ifnum\value{charvariantcounter} = 1%
+							\label{glyph:#3}%
+							\write\shortcuts{\string\def\expandafter\string\csname TenevilGlyph#3\endcsname{##1}}%
+						\else%
+							\label{glyph:#3\roman{charvariantcounter}}%
+							\write\shortcuts{\string\def\expandafter\string\csname TenevilGlyph#3\endcsname\roman{charvariantcounter}{##1}}%
+						\fi%
+					}%
+					{\tiny%
+						\IfNoValueTF{#6}{}{%
+							\setcounter{optioncounter}{0}%
+							\clist_map_inline:nn { #6 } {%
+								\stepcounter{optioncounter}%
+								\ifnum \value{optioncounter} = \value{charvariantcounter}%
+									\def\tmptwo{####1}%
+									\ifx\tmptwo\tmpnone%
+										\linebreak%
+									\else%
+										\refList{####1}~\hfill\linebreak%
+									\fi
+								\fi%
+							}%
 						}%
 					}%
 				}%
 			}%
-		}%
+	}%
 }
 
 
@@ -495,13 +497,13 @@
 	&
 	&	ситра [сестра] \cite[л. 67]{spbfaran79} 
 	& 	\tabularnewline \midrule
-\tenevilglyph[no][3]{i_2CF_v_q_'}[2C-2C1V][ekyk-tumgytun] 
+\tenevilglyph[no][3]{i_2CF_v_q_'}[2C-2C1V][ekyk-tumgytum] 
 	&
 	&	
 	&
 	&	прат [брат] \cite[л. 67]{spbfaran79} % йичьэмиттумгын?
 	& 	\tabularnewline \midrule
-\tenevilglyph[yes][5][tumgytun]{i_vd_q_i}[0V-1V] 
+\tenevilglyph[yes][5][tumgytum]{i_vd_q_i}[0V-1V] 
 	&	тумгытум
 	&	друг \cite{lavrov1969}
 	&	тумгытум [= товарищ], товарищ \citearchive[40.50]{iea}
@@ -914,7 +916,7 @@
 		ьnqurь [ынӄоры] \citearchive[1.5]{ili} \linebreak % ilispread:1.5
 		әnqo [ынӄо = оттуда; слово напечатано] \citearchive[12.25]{iea} % тут особенно похоже на модификацию ынӄэн
 		\tabularnewline \midrule
-\tenevilglyph[yes][3]{2cU_cD_jFY}[1V0J-1V5J] 
+\tenevilglyph[yes][3]{2cU_cD_jFY}[1V-1V5J] 
 	&	ӄоныръым
 	& 	
 	&	
