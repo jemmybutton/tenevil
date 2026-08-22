@@ -111,7 +111,7 @@
 							\fi%
 						}%
 					}%
-					{\tenevilfont\fontsize{40pt}{40pt}\selectfont\fontchar{##1}}\linebreak%
+					{\tenevilfont\fontsize{40pt}{40pt}\selectfont\fontchar{##1}}~\linebreak%
 					\global\expandafter\def\csname\curname\endcsname{{\tenevilfont\selectfont\fontchar{##1}}}%
 					\global\expandafter\def\expandafter\allchars\expandafter{\allchars{ }\tenevilfont\fontsize{40pt}{40pt}\selectfont\fontchar{##1}}%
 					\IfNoValueTF{#3}{}{%
@@ -131,7 +131,7 @@
 								\ifnum \value{optioncounter} = \value{charvariantcounter}%
 									\def\tmptwo{####1}%
 									\ifx\tmptwo\tmpnone%
-										\linebreak%
+										~\linebreak%
 									\else%
 										\refList{####1}~\hfill\linebreak%
 									\fi
