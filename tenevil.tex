@@ -146,11 +146,11 @@
 
 
 \DeclareDocumentCommand{\TenevilGlyphByShortcut}{m}{%
-\ifcsname TenevilGlyph#1\endcsname%
-	\hyperref[glyph:#1]{\tenevilfont\selectfont\fontchar{\csname TenevilGlyph#1\endcsname}}%
-\else%
-?
-\fi%
+	\ifcsname TenevilGlyph#1\endcsname%
+		\hyperref[glyph:#1]{\tenevilfont\selectfont\fontchar{\csname TenevilGlyph#1\endcsname}}%
+	\else%
+	?
+	\fi%
 }
 
 \DeclareDocumentCommand{\currentGlyphWithAffixes}{o m m}{%
@@ -524,7 +524,7 @@
 		ŋenqej [ŋenqәj, ӈинӄэй = мальчик] \citearchive[1.7]{ili} \linebreak % ilispread:1.7
 		ŋenqьte [ӈинӄэгти = дети] \citearchive[1.10]{ili} % ilispread:1.10
 		\tabularnewline \midrule
-\tenevilglyph[yes][3]{i_2cU_CF_h}[1C][veekyk] 
+\tenevilglyph[yes][3]{i_2cU_CF_h}[1C1J][veekyk] 
 	&
 	&	
 	&
