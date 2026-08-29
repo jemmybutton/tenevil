@@ -39,6 +39,20 @@
  end
 \end{luacode}
 
+
+\makeatletter % solution from https://tex.stackexchange.com/a/186702
+\newlength\savearrayrulewidth  
+\newcount\savelowpenalty
+\newcommand\nobreakmidrule{%
+	 \noalign{\global\savearrayrulewidth\arrayrulewidth\relax
+		          \global\savelowpenalty\@lowpenalty\relax  
+		          \global\@lowpenalty=\numexpr-10000\relax%
+		           \global\arrayrulewidth\lightrulewidth\relax}
+	 \hline
+	 \noalign{\global\@lowpenalty=\savelowpenalty\relax%
+		          \global\arrayrulewidth\savearrayrulewidth\relax}}
+\makeatother
+
 \def\fontchar#1{\directlua{documentdata.fontchar "#1"}}
 
 \newcounter{glyph}
@@ -82,7 +96,6 @@
 
 
 \DeclareDocumentCommand{\tenevilglyph}{o o o m o o}{%
-\begin{minipage}[t]{\linewidth}%
 	\def\tmpyes{yes}%
 	\def\tmpnone{none}%
 	\def\tmpone{#1}%
@@ -93,55 +106,54 @@
 			\else%
 				\color{gray}%
 			\fi%
-			}
-			\setcounter{charvariantcounter}{0}
-			\clist_map_inline:nn { #4 } {%
-					\global\def\lastCharId{##1}
-					\stepcounter{charvariantcounter}%
-					\edef\curname{currentChar\thecharvariantcounter}%
-					\IfNoValueTF{#5}{%
-						\immediate\write\characterkeys{\theglyph,"\lastCharId", ""}%
-						}{%
-						\setcounter{optioncounter}{0}%
-						\clist_map_inline:nn { #5 } {%
-							\stepcounter{optioncounter}%
-							\ifnum \value{optioncounter} = \value{charvariantcounter}%
-								%\immediate\write\characterkeys{\theglyph,"##1", "####1"}
-								\keySetList{####1}%
-							\fi%
-						}%
-					}%
-					\parbox{\linewidth}{\tenevilfont\fontsize{40pt}{40pt}\selectfont\fontchar{##1}}\ %
-					\global\expandafter\def\csname\curname\endcsname{{\tenevilfont\selectfont\fontchar{##1}}}%
-					\global\expandafter\def\expandafter\allchars\expandafter{\allchars{ }\tenevilfont\fontsize{40pt}{40pt}\selectfont\fontchar{##1}}%
-					\IfNoValueTF{#3}{}{%
-						\ifnum\value{charvariantcounter} = 1%
-							\label{glyph:#3}%
-							\write\shortcuts{\string\def\expandafter\string\csname TenevilGlyph#3\endcsname{##1}}%
-						\else%
-							\label{glyph:#3\roman{charvariantcounter}}%
-							\write\shortcuts{\string\def\expandafter\string\csname TenevilGlyph#3\endcsname\roman{charvariantcounter}{##1}}%
-						\fi%
-					}%
-					\parbox{\linewidth}{\tiny%
-						\IfNoValueTF{#6}{}{%
-							\setcounter{optioncounter}{0}%
-							\clist_map_inline:nn { #6 } {%
-								\stepcounter{optioncounter}%
-								\ifnum \value{optioncounter} = \value{charvariantcounter}%
-									\def\tmptwo{####1}%
-									\ifx\tmptwo\tmpnone%
-										~%
-									\else%
-										\refList{####1}~%
-									\fi
-								\fi%
-							}%
-						}%
-					}\ %
+			}%
+		\setcounter{charvariantcounter}{0}
+		\clist_map_inline:nn { #4 } {%
+			\global\def\lastCharId{##1}
+			\stepcounter{charvariantcounter}%
+			\edef\curname{currentChar\thecharvariantcounter}%
+			\IfNoValueTF{#5}{%
+				\immediate\write\characterkeys{\theglyph,"\lastCharId", ""}%
+				}{%
+				\setcounter{optioncounter}{0}%
+				\clist_map_inline:nn { #5 } {%
+					\stepcounter{optioncounter}%
+					\ifnum \value{optioncounter} = \value{charvariantcounter}%
+						%\immediate\write\characterkeys{\theglyph,"##1", "####1"}
+						\keySetList{####1}%
+					\fi%
 				}%
 			}%
-	\end{minipage}%
+			\parbox{\linewidth}{\tenevilfont\fontsize{40pt}{40pt}\selectfont\fontchar{##1}}\ %
+			\global\expandafter\def\csname\curname\endcsname{{\tenevilfont\selectfont\fontchar{##1}}}%
+			\global\expandafter\def\expandafter\allchars\expandafter{\allchars{ }\tenevilfont\fontsize{40pt}{40pt}\selectfont\fontchar{##1}}%
+			\IfNoValueTF{#3}{}{%
+				\ifnum\value{charvariantcounter} = 1%
+					\label{glyph:#3}%
+					\write\shortcuts{\string\def\expandafter\string\csname TenevilGlyph#3\endcsname{##1}}%
+				\else%
+					\label{glyph:#3\roman{charvariantcounter}}%
+					\write\shortcuts{\string\def\expandafter\string\csname TenevilGlyph#3\endcsname\roman{charvariantcounter}{##1}}%
+				\fi%
+			}%
+			\parbox{\linewidth}{\tiny%
+				\IfNoValueTF{#6}{}{%
+					\setcounter{optioncounter}{0}%
+					\clist_map_inline:nn { #6 } {%
+						\stepcounter{optioncounter}%
+						\ifnum \value{optioncounter} = \value{charvariantcounter}%
+							\def\tmptwo{####1}%
+							\ifx\tmptwo\tmpnone%
+								~%
+							\else%
+								\refList{####1}~%
+							\fi
+						\fi%
+					}%
+				}%
+			}\ %
+		}%
+	}%
 }
 
 
@@ -236,13 +248,15 @@
 \begin{landscape}
 \begin{longtable}{p{1.25cm}>{\raggedright}p{2.5cm}>{\raggedright}p{3cm}>{\raggedright}p{3.5cm}>{\raggedright}p{6.5cm}>{\raggedright}p{7.5cm}}
 \toprule
+		Знак
 	&	Выбранная интерпретация
- 	& 	Опубликованные интерпретации \cite{bogoraz1934,mindalevich1934,lavrov1969} 
+ 	& 	Опубликованные интерпретации \mbox{\cite{bogoraz1934,mindalevich1934,lavrov1969}}
  	&	Картотека И. П. Лаврова
  	& 	СПбФ АРАН \cite{spbfaran79} 
-	& 	В записях самого Тыневиля \cite{davydova2015a,lavrov1969,bogoraz1934} 
+	& 	В записях самого Тыневиля \mbox{\cite{davydova2015a,lavrov1969,bogoraz1934}}
 		\tabularnewline \midrule
-\multicolumn{6}{c}{«Фонетические» знаки} \tabularnewline \midrule
+	\endhead
+\multicolumn{6}{c}{«Фонетические» знаки} \\* \nobreakmidrule
 \tenevilglyph[yes][4][A]{*cTR}[1C] 
 	&	а/о/у
 	&	
@@ -365,7 +379,7 @@
 		t [слово напечатано] \citearchive[12.9, 12.12]{iea} \linebreak
 		та \currentGlyphWithAffixes{}{A}, ту \currentGlyphWithAffixes{}{W} \citearchive[32.14]{iea} 
 		\tabularnewline \midrule 
-\multicolumn{6}{c}{«Основные» знаки} \tabularnewline \midrule
+\multicolumn{6}{c}{«Основные» знаки} \\* \nobreakmidrule
 \tenevilglyph[yes][5][qlawyl]{i_2cU_2cD}[4J] 
 	&	ӄԓявыԓ
 	&	мужчина \cite{lavrov1969}
