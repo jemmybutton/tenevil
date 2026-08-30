@@ -33,8 +33,8 @@ fit <- rpart(charactercode~.-characternumber,
       control = rpart.control(
         maxdepth = 20,
         cp = 0.00001,
-        minsplit = 8,
-        minbucket = 5,
+        minsplit = 10,
+        minbucket = 3,
         maxcompete = 20, maxsurrogate = 20, xval = 20))
 
 splitsVector <- cumsum(fit$frame$ncompete+fit$frame$nsurrogate+1-(fit$frame$var == "<leaf>"))
