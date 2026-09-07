@@ -9,7 +9,7 @@ page,written,transcription,phonetic_symbols,is_strong
 0,nьmelieu,нымԓьав,,TRUE
 0,qoren,ӄорэн,N,TRUE
 0,waьrgьn,вагыргын,,TRUE
-0,ьruckete,,T,NA
+0,ьruckete,ырускэтэ,T,FALSE
 0,gemo,гэмо,,TRUE
 0,waliьn,ваԓьын,AN,TRUE
 0,ьrgen,ыргин,,FALSE
@@ -916,7 +916,7 @@ page,written,transcription,phonetic_symbols,is_strong
 42,kolomj,коԓё мэй,,TRUE
 42,aŋiacgьrrgьn,аӈъачгыргын,AR,TRUE
 42,qoraŋь,ӄораӈы,,TRUE
-43,ьruckete,,RKT,NA
+43,ьruckete,ырускэтэ,RKT,FALSE
 43,gemo,гэмо,U,TRUE
 43,qoren,ӄорэн,N,TRUE
 43,waьrgьn,вагыргын,,TRUE
