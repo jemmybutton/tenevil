@@ -78,12 +78,12 @@ page,written,transcription,phonetic_symbols,is_strong
 4,mekrelь,миӈкыриԓы,,FALSE
 4,nьrulqen,ныруԓӄин,,FALSE
 4,nьpьluqen,ныппыԓюӄин,,FALSE
-4,ьruckete,,KRA,NA
+4,ьruckete,ырускэтэ,KRA,FALSE
 4,ьrgьnan,ыргынан,,TRUE
 4,ŋutku,ӈутку,,FALSE
 4,morkwaratьk,,,NA
 4,ьrgьnan,ыргынан,,TRUE
-4,ьruckete,,KR,NA
+4,ьruckete,ырускэтэ,KR,FALSE
 4,rьcemiwe,рэчимгъугъэ,,NA
 4,iorawelian,о'равэтԓьан,,TRUE
 4,ьŋen,ынӈин,,FALSE
@@ -129,7 +129,7 @@ page,written,transcription,phonetic_symbols,is_strong
 5,qonpь,ӄонпы,,TRUE
 5,nьtmŋuqen,,N,NA
 5,manerelia,,,NA
-5,ьruckete,,KRT,NA
+5,ьruckete,ырускэтэ,KRT,FALSE
 5,nenetьqen,,N,NA
 5,moqor,мооӄор,,TRUE
 5,qonpь,ӄонпы,,TRUE
@@ -147,7 +147,7 @@ page,written,transcription,phonetic_symbols,is_strong
 6,meьceretьk,мигчирэтык,K,FALSE
 6,nenajaqen,нэнайъоӄэн,N,TRUE
 6,ьrgьnan,ыргынан,,TRUE
-6,ьruckete,,KRA,NA
+6,ьruckete,ырускэтэ,KRA,FALSE
 6,temecьnkь,,,NA
 6,teŋeŋekь,,KT,NA
 6,weler,вэԓер,,FALSE
