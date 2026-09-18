@@ -18,8 +18,8 @@ page,written,transcription,phonetic_symbols,is_strong
 0,gemo,гэмо,,TRUE
 0,waliьn,ваԓьын,AN,TRUE
 0,puriu,пууръу,,FALSE
-0,ьnanь,ыннаны,,TRUE
 0,nemьqe,нэмыӄэй,KE,NA
+0,ьnanь,ыннаны,,TRUE
 1,iatav,а'тав,,TRUE
 1,ьmьlio,ымыԓьо,,TRUE
 1,waьrgьt,вагыргыт,T,TRUE
@@ -1098,7 +1098,7 @@ page,written,transcription,phonetic_symbols,is_strong
 51,nьteqen,нытэӈӄин,,FALSE
 51,roolqьl,рооԓӄыԓ,,TRUE
 51,iatav,а'тав,,TRUE
-51,nьmelieu,нымэԓьэв,A,NA
+51,nьmelieu,нымэԓьэв,A,FALSE
 51,wetь,вэты,,NA
 51,paŋiuŋьtok,паӈъэвӈыток,TK,TRUE
 51,cukьcke,,L,NA
