@@ -153,6 +153,7 @@
 				}%
 			}\ %
 		}%
+	\ifnum\value{charvariantcounter} = 0{\label{glyph:#3}}{}\fi%
 	}%
 }
 
@@ -256,7 +257,7 @@
 	& 	В записях самого Тыневиля \mbox{\cite{davydova2015a,lavrov1969,bogoraz1934}}
 		\tabularnewline \midrule
 	\endhead
-\multicolumn{6}{c}{«Фонетические» знаки} \\* \nobreakmidrule
+\multicolumn{6}{c}{Фонетические знаки} \\* \nobreakmidrule
 \tenevilglyph[yes][4][A]{*cTR}[1C] 
 	&	а/о/у
 	&	
@@ -379,7 +380,7 @@
 		t [слово напечатано] \citearchive[12.9, 12.12]{iea} \linebreak
 		та \currentGlyphWithAffixes{}{A}, ту \currentGlyphWithAffixes{}{W} \citearchive[32.14]{iea} 
 		\tabularnewline \midrule 
-\multicolumn{6}{c}{«Основные» знаки} \\* \nobreakmidrule
+\multicolumn{6}{c}{Основные знаки} \\* \nobreakmidrule
 \tenevilglyph[yes][5][qlawyl]{i_2cU_2cD}[4J] 
 	&	ӄԓявыԓ
 	&	мужчина \cite{lavrov1969}
@@ -427,7 +428,7 @@
 	&	irьn [иръын = кухлянка, мужская меховая рубаха, пальто, верхняя одежда; слово напечатано] \citearchive[7.13, 12.23]{iea} \linebreak
 		rarrok [ратрок = класть за пазуху; слово напечатано] \currentGlyphWithAffixes{}{R,K} \citearchive[12.19об]{iea} % NB: Обрати внимание, фонетический ключ используется для совсем другого слова
 		\tabularnewline \midrule
-\tenevilglyph[yes][4]{i_cUY_2cD_2q}[1V4J2Q][irxyn] 
+\tenevilglyph[yes][4]{i_cUY_2cD_2q}[1V4J2Q][turX-irxyn] 
 	&	туриръын
 	&	
 	&
@@ -699,7 +700,7 @@
 	&	
 	& 	ьrgen [ыргин = их, принадлежащий им] \citearchive[1.2об, 2.1об]{ili} % ilispread:1.3, % ilispread:2.1
 		\tabularnewline \midrule
-\tenevilglyph[yes][4]{o_l_j2Y_2c}[1O1V2C3J][yrgin] 
+\tenevilglyph[yes][4]{o_l_j2Y_2c}[1O1V2C3J][emX-yrgin] 
 	&	эмыргин
 	&	
 	&	
@@ -1026,7 +1027,7 @@
 	& 	\cite[360, 364]{davydova2015a} \linebreak
 		ьnketeьnk [ынкэтэгнык] \citearchive[1.13]{ili} % ilispread:1.13
 		\tabularnewline \midrule
-\tenevilglyph[yes][4]{o_q_2c}[1O][ynky] 
+\tenevilglyph[yes][4]{o_q_2c}[1O][emX-ynky] 
 	&	эмынкы
 	& 	
 	&	
@@ -1078,7 +1079,7 @@
 		ŋuketeьnk \citearchive[1.4]{ili} \linebreak % TODO: нужна транскрипция % ilispread:1.4
 		ŋotketeьnьk \currentGlyphWithAffixes{}{T,K} \citearchive[2.6]{ili} % ilispread:2.5
 		\tabularnewline \midrule
-\tenevilglyph[yes][3]{l-l_2c}[2C][vutku] 
+\tenevilglyph[yes][3]{l-l_2c}[2C][emX-vutku] 
 	&
 	&	
 	&	
@@ -1510,7 +1511,7 @@
 		скоро [не рукой Т.] \citearchive[57.9]{iea} \linebreak
 		pele [petlә, пэтԓе] \citearchive[1.20]{ili} % ilispread:1.20
 		\tabularnewline \midrule
-\tenevilglyph[yes][4]{b_2q_L_2c}[0B2С1V-1B2С1V][petle] 
+\tenevilglyph[yes][4]{b_2q_L_2c}[0B2С1V-1B2С1V][emX-petle] 
 	&	эмпэтԓе
 	&	
 	&
@@ -1765,7 +1766,7 @@
 	& 	nьmkeu [нымкъэв = много; слово напечатано] \citearchive[12.16]{iea} \linebreak
 		nьmkieu [нымкъэв] \citearchive[1.6об, 2.22]{ili} % ilispread:1.7, ilispread:2.21
 		\tabularnewline \midrule
-\tenevilglyph[yes][4]{s_j_b_2c}[1B2C1S-1B2C1S1J][nymkyqin] 
+\tenevilglyph[yes][4]{s_j_b_2c}[1B2C1S-1B2C1S1J][emX-nymkyqin] 
 	&	эмнымкъэв
 	&	
 	&
@@ -1933,7 +1934,7 @@
 	&	\cite[361]{davydova2015a} \linebreak
 		valь [ваԓы] \citearchive[12.15]{iea} 
 		\tabularnewline \midrule
-\tenevilglyph[yes][4]{b_2jF_2q}[1B2Q][waly] 
+\tenevilglyph[yes][4]{b_2jF_2q}[1B2Q][turX-waly] 
 	&	торвыԓы
 	&	
 	&	торвалы [торвыԓы = новый нож], новый нож \citearchive[40.114]{iea} 
@@ -2737,7 +2738,7 @@
 		эlьteŋьcike \currentGlyphWithAffixes{etly}{} \citearchive[1.14]{ili} \linebreak % TODO: нужен перевод % ilispread:1.14
 		taŋkьnmal [таӈкынмаԓ = дружно] \currentGlyphWithAffixes{kynmal}{} \citearchive[1.14об]{ili} % ilispread:1.15
 		\tabularnewline \midrule
-\tenevilglyph[yes][4]{i_G_cFD_2c}[1G1C2C][nytevqin] 
+\tenevilglyph[yes][4]{i_G_cFD_2c}[1G1C2C][emX-nytevqin] 
 	&	амтаӈычьэты % МП
 	&	
 	&	
@@ -3057,7 +3058,7 @@
 		ыннйн [ынӈин] \citearchive[41.6]{iea} \linebreak
 		эмынхен [эмынӄэн = только это] \currentGlyphWithAffixes{ymy}{} \citearchive[41.7]{iea} % NB: Обрати внимание, используется ымы вместо двух отдельных скобочек да ам-/эм-. Возможно, указание на происхождение последних от знака для ымы, но основной знак не тот
 		\tabularnewline \midrule
-\tenevilglyph[yes][3]{cF_CF_2c}[3C-4C][ynvin] 
+\tenevilglyph[yes][3]{cF_CF_2c}[3C-4C][emX-ynvin] 
 	&	эмынӈин
 	&	
 	&	
@@ -4354,7 +4355,7 @@
 	&
 	&	нирепкои [некрепкий] \cite[л. 69 об]{spbfaran79}
 	& 	\tabularnewline \midrule
-\tenevilglyph[yes][5]{v_i_2CX}[0V2C-1V2C] 
+\tenevilglyph[yes][5][pykiryk]{v_i_2CX}[0V2C-1V2C] 
 	&	пыкирык
 	&	приходить, приезжать \cite{lavrov1969}
 	&	пикирык [пыкирык = по приходу], прихожу, приходит \citearchive[40.30]{iea}
@@ -4370,7 +4371,7 @@
 		niьmkerьrkьn \currentGlyphWithAffixes{}{R} \citearchive[1.18об]{ili} \linebreak % TODO: нужен перевод % ilispread:1.19
 		pьkerьk [пыкирык] \currentGlyphWithAffixes{}{K} \citearchive[1.16об]{ili} % ilispread:1.17
 		\tabularnewline \midrule
-\tenevilglyph[yes][1]{v_i_2CX_2q}[0V2C2Q-1V2C2Q] 
+\tenevilglyph[yes][1]{v_i_2CX_2q}[0V2C2Q-1V2C2Q][turX-pykiryk]
 	&
 	&	
 	&	
@@ -5054,7 +5055,7 @@
 		ŋargьnenapь \currentGlyphWithAffixes{}{N,N,P} \citearchive[2.4об]{ili} \linebreak % ilispread:2.4
 		ŋargьnenatь \currentGlyphWithAffixes{}{N,T} \citearchive[1.12об]{ili} % ilispread:1.13
 		\tabularnewline \midrule
-\tenevilglyph[yes][5]{UD_uD_2q}[1V2C2Q][wagyrgyn] 
+\tenevilglyph[yes][5]{UD_uD_2q}[1V2C2Q][turX-wagyrgyn] 
 	&	торвагыргын
 	&	
 	&	торвагыргын [= новая жизнь], новая жизнь \citearchive[40.61]{iea}
@@ -5304,7 +5305,7 @@
 	 	janra [янра] \citearchive[1.4об]{ili} \linebreak % ilispread:1.5
 		jara [janra, янра] \citearchive[2.13об]{ili} % ilispread:2.13
 		\tabularnewline \midrule
-\tenevilglyph[yes][4]{CD_i_C_2c}[2C2C][janra] 
+\tenevilglyph[yes][4]{CD_i_C_2c}[2C2C][emX-janra] 
 	&	амъянра
 	&	
 	&	
@@ -5411,7 +5412,7 @@
 	& 	\cite[360, 361, 364]{davydova2015a} \linebreak
 		ьree [ытри] \citearchive[1.4об]{ili} % TODO: странно, уточнить контекст % ilispread:1.5
 		\tabularnewline \midrule
-\tenevilglyph[yes][5]{C_IY}[1V1C] 
+\tenevilglyph[yes][5][cymqyk]{C_IY}[1V1C] 
 	&	чымӄык
 	&	
 	&	чымкык [чымӄык = часть, взятый частично, другой, иной], тэйвын [тэйвыӈ = часть, доля, пай], часть \citearchive[40.68]{iea}
@@ -5419,7 +5420,7 @@
 	& 	çьmqьk [чымӄык; слово напечатано] \citearchive[12.20об]{iea} \linebreak
 		cьmqьk [чымӄык] \citearchive[1.4об]{ili} % ilispread:1.5
 		\tabularnewline \midrule
-\tenevilglyph[yes][4]{C_IY_2c}[1V3C] 
+\tenevilglyph[yes][4]{C_IY_2c}[1V3C][emX-cymqyk]
 	&	эмчымӄык
 	&	
 	&	
@@ -5591,7 +5592,7 @@
 	&	
 	&	alwa [alva, аԓва] \citearchive[1.2]{ili} % ilispread:1.2
 		\tabularnewline \midrule 
-\tenevilglyph[yes][3]{b-b_2c}[2B2C][alwa] 
+\tenevilglyph[yes][3]{b-b_2c}[2B2C][emX-alwa] 
 	&	амаԓваӈ
 	&	
 	&	
@@ -6188,6 +6189,21 @@
 	&	копика [копейка] \citearchive[37.1об]{iea} \linebreak % TODO: нужна интерпретация
 		копека [копейка] \currentGlyphWithAffixes{pylwyntyn}{P} \citearchive[37.1об]{iea}
 		\tabularnewline \midrule 
+\multicolumn{6}{c}{«Модификаторы»} \\* \nobreakmidrule
+\tenevilglyph[yes][5][turX]{}
+	&	тур-/тор-
+	&	
+	&	
+	&	
+	&	
+		\tabularnewline \midrule 
+\tenevilglyph[yes][5][emX]{}
+	&	эм-/ам-
+	&	
+	&	
+	&	
+	&	
+		\tabularnewline \midrule 
 \bottomrule
 \end{longtable}
 \end{landscape}
@@ -6210,7 +6226,7 @@
 		\item 6:	однозначная интерпретация, проверенная в контексте % пока таких записей нет, появятся, когда буду смотреть в контексте
 	\end{itemize}
 \item Сам знак (знаки, если существует в нескольких вариантах начертания).
-\item Ссылки на знаки, составляющие данный знак или послужившие для него основой.
+\item Ссылки на знаки, составляющие данный знак или послужившие для него основой, а также ссылки на «модификаторы».
 \end{itemize}
 
 \subsection{Второй столбец}
@@ -6227,6 +6243,20 @@
 %Если интерпретация приводится для группы знаков или знак является частью «лигатуры», интерпретация написана в кавычках.
 
 Звездочкой помечены источники, где знак отличается по начертанию от прочих.
+
+\section{Разделы таблицы}
+
+\subsection{Фонетические знаки} 
+
+Знаки, передающие отдельные звуки.
+
+\subsection{Основные знаки} 
+
+Логограммы/идеограммы письменности Тыневиля. Передают, как правило, отдельные слова, могут также привносить собственный смысл или звучание в сочетание знаков.
+
+\subsection{«Модификаторы»} 
+
+Раздел для элементов знаков, не встречающихся самостоятельно, но выполняющих одну и ту же роль в знаках.
 
 \section{Описания источников} 
 
