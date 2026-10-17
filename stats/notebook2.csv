@@ -24,7 +24,7 @@ page,written,transcription,phonetic_symbols,is_strong
 1,ьmьlio,ымыԓьо,,TRUE
 1,waьrgьt,вагыргыт,T,TRUE
 1,ŋereq,ӈирэӄ,,FALSE
-1,mьneuolerkьnet,,MNE,FALSE
+1,mьneuolerkьnet,мыныгъюԓеэркынэт,MNE,FALSE
 1,iatav,а'тав,,TRUE
 1,ьmьlio,ымыԓьо,,TRUE
 1,qoriar,,R,NA
@@ -76,7 +76,7 @@ page,written,transcription,phonetic_symbols,is_strong
 3,amalga,,,NA
 3,waliьn,ваԓьын,AN,TRUE
 3,ŋargьnen,ӈаргынэн,N,TRUE
-3,nьmkerqen,,NN,NA
+3,nьmkerqen,ныпкирӄин,NN,NA
 3,qьlьe,ӄэгԓы,,NA
 3,eep,еп,,FALSE
 3,lilŋkь,ԓьэԓеӈкы,K,FALSE
@@ -1047,7 +1047,7 @@ page,written,transcription,phonetic_symbols,is_strong
 48,elь,этԓы,,NA
 48,eqьlpe,эӄыԓпэ,,NA
 48,apaŋiuŋьtoka,апаӈъэвӈытока,,TRUE
-48,turьmkere,,E,NA
+48,turьmkere,турыпкирэ,E,FALSE
 48,weler,вэԓер,,FALSE
 49,amьnan,амынан,,TRUE
 49,celgьmemlьqaj,,QAE,NA
