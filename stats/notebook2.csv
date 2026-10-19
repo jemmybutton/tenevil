@@ -27,7 +27,7 @@ page,written,transcription,phonetic_symbols,is_strong
 1,mьneuolerkьnet,мыныгъюԓеэркынэт,MNE,FALSE
 1,iatav,а'тав,,TRUE
 1,ьmьlio,ымыԓьо,,TRUE
-1,qoriar,,R,NA
+1,qoriar,ӄоръар,R,NA
 1,qol,ӄоԓ,,TRUE
 1,ьnqen,ынӄэн,,NA
 1,iemlun,э'митԓён,,TRUE
@@ -37,7 +37,7 @@ page,written,transcription,phonetic_symbols,is_strong
 1,eun,эвын,,NA
 1,ьnanь,ыннаны,,TRUE
 1,waliьn,ваԓьын,AN,TRUE
-1,qoriargьrrgьn,,RRN,NA
+1,qoriargьrrgьn,коръаргыргын,RRN,NA
 1,lьmьnkь,ԓымынкы,,NA
 1,waliьn,ваԓьын,AN,TRUE
 1,qonpь,ӄонпы,,TRUE
@@ -46,7 +46,7 @@ page,written,transcription,phonetic_symbols,is_strong
 2,nutecqьn,нутэсӄын,,FALSE
 2,mekь,миӈкы,,FALSE
 2,ьnanь,ыннаны,,TRUE
-2,qoriar,,R,NA
+2,qoriar,ӄоръар,R,NA
 2,waliьn,ваԓьын,AN,TRUE
 2,lьmьnkь,ԓымынкы,,NA
 2,ьnanь,ыннаны,,TRUE
@@ -54,7 +54,7 @@ page,written,transcription,phonetic_symbols,is_strong
 2,eun,эвын,,NA
 2,ьŋen,ынӈин,,FALSE
 2,waliьn,ваԓьын,AN,TRUE
-2,qoriar,,R,NA
+2,qoriar,ӄоръар,R,NA
 2,eun,эвын,,NA
 2,teleeip,тэԓенъеп,,FALSE
 2,ьŋen,ынӈин,,FALSE
@@ -84,7 +84,7 @@ page,written,transcription,phonetic_symbols,is_strong
 3,cama,чама,,TRUE
 3,jojien,ёо-нэн,bN,TRUE
 3,ьnkeken,ынкэкин,N,FALSE
-3,qoriar,,R,NA
+3,qoriar,ӄоръар,R,NA
 3,qoren,ӄорэн,N,TRUE
 3,tiьcgьrgьn,тъычгыргын,bN,NA
 3,iepe,э'птэ,,NA
@@ -102,7 +102,7 @@ page,written,transcription,phonetic_symbols,is_strong
 4,ьnqen,ынӄэн,,NA
 4,qьrьmen,ӄырымэн,,NA
 4,nutecqьken,нутэсӄын,KN,FALSE
-4,qoriargьrrgьn,,RR,NA
+4,qoriargьrrgьn,коръаргыргын,RR,NA
 4,iepe,э'птэ,,NA
 4,ŋargьnenaken,ӈаргынэнакэн,NNAKN,TRUE
 4,tiьcgrgьn,тъычгыргын,bT,NA
@@ -148,12 +148,12 @@ page,written,transcription,phonetic_symbols,is_strong
 6,qoren,ӄорэн,N,TRUE
 6,tiьcgьrgьn,тъычгыргын,bT,NA
 6,iliьlgьpь,ы'ԓьыԓгыпы,P,NA
-6,qoriar,,R,NA
+6,qoriar,коръар,R,NA
 6,waliьn,ваԓьын,AN,TRUE
 6,cama,чама,,TRUE
 6,meqorь,,,NA
 6,waliьn,ваԓьын,AN,TRUE
-6,qoriar,,R,NA
+6,qoriar,ӄоръар,R,NA
 6,emlььэn,,,NA
 7,melewrmete,,TE,NA
 7,nьlqьrernen,ныԓӄырирӄин,LQR,FALSE
@@ -266,10 +266,10 @@ page,written,transcription,phonetic_symbols,is_strong
 12,teerkьn,,TRK,NA
 12,jureq,юрэӄ,,FALSE
 12,ŋutqen,ӈотӄэн,,TRUE
-12,qoriar,,R,NA
+12,qoriar,ӄоръар,R,NA
 12,penen,пэнин,,FALSE
 12,murgen,мургин,N,FALSE
-12,qoriargьrgьn,,RR,NA
+12,qoriargьrgьn,коръаргыргын,RR,NA
 12,eun,эвын,,NA
 12,teleŋken,тэԓеӈкин,KN,FALSE
 12,penen,пэнин,,FALSE
@@ -294,7 +294,7 @@ page,written,transcription,phonetic_symbols,is_strong
 13,nьtelpьqen,,NTP,NA
 13,ŋelwьl,ӈэԓвыԓ,,NA
 13,cama,чама,,TRUE
-13,qoriar,,R,NA
+13,qoriar,ӄоръар,R,NA
 13,kьnmal,кынмаԓ,,TRUE
 13,cama,чама,,TRUE
 13,nьtьmŋuqen,,NT,NA
